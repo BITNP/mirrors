@@ -9,7 +9,7 @@ var PORT = 3000;
 
 
 var baseUrl = "mirrors\\";
-var fileName="mirrors\\tuna.json";
+var fileName="mirrors\\mirrors.json";
 var mirData=JSON.parse(fs.readFileSync(fileName));
 
 function start(route, handle) {

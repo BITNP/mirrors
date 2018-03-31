@@ -152,7 +152,13 @@
 	    navDatas[Name.toUpperCase().charCodeAt(0)-'A'.charCodeAt(0)]++;
 	    navDatas[26]++;
 	    var times = data[mir].last_update;
-	    time = times.split(' ')[0];
+	    var time = '';
+	    if(times)
+	    	time = times.split(' ')[0];
+	    else{
+	    	times = data[mir].least_update;
+	    	time = times.split('T')[0];
+	    }
 	    var tr = '<tr id="item_'+(parseInt(mir)+1)+'"><th scope="row">'+(parseInt(mir)+1)+'</th><td><img src="img/tubiao.png" alt="image" />'+Name+'</td><td>'+time+'</td></tr>';
 	    html += tr;
 	}
