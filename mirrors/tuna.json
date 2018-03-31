@@ -1,0 +1,1113 @@
+[{
+	"name": "AOSP",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 05:42:34 +0800",
+	"last_update_ts": 1522100554,
+	"upstream": "https://android.googlesource.com/mirror/manifest",
+	"size": "unknown"
+}, {
+	"name": "CRAN",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:11:49 +0800",
+	"last_update_ts": 1522131109,
+	"upstream": "rsync://cran.r-project.org/CRAN/",
+	"size": "199.68G"
+}, {
+	"name": "CTAN",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:53:41 +0800",
+	"last_update_ts": 1522137221,
+	"upstream": "rsync://mirrors.rit.edu/CTAN/",
+	"size": "36.54G"
+}, {
+	"name": "CocoaPods",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:08:16 +0800",
+	"last_update_ts": 1522130896,
+	"upstream": "https://github.com/CocoaPods",
+	"size": "unknown"
+}, {
+	"name": "ELK",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:21:25 +0800",
+	"last_update_ts": 1522106485,
+	"upstream": "https://packages.elastic.co",
+	"size": "unknown"
+}, {
+	"name": "HHVM",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 08:03:40 +0800",
+	"last_update_ts": 1522109020,
+	"upstream": "rsync://rsync.osuosl.org/hhvm/",
+	"size": "247.18G"
+}, {
+	"name": "NetBSD",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:03:53 +0800",
+	"last_update_ts": 1522123433,
+	"upstream": "rsync://rsync.NetBSD.org/NetBSD/",
+	"size": "616.08G"
+}, {
+	"name": "OpenBSD",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:33:03 +0800",
+	"last_update_ts": 1522117983,
+	"upstream": "rsync://ftp.heanet.ie/pub/OpenBSD/",
+	"size": "435.45G"
+}, {
+	"name": "adobe-fonts",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:05:45 +0800",
+	"last_update_ts": 1522105545,
+	"upstream": "https://github.com/adobe-fonts",
+	"size": "unknown"
+}, {
+	"name": "alpine",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:27:43 +0800",
+	"last_update_ts": 1522121263,
+	"upstream": "rsync://rsync.alpinelinux.org/alpine/",
+	"size": "373.33G"
+}, {
+	"name": "anaconda",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-22 09:09:24 +0800",
+	"last_update_ts": 1521680964,
+	"upstream": "https://repo.continuum.io/",
+	"size": "unknown"
+}, {
+	"name": "antergos",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:52:09 +0800",
+	"last_update_ts": 1522137129,
+	"upstream": "rsync://mirror.nl.leaseweb.net/antergos/",
+	"size": "4.42G"
+}, {
+	"name": "anthon",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:18:05 +0800",
+	"last_update_ts": 1522117085,
+	"upstream": "rsync://mirror.anthonos.org/anthon/",
+	"size": "503.50G"
+}, {
+	"name": "aosp-monthly",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:14:51 +0800",
+	"last_update_ts": 1522131291,
+	"upstream": "rsync://bravo.s.tuna.tsinghua.edu.cn/aosp-monthly/",
+	"size": "577.16G"
+}, {
+	"name": "apache",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:27:51 +0800",
+	"last_update_ts": 1522117671,
+	"upstream": "rsync://rsync.apache.org/apache-dist/",
+	"size": "94.58G"
+}, {
+	"name": "arch4edu",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:14:54 +0800",
+	"last_update_ts": 1522131294,
+	"upstream": "rsync://arch4edu-upload.tuna.tsinghua.edu.cn/arch4edu/",
+	"size": "16.47G"
+}, {
+	"name": "archlinux",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:18:34 +0800",
+	"last_update_ts": 1522131514,
+	"upstream": "rsync://rsync.archlinux.org/ftp_tier1/",
+	"size": "44.87G"
+}, {
+	"name": "archlinuxarm",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:53:16 +0800",
+	"last_update_ts": 1522119196,
+	"upstream": "rsync://ftp.halifax.rwth-aachen.de/archlinux-arm/",
+	"size": "84.93G"
+}, {
+	"name": "archlinuxcn",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:35:01 +0800",
+	"last_update_ts": 1522118101,
+	"upstream": "rsync://repo@sync.repo.archlinuxcn.org/repo/",
+	"size": "49.73G"
+}, {
+	"name": "bananian",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 06:59:06 +0800",
+	"last_update_ts": 1522105146,
+	"upstream": "https://dl.bananian.org/",
+	"size": "unknown"
+}, {
+	"name": "bioconductor",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:14:22 +0800",
+	"last_update_ts": 1522131262,
+	"upstream": "master.bioconductor.org:./",
+	"size": "1.89T"
+}, {
+	"name": "bjlx",
+	"is_master": true,
+	"status": "failed",
+	"last_update": "2018-03-09 10:34:16 +0800",
+	"last_update_ts": 1520562856,
+	"upstream": "rsync://rsync.anheng.com.cn/bjlx/",
+	"size": "5.03G"
+}, {
+	"name": "blackarch",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:03:59 +0800",
+	"last_update_ts": 1522116239,
+	"upstream": "rsync://www.blackarch.org/blackarch/",
+	"size": "45.72G"
+}, {
+	"name": "centos-altarch",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:57:05 +0800",
+	"last_update_ts": 1522137425,
+	"upstream": "rsync://msync.centos.org/altarch/",
+	"size": "110.77G"
+}, {
+	"name": "centos",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 10:02:23 +0800",
+	"last_update_ts": 1522116143,
+	"upstream": "rsync://msync.centos.org/CentOS/",
+	"size": "168.02G"
+}, {
+	"name": "ceph",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:46:24 +0800",
+	"last_update_ts": 1522136784,
+	"upstream": "rsync://download.ceph.com/ceph/",
+	"size": "733.78G"
+}, {
+	"name": "chakra-releases",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:03:56 +0800",
+	"last_update_ts": 1522123436,
+	"upstream": "rsync://rsync.chakralinux.org/releases/",
+	"size": "64.06G"
+}, {
+	"name": "chakra",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:12:24 +0800",
+	"last_update_ts": 1522131144,
+	"upstream": "rsync://rsync.chakralinux.org/packages/",
+	"size": "46.45G"
+}, {
+	"name": "chromiumos",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:30:10 +0800",
+	"last_update_ts": 1522135810,
+	"upstream": "https://chromium.googlesource.com",
+	"size": "unknown"
+}, {
+	"name": "clojars",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:54:54 +0800",
+	"last_update_ts": 1522122894,
+	"upstream": "rsync://clojars.org/clojars/",
+	"size": "46.99G"
+}, {
+	"name": "ctex",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:52:08 +0800",
+	"last_update_ts": 1522122728,
+	"upstream": "rsync://ctex-upload.tuna.tsinghua.edu.cn/ctex/",
+	"size": "4.35G"
+}, {
+	"name": "cygwin",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:11:40 +0800",
+	"last_update_ts": 1522123900,
+	"upstream": "rsync://mirrors.kernel.org/sourceware/cygwin/",
+	"size": "131.39G"
+}, {
+	"name": "debian-cd",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:45:28 +0800",
+	"last_update_ts": 1522136728,
+	"upstream": "rsync://mirrors.kernel.org/debian-cd/",
+	"size": "181.77G"
+}, {
+	"name": "debian-multimedia",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:57:24 +0800",
+	"last_update_ts": 1522130244,
+	"upstream": "rsync://www.deb-multimedia.org/deb/",
+	"size": "13.74G"
+}, {
+	"name": "debian-nonfree",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:48:32 +0800",
+	"last_update_ts": 1522136912,
+	"upstream": "rsync://cdimage.debian.org/cdimage-unofficial/non-free/",
+	"size": "1.70T"
+}, {
+	"name": "debian-security",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:35:58 +0800",
+	"last_update_ts": 1522118158,
+	"upstream": "rsync://security.debian.org/debian-security/",
+	"size": "141.32G"
+}, {
+	"name": "debian",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:21:21 +0800",
+	"last_update_ts": 1522120881,
+	"upstream": "rsync://syncproxy.cna.debian.org/debian/",
+	"size": "unknown"
+}, {
+	"name": "deepin-cd",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:52:07 +0800",
+	"last_update_ts": 1522122727,
+	"upstream": "rsync://rsync.deepin.com/releases/",
+	"size": "30.50G"
+}, {
+	"name": "deepin",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:48:47 +0800",
+	"last_update_ts": 1522122527,
+	"upstream": "rsync://rsync.deepin.com/deepin/",
+	"size": "425.62G"
+}, {
+	"name": "dell",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:18:20 +0800",
+	"last_update_ts": 1522131500,
+	"upstream": "rsync://linux.dell.com/repo/",
+	"size": "514.09G"
+}, {
+	"name": "docker-ce",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-26 21:47:20 +0800",
+	"last_update_ts": 1522072040,
+	"upstream": "https://download.docker.com/",
+	"size": "unknown"
+}, {
+	"name": "dotdeb",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:28:16 +0800",
+	"last_update_ts": 1522117696,
+	"upstream": "rsync://mirror.us.leaseweb.net/dotdeb/",
+	"size": "22.53G"
+}, {
+	"name": "elasticstack",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:18:48 +0800",
+	"last_update_ts": 1522106328,
+	"upstream": "https://artifacts.elastic.co/",
+	"size": "unknown"
+}, {
+	"name": "elpa",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:54:01 +0800",
+	"last_update_ts": 1522122841,
+	"upstream": "rsync://elpa.zilongshanren.com/elpa/",
+	"size": "695.60M"
+}, {
+	"name": "elrepo",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:54:14 +0800",
+	"last_update_ts": 1522122854,
+	"upstream": "rsync://rsync.elrepo.org/linux+archive/",
+	"size": "51.99G"
+}, {
+	"name": "elvish",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:35:05 +0800",
+	"last_update_ts": 1522118105,
+	"upstream": "rsync://rsync.elvish.io/elvish/",
+	"size": "166.32M"
+}, {
+	"name": "epel",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:03:53 +0800",
+	"last_update_ts": 1522123433,
+	"upstream": "rsync://mirror.de.leaseweb.net/epel/",
+	"size": "200.93G"
+}, {
+	"name": "erlang-solutions",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-26 22:00:21 +0800",
+	"last_update_ts": 1522072821,
+	"upstream": "https://packages.erlang-solutions.com",
+	"size": "unknown"
+}, {
+	"name": "fedora-altarch",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:42:47 +0800",
+	"last_update_ts": 1522125767,
+	"upstream": "rsync://dl.fedoraproject.org/fedora-secondary/",
+	"size": "320.97G"
+}, {
+	"name": "fedora",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:51:04 +0800",
+	"last_update_ts": 1522122664,
+	"upstream": "rsync://dl.fedoraproject.org/fedora-enchilada/linux/",
+	"size": "710.30G"
+}, {
+	"name": "flightgear",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-26 11:34:26 +0800",
+	"last_update_ts": 1522035266,
+	"upstream": "rsync://mirrors.ibiblio.org/flightgear/",
+	"size": "141.38G"
+}, {
+	"name": "fzug",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:52:08 +0800",
+	"last_update_ts": 1522122728,
+	"upstream": "rsync://fzug-upload.tuna.tsinghua.edu.cn/fzug/",
+	"size": "1.08G"
+}, {
+	"name": "gentoo-portage-prefix",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:02:13 +0800",
+	"last_update_ts": 1522126933,
+	"upstream": "rsync://rsync.prefix.bitzolder.nl/gentoo-portage-prefix/",
+	"size": "228.89M"
+}, {
+	"name": "gentoo-portage",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:06:30 +0800",
+	"last_update_ts": 1522130790,
+	"upstream": "rsync://rsync.us.gentoo.org/gentoo-portage/",
+	"size": "226.13M"
+}, {
+	"name": "gentoo",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 05:00:59 +0800",
+	"last_update_ts": 1522098059,
+	"upstream": "rsync://mirror.us.leaseweb.net/gentoo/",
+	"size": "401.72G"
+}, {
+	"name": "git-repo",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:51:09 +0800",
+	"last_update_ts": 1522129869,
+	"upstream": "https://gerrit.googlesource.com/git-repo",
+	"size": "unknown"
+}, {
+	"name": "gitlab-ce",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 08:54:36 +0800",
+	"last_update_ts": 1522112076,
+	"upstream": "https://packages.gitlab.com/gitlab/gitlab-ce/",
+	"size": "unknown"
+}, {
+	"name": "gitlab-ci-multi-runner",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:22:54 +0800",
+	"last_update_ts": 1522106574,
+	"upstream": "https://packages.gitlab.com/runner/gitlab-ci-multi-runner/mirror",
+	"size": "unknown"
+}, {
+	"name": "gitlab-ee",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 05:43:19 +0800",
+	"last_update_ts": 1522100599,
+	"upstream": "https://packages.gitlab.com/gitlab/gitlab-ee/",
+	"size": "unknown"
+}, {
+	"name": "gitlab-runner",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:11:18 +0800",
+	"last_update_ts": 1522105878,
+	"upstream": "https://packages.gitlab.com/runner/gitlab-runner/mirror",
+	"size": "unknown"
+}, {
+	"name": "gnu",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:52:45 +0800",
+	"last_update_ts": 1522122765,
+	"upstream": "rsync://mirrors.ocf.berkeley.edu/gnu/",
+	"size": "102.21G"
+}, {
+	"name": "grafana",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 05:54:30 +0800",
+	"last_update_ts": 1522101270,
+	"upstream": "https://packagecloud.io/grafana/stable",
+	"size": "unknown"
+}, {
+	"name": "hackage",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:02:04 +0800",
+	"last_update_ts": 1522130524,
+	"upstream": "https://hackage.haskell.org/",
+	"size": "unknown"
+}, {
+	"name": "homebrew-bottles",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:45:32 +0800",
+	"last_update_ts": 1522136732,
+	"upstream": "rsync://rsync.mirrors.ustc.edu.cn/homebrew-bottles/",
+	"size": "206.63G"
+}, {
+	"name": "homebrew",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:58:42 +0800",
+	"last_update_ts": 1522133922,
+	"upstream": "https://github.com/Homebrew",
+	"size": "unknown"
+}, {
+	"name": "iina",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:15:12 +0800",
+	"last_update_ts": 1522131312,
+	"upstream": "rsync://link-start.iina.io/iina/",
+	"size": "617.48M"
+}, {
+	"name": "influxdata",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:17:35 +0800",
+	"last_update_ts": 1522106255,
+	"upstream": "https://repos.influxdata.com",
+	"size": "unknown"
+}, {
+	"name": "ius",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:47:27 +0800",
+	"last_update_ts": 1522122447,
+	"upstream": "rsync://dl.iuscommunity.org/ius/",
+	"size": "205.45G"
+}, {
+	"name": "jenkins",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:53:01 +0800",
+	"last_update_ts": 1522137181,
+	"upstream": "rsync://rsync.osuosl.org/jenkins/",
+	"size": "89.96G"
+}, {
+	"name": "kali-images",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:08:38 +0800",
+	"last_update_ts": 1522123718,
+	"upstream": "rsync://ftp.nluug.nl/kali-images/",
+	"size": "91.71G"
+}, {
+	"name": "kali-security",
+	"is_master": true,
+	"status": "failed",
+	"last_update": "2018-03-27 09:09:19 +0800",
+	"last_update_ts": 1522112959,
+	"upstream": "rsync://ftp.nluug.nl/kali-security/",
+	"size": "1.30K"
+}, {
+	"name": "kali",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:44:08 +0800",
+	"last_update_ts": 1522122248,
+	"upstream": "rsync://ftp.nluug.nl/kali/",
+	"size": "408.20G"
+}, {
+	"name": "kernel",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:08:08 +0800",
+	"last_update_ts": 1522127288,
+	"upstream": "rsync://rsync.kernel.org/pub/linux/kernel/",
+	"size": "421.30G"
+}, {
+	"name": "kodi",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:34:16 +0800",
+	"last_update_ts": 1522118056,
+	"upstream": "rsync://ftp.heanet.ie/mirrors/xbmc/",
+	"size": "81.01G"
+}, {
+	"name": "lede",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:57:48 +0800",
+	"last_update_ts": 1522123068,
+	"upstream": "rsync://downloads.lede-project.org/downloads/",
+	"size": "109.15G"
+}, {
+	"name": "lineage-rom",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:14:49 +0800",
+	"last_update_ts": 1522131289,
+	"upstream": "rsync://mirror-sync.lineageos.org/mirror/",
+	"size": "334.80G"
+}, {
+	"name": "lineageOS",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 06:06:18 +0800",
+	"last_update_ts": 1522101978,
+	"upstream": "https://github.com/LineageOS/mirror",
+	"size": "unknown"
+}, {
+	"name": "linux-next.git",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:49:55 +0800",
+	"last_update_ts": 1522129795,
+	"upstream": " git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git",
+	"size": "unknown"
+}, {
+	"name": "linux-stable.git",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:55:57 +0800",
+	"last_update_ts": 1522130157,
+	"upstream": " git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git",
+	"size": "unknown"
+}, {
+	"name": "linux.git",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:52:56 +0800",
+	"last_update_ts": 1522129976,
+	"upstream": "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+	"size": "unknown"
+}, {
+	"name": "linuxmint-cd",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:14:53 +0800",
+	"last_update_ts": 1522131293,
+	"upstream": "rsync://mirrors.kernel.org/linuxmint/",
+	"size": "275.31G"
+}, {
+	"name": "linuxmint",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:36:37 +0800",
+	"last_update_ts": 1522118197,
+	"upstream": "rsync://mirrors.kernel.org/linuxmint-packages/",
+	"size": "30.12G"
+}, {
+	"name": "llvm",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:55:11 +0800",
+	"last_update_ts": 1522130111,
+	"upstream": "http://llvm.org/git",
+	"size": "unknown"
+}, {
+	"name": "loongson",
+	"is_master": true,
+	"status": "failed",
+	"last_update": "2018-03-09 10:34:14 +0800",
+	"last_update_ts": 1520562854,
+	"upstream": "rsync://rsync.anheng.com.cn/loongson/",
+	"size": "16.04G"
+}, {
+	"name": "lxc-images",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 03:53:37 +0800",
+	"last_update_ts": 1522094017,
+	"upstream": "http://images.linuxcontainers.org/",
+	"size": "unknown"
+}, {
+	"name": "macports",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:04:45 +0800",
+	"last_update_ts": 1522116285,
+	"upstream": "rsync://rsync-origin.macports.org/macports/",
+	"size": "1.49T"
+}, {
+	"name": "mageia",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 09:08:04 +0800",
+	"last_update_ts": 1522112884,
+	"upstream": "rsync://mirrors.kernel.org/mageia/",
+	"size": "700.87G"
+}, {
+	"name": "manjaro-cd",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:16:02 +0800",
+	"last_update_ts": 1522116962,
+	"upstream": "rsync://mirrorservice.org/downloads.sourceforge.net/m/ma/manjarolinux/",
+	"size": "72.03G"
+}, {
+	"name": "manjaro",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:20:22 +0800",
+	"last_update_ts": 1522128022,
+	"upstream": "rsync://ftp.tsukuba.wide.ad.jp/manjaro/",
+	"size": "80.07G"
+}, {
+	"name": "mariadb",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:49:09 +0800",
+	"last_update_ts": 1522122549,
+	"upstream": "rsync://ftp.ipv6.heanet.ie/pub/mariadb/",
+	"size": "328.16G"
+}, {
+	"name": "mongodb",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:14:05 +0800",
+	"last_update_ts": 1522106045,
+	"upstream": "https://repo.mongodb.org",
+	"size": "unknown"
+}, {
+	"name": "msys2",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:03:48 +0800",
+	"last_update_ts": 1522123428,
+	"upstream": "http://repo.msys2.org/",
+	"size": "unknown"
+}, {
+	"name": "mysql",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-26 19:15:41 +0800",
+	"last_update_ts": 1522062941,
+	"upstream": "https://repo.mysql.com",
+	"size": "563.44G"
+}, {
+	"name": "neurodebian",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:52:36 +0800",
+	"last_update_ts": 1522122756,
+	"upstream": "rsync://neuro.debian.net/neurodebian/",
+	"size": "65.09G"
+}, {
+	"name": "nodejs-release",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:15:23 +0800",
+	"last_update_ts": 1522131323,
+	"upstream": "rsync://unencrypted.nodejs.org/nodejs/release/",
+	"size": "86.29G"
+}, {
+	"name": "nodesource",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:04:11 +0800",
+	"last_update_ts": 1522119851,
+	"upstream": "https://deb.nodesource.com/",
+	"size": "unknown"
+}, {
+	"name": "openresty",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:01:51 +0800",
+	"last_update_ts": 1522123311,
+	"upstream": "https://openresty.org/package/",
+	"size": "unknown"
+}, {
+	"name": "opensuse",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-19 06:55:50 +0800",
+	"last_update_ts": 1521413750,
+	"upstream": "rsync://mirrors.kernel.org/opensuse/",
+	"size": "451.60G"
+}, {
+	"name": "openthos-src",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 09:45:35 +0800",
+	"last_update_ts": 1522115135,
+	"upstream": "166.111.131.12:rsync/OPENTHOS/manifest",
+	"size": "unknown"
+}, {
+	"name": "openthos",
+	"is_master": true,
+	"status": "failed",
+	"last_update": "2018-03-24 16:52:51 +0800",
+	"last_update_ts": 1521881571,
+	"upstream": "166.111.131.12:rsync/oto_img/",
+	"size": "16.83G"
+}, {
+	"name": "openwrt",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:29:21 +0800",
+	"last_update_ts": 1522106961,
+	"upstream": "http://downloads.openwrt.org/",
+	"size": "unknown"
+}, {
+	"name": "osmc",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:07:08 +0800",
+	"last_update_ts": 1522130828,
+	"upstream": "rsync://rsync.samnazarko.co.uk/cdn/",
+	"size": "80.33G"
+}, {
+	"name": "packman",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 13:20:02 +0800",
+	"last_update_ts": 1522128002,
+	"upstream": "rsync://packman.inode.at/packman/",
+	"size": "123.48G"
+}, {
+	"name": "parrot",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:01:27 +0800",
+	"last_update_ts": 1522119687,
+	"upstream": "rsync://archive.parrotsec.org/parrot/",
+	"size": "258.12G"
+}, {
+	"name": "percona",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:28:32 +0800",
+	"last_update_ts": 1522117712,
+	"upstream": "rsync://rsync.percona.com/rsync/",
+	"size": "122.30G"
+}, {
+	"name": "pkgsrc",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:32:06 +0800",
+	"last_update_ts": 1522117926,
+	"upstream": "rsync://rsync3.jp.NetBSD.org/pub/pkgsrc/",
+	"size": "1.23T"
+}, {
+	"name": "postgresql",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 08:15:27 +0800",
+	"last_update_ts": 1522109727,
+	"upstream": "rsync://ftp.postgresql.org/pgsql-ftp/",
+	"size": "180.98G"
+}, {
+	"name": "puppy",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:15:03 +0800",
+	"last_update_ts": 1522131303,
+	"upstream": "rsync://distro.ibiblio.org/puppylinux/",
+	"size": "100.32G"
+}, {
+	"name": "pybombs",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:42:06 +0800",
+	"last_update_ts": 1522132926,
+	"upstream": "https://github.com/scateu/pybombs-mirror/",
+	"size": "unknown"
+}, {
+	"name": "pypi",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 13:56:45 +0800",
+	"last_update_ts": 1522130205,
+	"upstream": "https://pypi.python.org/",
+	"size": "unknown"
+}, {
+	"name": "qt",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 09:15:38 +0800",
+	"last_update_ts": 1522113338,
+	"upstream": "rsync://master.qt-project.org/qt-all/",
+	"size": "1.46T"
+}, {
+	"name": "raspberrypi",
+	"is_master": true,
+	"status": "syncing",
+	"last_update": "2018-03-27 08:10:40 +0800",
+	"last_update_ts": 1522109440,
+	"upstream": "https://archive.raspberrypi.org/debian/",
+	"size": "unknown"
+}, {
+	"name": "raspbian",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:38:07 +0800",
+	"last_update_ts": 1522125487,
+	"upstream": "rsync://archive.raspbian.org/archive/",
+	"size": "400.50G"
+}, {
+	"name": "redhat",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:12:27 +0800",
+	"last_update_ts": 1522123947,
+	"upstream": "rsync://ftp.heanet.ie/mirrors/redhat/",
+	"size": "2.17T"
+}, {
+	"name": "remi",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:07:14 +0800",
+	"last_update_ts": 1522105634,
+	"upstream": "rsync://rpms.remirepo.net",
+	"size": "27.13G"
+}, {
+	"name": "repo-ck",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:15:34 +0800",
+	"last_update_ts": 1522116934,
+	"upstream": "http://repo-ck.com",
+	"size": "unknown"
+}, {
+	"name": "repoforge",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:29:18 +0800",
+	"last_update_ts": 1522117758,
+	"upstream": "rsync://mirror1.hs-esslingen.de/repoforge/",
+	"size": "62.29G"
+}, {
+	"name": "ros",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 12:08:31 +0800",
+	"last_update_ts": 1522123711,
+	"upstream": "rsync://mirror.umd.edu/packages.ros.org/ros/",
+	"size": "94.90G"
+}, {
+	"name": "rpmfusion",
+	"is_master": true,
+	"status": "failed",
+	"last_update": "2018-03-27 08:19:34 +0800",
+	"last_update_ts": 1522109974,
+	"upstream": "rsync://mirror.de.leaseweb.net/rpmfusion/",
+	"size": "215.08G"
+}, {
+	"name": "rubygems",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:22:17 +0800",
+	"last_update_ts": 1522131737,
+	"upstream": "https://rubygems.org",
+	"size": "unknown"
+}, {
+	"name": "sagemath",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:56:56 +0800",
+	"last_update_ts": 1522119416,
+	"upstream": "rsync://files.sagemath.org/sage/",
+	"size": "161.76G"
+}, {
+	"name": "saltstack",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:47:38 +0800",
+	"last_update_ts": 1522122458,
+	"upstream": "rsync://repo.saltstack.com/saltstack_pkgrepo_full/",
+	"size": "40.31G"
+}, {
+	"name": "slackware",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:47:29 +0800",
+	"last_update_ts": 1522136849,
+	"upstream": "rsync://ftp.slackware.com/slackware/",
+	"size": "135.11G"
+}, {
+	"name": "slackwarearm",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:29:47 +0800",
+	"last_update_ts": 1522117787,
+	"upstream": "rsync://ftp.arm.slackware.com/slackwarearm/",
+	"size": "28.27G"
+}, {
+	"name": "solus",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:16:41 +0800",
+	"last_update_ts": 1522131401,
+	"upstream": "rsync://mirror@archive.solus-project.com/packages/",
+	"size": "686.28G"
+}, {
+	"name": "stackage",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:15:59 +0800",
+	"last_update_ts": 1522116959,
+	"upstream": "https://www.stackage.org/",
+	"size": "unknown"
+}, {
+	"name": "steamos",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:30:09 +0800",
+	"last_update_ts": 1522107009,
+	"upstream": "http://repo.steampowered.com",
+	"size": "unknown"
+}, {
+	"name": "tensorflow",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:11:32 +0800",
+	"last_update_ts": 1522105892,
+	"upstream": "https://storage.googleapis.com/tensorflow",
+	"size": "unknown"
+}, {
+	"name": "termux",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:08:52 +0800",
+	"last_update_ts": 1522105732,
+	"upstream": "https://termux.net",
+	"size": "unknown"
+}, {
+	"name": "tinycorelinux",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 15:48:14 +0800",
+	"last_update_ts": 1522136894,
+	"upstream": "rsync://www.tinycorelinux.net/tc/",
+	"size": "168.29G"
+}, {
+	"name": "ubuntu-cdimage",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:54:08 +0800",
+	"last_update_ts": 1522122848,
+	"upstream": "rsync://cdimage.ubuntu.com/cdimage/",
+	"size": "629.26G"
+}, {
+	"name": "ubuntu-cloud-images",
+	"is_master": true,
+	"status": "failed",
+	"last_update": "2018-03-27 05:48:59 +0800",
+	"last_update_ts": 1522100939,
+	"upstream": "rsync://cloud-images.ubuntu.com/cloud-images/",
+	"size": "229.96G"
+}, {
+	"name": "ubuntu-ports",
+	"is_master": true,
+	"status": "failed",
+	"last_update": "2018-03-20 14:08:32 +0800",
+	"last_update_ts": 1521526112,
+	"upstream": "rsync://ports.ubuntu.com/ubuntu-ports/",
+	"size": "1.12T"
+}, {
+	"name": "ubuntu-releases",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 14:15:08 +0800",
+	"last_update_ts": 1522131308,
+	"upstream": "rsync://rsync.releases.ubuntu.com/releases/",
+	"size": "18.56G"
+}, {
+	"name": "ubuntu",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 11:36:25 +0800",
+	"last_update_ts": 1522121785,
+	"upstream": "rsync://archive.ubuntu.com/ubuntu/",
+	"size": "921.82G"
+}, {
+	"name": "videolan-ftp",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 06:34:02 +0800",
+	"last_update_ts": 1522103642,
+	"upstream": "rsync://rsync.videolan.org/videolan-ftp/",
+	"size": "63.29G"
+}, {
+	"name": "virtualbox",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 07:18:19 +0800",
+	"last_update_ts": 1522106299,
+	"upstream": "http://download.virtualbox.org/virtualbox",
+	"size": "unknown"
+}, {
+	"name": "winehq",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:39:27 +0800",
+	"last_update_ts": 1522118367,
+	"upstream": "ftp://ftp.winehq.org/pub/",
+	"size": "unknown"
+}, {
+	"name": "zabbix",
+	"is_master": true,
+	"status": "success",
+	"last_update": "2018-03-27 10:28:27 +0800",
+	"last_update_ts": 1522117707,
+	"upstream": "rsync://repo.zabbix.com/mirror/",
+	"size": "20.73G"
+}]

@@ -1,0 +1,52 @@
+[
+	{
+		"name":"deepin",
+		"worker":"main_worker",
+		"is_master":true,
+		"status":"syncing",
+		"least_update":"2018-03-23T14:23:08.773610221+08:00",
+		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/deepin/",
+		"size":"397G",
+		"error_msg":""
+	},
+	{
+		"name":"elvish",
+		"worker":"main_worker",
+		"is_master":true,
+		"status":"succes",
+		"least_update":"2018-03-26T14:25:17.341357992+08:00",
+		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/elvish/",
+		"size":"159M",
+		"error_msg":""
+	},
+	{
+		"name":"ubuntu",
+		"worker":"main_worker",
+		"is_master":true,
+		"status":"failed",
+		"least_update":"0001-01-01T00:00:00Z",
+		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/ubuntu/",
+		"size":"253G",
+		"error_msg":"open /var/syncfile/log/tunasync/ubuntu/ubuntu_2018-03-26_11_28.log"
+	},
+	{
+		"name":"ubuntu",
+		"worker":"main_worker",
+		"is_master":true,
+		"status":"failed",
+		"least_update":"0001-01-01T00:00:00Z",
+		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/ubuntu/",
+		"size":"253G",
+		"error_msg":"open /var/syncfile/log/tunasync/ubuntu/ubuntu_2018-03-26_11_28.log"
+	},
+	{
+		"name":"ubuntu",
+		"worker":"main_worker",
+		"is_master":true,
+		"status":"failed",
+		"least_update":"0001-01-01T00:00:00Z",
+		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/ubuntu/",
+		"size":"253G",
+		"error_msg":"open /var/syncfile/log/tunasync/ubuntu/ubuntu_2018-03-26_11_28.log"
+	}
+]
