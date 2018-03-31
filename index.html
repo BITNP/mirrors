@@ -113,12 +113,6 @@
   var requests = GetRequest();
   var socket = io('http://localhost:3000');
 
-  // socket.emit('mirData',{});
-  // socket.on('mirData', function (mirData) {
-  //   console.log(mirData);
-  //   addMesToHTML(mirData);
-  // });
-
 	socket.emit('data',{"type":"mirrors"});
 	socket.on('data', function (data) {
 		// console.log("ondata");

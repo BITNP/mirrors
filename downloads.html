@@ -106,17 +106,13 @@
 <script>
 	var requests = GetRequest();
 	var socket = io('http://localhost:3000');
-
+	var gnum = 1;
 	socket.emit('data',{"type":"mirrors"});
 	socket.on('data', function (data) {
 		data = dataFilter(data);
+		window.data = data;
 		loadHTML(data.datas);
 	});
-
-
-
-
-
 
 
 	function updateDate() {
@@ -149,21 +145,23 @@
 	  }
 	  var row = 0;
 	  var html = "";
-	  for (mir in data) {
+	  for (var mir = 0; mir < data.length; mir++) {
+
 	    var Name = data[mir].name;
 	    // 更新NavDatas数组
 	    navDatas[Name.toUpperCase().charCodeAt(0)-'A'.charCodeAt(0)]++;
 	    navDatas[26]++;
-	    // var times = data[mir].least_update;
-	    // time = times.split('T')[0];
 	    var times = data[mir].last_update;
 	    time = times.split(' ')[0];
 	    var tr = '<tr id="item_'+(parseInt(mir)+1)+'"><th scope="row">'+(parseInt(mir)+1)+'</th><td><img src="img/tubiao.png" alt="image" />'+Name+'</td><td>'+time+'</td></tr>';
 	    html += tr;
+	}
+	    // console.log(mir);
 	    
 	  $("#mirrors").append(html);
+	  // alert(navDatas[26]);
 	  // 显示导航条
-	  // showNavbar(navDatas);
+	  showNavbar(navDatas);
 	  $('#mirrors tr').each(function(){
 	    $(this).on("click",function(){
 	      var href = window.location.pathname;
@@ -173,7 +171,7 @@
 	      window.location.href = href;
 	    });
 	  });
-
+	
 
 
 	  // 加载分页
@@ -213,7 +211,7 @@
 	  	$("#pagination").hide();
 	  }
 	}
-}
+
 	
 
 	// navDatas 是一个数组，26个值，分别对应A-Z出现次数，不分大小写
