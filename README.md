@@ -11,7 +11,9 @@ node index.js
 
 配置端口(server.js):默认为 3000
 
-目录结构
+
+
+
 
 img 	主页的图片，大小为450x300，格式为png
 
@@ -19,7 +21,7 @@ js		客户端静态js文件
 
 mirrors	内含镜像
 
-mirrors.json 	所有镜像的信息(文件夹)
+mirrors.json 	所有镜像的信息
 
 index.js 	服务器启动入口
 
