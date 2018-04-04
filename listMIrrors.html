@@ -104,6 +104,7 @@
 	<script src="http://localhost:3000/js/socket.io-2.0.3.js"></script>
 	<script src="http://localhost:3000/js/functions.js"></script> -->
 	<script type="text/javascript">
+	var requests = null;
 		function loadScript(url, callback) {
 		  var script = document.createElement("script");
 		  script.type = "text/javascript";
@@ -128,10 +129,10 @@
 		console.log(host);
 		// loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
 		//   alert($(window).height());
-		// });
+		// }); 
 		loadScript(host+"/js/jquery-3.2.1.min.js"); //加载js文件
-		loadScript(host+"/js/functions.js"); //加载js文件
- loadScript(host+"/js/socket.io-2.0.3.js", function(){
+		loadScript(host+"/js/functions.js"); //加载js文件 
+ loadScript(host+"/js/socket.io-2.0.3.js", function(){ // 为了确保在该文件加载完后才执行下面的代码，将剩下的代码全部放进这个匿名函数中
 
 
 
@@ -150,9 +151,12 @@
           return this.slice(-str.length) == str;  
        };  
      }  
-  
-	// var requests = GetRequest();
+
+
+	requests = GetRequest();
+
 	var socket = io('http://localhost:3000');
+
 	var gnum = 1;
 	var path = window.location.pathname;
 	var pathParts = path.split('/');
@@ -177,9 +181,13 @@
 			window.location.href = href.substring(0, href.length - 1);
 		});
 	});
+
+
 	socket.emit('data',{"type":"mirrorsDir","path":path});
 	socket.on('data', function (data) {
-		// data = dataFilter(data);
+		console.log(data);
+		data = dataFilter(data);
+		console.log(data);
 		window.data = data;
 		loadHTML(data.datas);
 	});
@@ -189,15 +197,6 @@
   		socket.emit('updateData', { updateData: 'updateData' });
 	}
 
-     // //测试程序  
-     // var sCompareStr = "abcdefg123";//比较字符串  
-     // var sBeCompareStr = "fg";//被比较字符串  
-     // if(sCompareStr.endsWith(sBeCompareStr)){//这里可以替换为startsWith  
-     //      alert(sCompareStr+" 是以:"+sBeCompareStr+" 结束");  
-     // }else{  
-     //      alert(sCompareStr+" 不是以:"+sBeCompareStr+" 结束");  
-     // }  
-
 
 	$('#btn-search').click(function(){
 		UrlJump({"query":$("#input-query").val()});
@@ -206,7 +205,6 @@
 	$("#input-query").keydown(function(e){
 		switch(e.keyCode) {
 			case 13:
-				// console.log({'query':$("#input-query").val()});
 				UrlJump({"query":$("#input-query").val()});
 				break;
 			default:
@@ -250,20 +248,12 @@
 	    	tr = '<tr id="item_'+(parseInt(mir)+1)+'" '+type+'><td>'+path+'</td><td> - </td><td> - </td></tr>';
 	    html += tr;
 	}
-	    // console.log(mir);
 	    
 	  $("#mirrors").append(html);
-
-	  // alert(navDatas[26]);
-	  // 显示导航条
-	  // showNavbar(navDatas);
 	  $('#mirrors tr').each(function(){
 	    $(this).on("click",function(){
 	      var href = window.location.pathname;
-	      // console.log(href);
-	      // var hrefArr = href.split('/');
 	      href += '/' + $(this).find('td').eq(0).text();
-	      // console.log(href);
 	      window.location.href = href;
 	    });
 	  });
@@ -312,39 +302,7 @@
 		$("#mirrors tr").hide();
 		$("#mirrors tr").slice(numPerPage*(page-1),numPerPage*page).show();
 	}
-}); //加载js文件
-	// navDatas 是一个数组，26个值，分别对应A-Z出现次数，不分大小写
-	// function showNavbar(navDatas){
-	//   var html = "";
-	//   var total = navDatas[26]; // 获取镜像总数
-	//   var average = Math.ceil(total/5);
-	//   var begin = 0;
-	//   var end = 0;
-	//   var tmp = 0;
-	//   while(end < 26) {
-	//     tmp += navDatas[end];
-	//     if (tmp >= average && tmp) {
-	//       if (begin == end) {
-	//         html += '<a class="nav-item nav-link" id="'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'" href="javascript:void(0)">'+String.fromCharCode(begin+65)+'('+tmp+')</a>';
-	//       }
-	//       else
-	//       {
-	//         html += '<a class="nav-item nav-link" id="'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'" href="javascript:void(0)">'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'('+tmp+')</a>';
-	//       }
-	//       tmp = 0;
-	//       begin = end + 1;
-	//     }
-	//     end++;
-	//   }
-	//   if (begin == 25) {
-	//     html += '<a class="nav-item nav-link" id="Z-Z" href="javascript:void(0)">Z('+tmp+')</a>';
-	//   }
-	//   $(".navbar-nav").append(html);
-	//   $(".navbar-nav a").click(function(){
-	//     var alphabet = $(this).attr("id");
-	//     UrlJump({"alphabet":alphabet});
-	//   });
-	// }
+}); 
 
 	</script>
 </body>
