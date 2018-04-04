@@ -24,7 +24,7 @@ function route(handle, pathname) {
 			if (ifDebug) console.log(pathname);
 			if (buffer[pathname]) {
 				return buffer[pathname];
-			} else if(pathname.indexOf('/mirrors') == 0 && pathname.indexOf('.') == -1) { // 访问 /mirrors 文件夹下的静态资源
+			} else if(pathname.indexOf('/mirrors/') == 0 && pathname.indexOf('.') == -1) { // 访问 /mirrors 文件夹下的静态资源
 				return buffer.mirrors || (buffer.mirrors = fs.readFileSync('./listMirrors.html'));
 			} else if(pathname.indexOf('socket.io') != -1) { // 动态地址访问静态资源临时补丁
 				console.log('aaa');

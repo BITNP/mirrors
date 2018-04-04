@@ -141,13 +141,17 @@
 
         var socket = io('http://localhost:3000');
 
-        var gnum = 1;
+        // 根据文件目录生成导航
         var path = window.location.pathname;
         var pathParts = path.split('/');
         for (item in pathParts) {
           if (pathParts[item] != "") {
-            var item = '<button type="button" class="btn btn-secondary">' + pathParts[item] + ' /</button>';
-            $('#pathNav').append(item);
+            var btn = document.createElement('button');
+						btn.type = 'button';
+						btn.className = 'btn btn-secondary';
+						btn.innerText = pathParts[item] + ' /';
+						var pathNav = document.getElementById('pathNav');
+						pathNav.appendChild(btn);
           }
         }
         $('#pathNav button').each(function() {
@@ -207,12 +211,12 @@
         function loadHTML(data) {
           var row = 0;
           var html = "";
-          for (var mir = 0; mir < data.length; mir++) {m
+          for (var mir = 0; mir < data.length; mir++) {
             var path = data[mir].path;
             var type = data[mir].type;
             var osize = parseInt(data[mir].size);
             var mtime = data[mir].mtime;
-            var size = "";
+            var size = null;
             if (osize < 1024) 										size = osize + ' B';
             else if (osize < 1024 * 1024) 				size = (osize / 1024).toFixed(2) + ' KB';
             else if (osize < 1024 * 1024 * 1024) 	size = (osize / 1024 / 1024).toFixed(2) + ' MB';
