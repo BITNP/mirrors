@@ -4,12 +4,13 @@ var ifDebug = false;
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
+var ft = require('./fileTraversal');
 var PORT = 3000;
 
 
 
 var baseUrl = "mirrors\\";
-var fileName="mirrors\\mirrors.json";
+var fileName="mirrors\\tuna.json";
 var mirData=JSON.parse(fs.readFileSync(fileName));
 
 function start(route, handle) {
@@ -19,7 +20,22 @@ function start(route, handle) {
     var pathname = url.parse(req.url).pathname;
     if (ifDebug) console.log("Request for " + pathname + " received.");
 
-    route(handle, pathname);
+    // console.log(pathname);
+
+    // 静态资源服务器 (Assets server)
+    if(pathname.indexOf('/mirrors') == 0 && pathname.indexOf('.') != -1) {
+      var stream = fs.createReadStream('.' + pathname, {flags : "r", encoding : null});
+      stream.on("error", function() {
+        res.writeHead(404);
+        res.end();
+      });
+      stream.pipe(res);
+      return stream;
+    }
+    // 静态资源服务器 (Assets server)
+    
+    
+    // route(handle, pathname);
 
     res.writeHead(200, {'Content-type':'text/html;charset=utf-8'});
     var content = route(handle, pathname);
@@ -57,13 +73,27 @@ function start(route, handle) {
           fs.readFile(filePath, (err, fd) => {
             if (err) {
               if (err.code === 'ENOENT') {
-                console.error('file does not exist:');
+                if(ifDebug) console.error('file does not exist:');
+
                 return;
               }
               throw err;
             }
             socket.emit('data',{"type":"details","datas":JSON.parse(fd)});
           });
+        }
+        break;
+        case "mirrorsDir":
+        {
+          var datas = [];
+          if(data.path == undefined)
+            datas = ft.fileTraversal('./mirrors');
+          else {
+            // datas.push(ft.fileTraversal('./mirrors' + '/' + data.software));
+            datas = ft.fileTraversal('.' + data.path);
+            // datas.push('../');
+          }
+          socket.emit('data',{"type":"mirrorsDir", "datas":datas});
         }
         break;
       }
@@ -80,32 +110,3 @@ exports.start = start;
 
 
 
-
-
-
-
-// function showPager(path, status) {
-//   var content = fs.readFileSync(path);
-//   res.writeHead(status, {'Content-type':'text/html;charset=utf-8'});
-//   res.write(content);
-//   res.end();
-// }
-
-// switch(pathname) {
-//   case '/':
-//   case '/index':
-//   case '/index.html':
-//     showPager('./index.html', 200);
-//     break;
-//   case '/downloads':
-//   case '/downloads.html':
-//     showPager('./downloads.html', 200);
-//     break;
-//   case 'help':
-//   case 'help.html':
-//     showPager('./help.html', 200);
-//     break;
-//   default:
-//     showPager('./404.html', 200);
-//     break;
-// }

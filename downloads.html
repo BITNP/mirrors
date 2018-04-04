@@ -59,7 +59,6 @@
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				    <div class="navbar-nav">
-				      <!-- <a class="nav-item nav-link active" href="#">#</a> -->
 				    </div>
 				  </div>
 				</nav>
@@ -99,9 +98,9 @@
 	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/socket.io-2.0.3.js"></script>
-	<script src="js/functions.js"></script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/socket.io-2.0.3.js"></script>
+	<script src="../js/functions.js"></script>
 
 <script>
 	var requests = GetRequest();
@@ -173,7 +172,7 @@
 	      var href = window.location.pathname;
 	      var hrefArr = href.split('/');
 	      href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
-	      href += 'mirrors/details.html?name=' + $(this).find('td').eq(0).text();
+	      href += 'mirrors/' + $(this).find('td').eq(0).text();
 	      window.location.href = href;
 	    });
 	  });
@@ -181,7 +180,8 @@
 
 
 	  // 加载分页
-	  var numPerPage = 30;
+	  var numPerPage = 15;
+	  var currentPage = 1;
 	  if(navDatas[26] > numPerPage) {
 	  	var previous = '<li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>';
 	  	var next = '<li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>';
@@ -196,20 +196,19 @@
 
 	  	$(".pagination").append(previous+pageItem+next);
 
+	  	$('.page-link[aria-label]').click(function(){
+	  		if($(this).attr('aria-label') == "Previous"){
+				if(currentPage!=1) switchPage(--currentPage, numPerPage);
+	  		} else if($(this).attr('aria-label') == "Next") {
+	  			if(currentPage!=num) switchPage(++currentPage, numPerPage);
+	  		}
+	  	});
+
 	  	$(".page-link").not("[aria-label]").each(function(){
 	  		var page = $(this).text();
 	  		$(this).click(function(){
-	  			if(page != 1) {
-	  				for(var i = 0; i <= numPerPage*(page - 1); i++) {
-	  					$("#item_"+i).hide();
-	  				}
-	  			}
-	  			for(var i = numPerPage*(page - 1) + 1; i <= numPerPage*page; i++) {
-	  				$("#navItem_"+i).show();
-	  			}
-				for(var i = numPerPage*page + 1; i <= navDatas[26]; i++) {
-				  $("#navItem_"+i).hide();
-			  	}
+	  			switchPage(page, numPerPage);
+	  			currentPage = page;
 	  		});
 	  	});
 	  } 
@@ -218,7 +217,10 @@
 	  }
 	}
 
-	
+	function switchPage(page, numPerPage) {
+		$("#mirrors tr").hide();
+		$("#mirrors tr").slice(numPerPage*(page-1),numPerPage*page).show();
+	}
 
 	// navDatas 是一个数组，26个值，分别对应A-Z出现次数，不分大小写
 	function showNavbar(navDatas){

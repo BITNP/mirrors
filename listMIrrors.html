@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
+<!-- listMirrors -->
+	<!-- 兼容IOS9 -->
+	<title>北理镜像站</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<header>
+		<div class="collapse bg-dark" id="headerNav">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-7 py-4">
+						<h4 class="text-white">About</h4>
+						<p class="text-muted">
+							北理镜像站是由北京理工大学网络开拓者协会负责运营的开源镜像站
+						</p>
+					</div>
+					<div class="col-sm-4 offset-md-1 py-4">
+						<h4 class="text-white">Contact</h4>
+						<ul class="list-unstyled">
+							<li><a href="#" class="text-white">北京理工大学官网</a></li>
+							<li><a href="#" class="text-white">网络开拓者协会(BITNP)主页</a></li>
+							<li><a href="#" class="text-white">加入我们</a></li>
+							<li><a href="#" class="text-white">联系我们</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar navbar-dark bg-dark box-shadow">
+			<div class="container d-flex justify-content-between">
+				<a href="index.html" class="navbar-brand d-flex align-items-center">
+					<strong>北理镜像站</strong>
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNav" aria-controls="navbarHeader" aria-expended="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+		</div>
+	</header>
+	<main>
+		<section class="jumbotron text-center">
+			<div class="container">
+				<h1 class="jumbotron-heading">北京理工大学开源软件镜像站</h1>
+			</div>
+		</section>
+		<div class="py-5 bg-light">
+			<div class="container" id="main_container">
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="basic-addon3">请输入你想搜索的关键词</span>
+				  </div>
+				  <input type="text" class="form-control" id="input-query" aria-describedby="basic-addon3">
+				  <div class="input-group-append"><button class="btn btn-outline-secondary" id="btn-search">搜索</button></div>
+				</div>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				    <div class="navbar-nav">
+				    </div>
+				    <div class="btn-group" role="group" id="pathNav" aria-label="path">
+					</div>
+				  </div>
+				</nav>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<td>镜像名</td>
+							<td>大小</td>
+							<td>修改时间</td>
+						</tr>
+					</thead>
+				  <tbody id="mirrors">
+			
+
+				  </tbody>
+				</table>
+				<nav aria-label="Page navigation example" id="pagination">
+				  <ul class="pagination justify-content-center">
+				  </ul>
+				</nav>
+			</div>
+		</div>
+	</main>
+
+
+	<footer class="text-muted">
+		<div class="container">
+			<p class="float-right">
+				<a href="#">回到顶部</a>
+			</p>
+			<p>
+				Copyright © 1997-2018 Net Pioneer Association of BIT All Rights Reserved. Designed by Maidong
+			</p>
+		</div>
+	</footer>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- 	<script src="http://localhost:3000/js/jquery-3.2.1.min.js"></script>
+	<script src="http://localhost:3000/js/socket.io-2.0.3.js"></script>
+	<script src="http://localhost:3000/js/functions.js"></script> -->
+	<script type="text/javascript">
+		function loadScript(url, callback) {
+		  var script = document.createElement("script");
+		  script.type = "text/javascript";
+		  if(typeof(callback) != "undefined"){
+		    if (script.readyState) {
+		      script.onreadystatechange = function () {
+		        if (script.readyState == "loaded" || script.readyState == "complete") {
+		          script.onreadystatechange = null;
+		          callback();
+		        }
+		      };
+		    } else {
+		      script.onload = function () {
+		        callback();
+		      };
+		    }
+		  }
+		  script.src = url;
+		  document.body.appendChild(script);
+		}
+		var host = window.location.origin;
+		console.log(host);
+		// loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
+		//   alert($(window).height());
+		// });
+		loadScript(host+"/js/jquery-3.2.1.min.js"); //加载js文件
+		loadScript(host+"/js/functions.js"); //加载js文件
+ loadScript(host+"/js/socket.io-2.0.3.js", function(){
+
+
+
+
+
+//判断当前字符串是否以str开始 先判断是否存在function是避免和js原生方法冲突，自定义方法的效率不如原生的高  
+     if (typeof String.prototype.startsWith != 'function') {   
+       String.prototype.startsWith = function (str){  
+          return this.slice(0, str.length) == str;  
+       };  
+     }  
+　　　　  
+     //判断当前字符串是否以str结束  
+     if (typeof String.prototype.endsWith != 'function') {  
+       String.prototype.endsWith = function (str){  
+          return this.slice(-str.length) == str;  
+       };  
+     }  
+  
+	// var requests = GetRequest();
+	var socket = io('http://localhost:3000');
+	var gnum = 1;
+	var path = window.location.pathname;
+	var pathParts = path.split('/');
+	for(item in pathParts) {
+		if(pathParts[item] != "") {
+			var item = '<button type="button" class="btn btn-secondary">'+pathParts[item]+' /</button>';
+			$('#pathNav').append(item);
+		}
+	}
+	$('#pathNav button').each(function(){
+		var path = "";
+		$(this).click(function(){
+			console.log($(this).prevAll().length);
+			var index = $(this).prevAll().length;
+			for (var i = 0; i < index; i++)  {
+				path += $('#pathNav button').eq(i).text();
+			}
+			path += $('#pathNav button').eq(index).text();
+			path=path.replace(/ /g,"");
+	      	var href = '/' + path;
+	      	console.log(href);
+			window.location.href = href.substring(0, href.length - 1);
+		});
+	});
+	socket.emit('data',{"type":"mirrorsDir","path":path});
+	socket.on('data', function (data) {
+		// data = dataFilter(data);
+		window.data = data;
+		loadHTML(data.datas);
+	});
+
+
+	function updateDate() {
+  		socket.emit('updateData', { updateData: 'updateData' });
+	}
+
+     // //测试程序  
+     // var sCompareStr = "abcdefg123";//比较字符串  
+     // var sBeCompareStr = "fg";//被比较字符串  
+     // if(sCompareStr.endsWith(sBeCompareStr)){//这里可以替换为startsWith  
+     //      alert(sCompareStr+" 是以:"+sBeCompareStr+" 结束");  
+     // }else{  
+     //      alert(sCompareStr+" 不是以:"+sBeCompareStr+" 结束");  
+     // }  
+
+
+	$('#btn-search').click(function(){
+		UrlJump({"query":$("#input-query").val()});
+	});
+
+	$("#input-query").keydown(function(e){
+		switch(e.keyCode) {
+			case 13:
+				// console.log({'query':$("#input-query").val()});
+				UrlJump({"query":$("#input-query").val()});
+				break;
+			default:
+				break;
+
+		}
+	});
+
+
+	function loadHTML(data) {
+		// NavDatas数组，用于生成字母导航，第27个数字是镜像总数
+	  var navDatas = [];
+	  for (var i = 0; i <= 26; i++) {
+	    navDatas[i] = 0;
+	  }
+	  var row = 0;
+	  var html = "";
+	  console.log(data);
+	  // console.log(data);
+	  for (var mir = 0; mir < data.length; mir++) {
+
+	    var path = data[mir].path;
+	    var type = data[mir].type;
+	    var osize = parseInt(data[mir].size);
+	    var mtime = data[mir].mtime;
+	    var size = "";
+	    if(osize < 1024) {
+	    	size = osize + ' B';
+	    } else if(osize < 1024*1024) {
+	    	size = (osize/1024).toFixed(2) + ' KB';
+	    } else if(osize < 1024*1024*1024) {
+	    	size = (osize/1024/1024).toFixed(2) + ' MB';
+	    } else {
+	    	size = (osize/1024/1024/1024).toFixed(2) + ' GB';
+	    }
+	    navDatas[26]++;
+	    var tr = "";
+	    if(type == "file")
+	    	tr = '<tr id="item_'+(parseInt(mir)+1)+'" '+type+'><td>'+path+'</td><td>'+size+'</td><td>'+mtime+'</td></tr>';
+	    else
+	    	tr = '<tr id="item_'+(parseInt(mir)+1)+'" '+type+'><td>'+path+'</td><td> - </td><td> - </td></tr>';
+	    html += tr;
+	}
+	    // console.log(mir);
+	    
+	  $("#mirrors").append(html);
+
+	  // alert(navDatas[26]);
+	  // 显示导航条
+	  // showNavbar(navDatas);
+	  $('#mirrors tr').each(function(){
+	    $(this).on("click",function(){
+	      var href = window.location.pathname;
+	      // console.log(href);
+	      // var hrefArr = href.split('/');
+	      href += '/' + $(this).find('td').eq(0).text();
+	      // console.log(href);
+	      window.location.href = href;
+	    });
+	  });
+	
+
+
+	  // 加载分页
+	  var numPerPage = 15;
+	  var currentPage = 1;
+	  if(navDatas[26] > numPerPage) {
+	  	var previous = '<li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>';
+	  	var next = '<li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>';
+	  	var num = Math.ceil(navDatas[26]/numPerPage);
+	  	var pageItem = '';
+	  	for(var i = 1; i <= num; i++) {
+	  		pageItem += '<li class="page-item"><a class="page-link" href="javascript:void(0)">'+i+'</a></li>';
+	  	}
+	  	for(var i = numPerPage + 1; i <= navDatas[26]; i++) {
+	  		$("#item_"+i).hide();
+	  	}
+
+	  	$(".pagination").append(previous+pageItem+next);
+
+	  	$('.page-link[aria-label]').click(function(){
+	  		if($(this).attr('aria-label') == "Previous"){
+				if(currentPage!=1) switchPage(--currentPage, numPerPage);
+	  		} else if($(this).attr('aria-label') == "Next") {
+	  			if(currentPage!=num) switchPage(++currentPage, numPerPage);
+	  		}
+	  	});
+
+	  	$(".page-link").not("[aria-label]").each(function(){
+	  		var page = $(this).text();
+	  		$(this).click(function(){
+	  			switchPage(page, numPerPage);
+	  			currentPage = page;
+	  		});
+	  	});
+	  } 
+	  else {
+	  	$("#pagination").hide();
+	  }
+	}
+
+	function switchPage(page, numPerPage) {
+		$("#mirrors tr").hide();
+		$("#mirrors tr").slice(numPerPage*(page-1),numPerPage*page).show();
+	}
+}); //加载js文件
+	// navDatas 是一个数组，26个值，分别对应A-Z出现次数，不分大小写
+	// function showNavbar(navDatas){
+	//   var html = "";
+	//   var total = navDatas[26]; // 获取镜像总数
+	//   var average = Math.ceil(total/5);
+	//   var begin = 0;
+	//   var end = 0;
+	//   var tmp = 0;
+	//   while(end < 26) {
+	//     tmp += navDatas[end];
+	//     if (tmp >= average && tmp) {
+	//       if (begin == end) {
+	//         html += '<a class="nav-item nav-link" id="'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'" href="javascript:void(0)">'+String.fromCharCode(begin+65)+'('+tmp+')</a>';
+	//       }
+	//       else
+	//       {
+	//         html += '<a class="nav-item nav-link" id="'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'" href="javascript:void(0)">'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'('+tmp+')</a>';
+	//       }
+	//       tmp = 0;
+	//       begin = end + 1;
+	//     }
+	//     end++;
+	//   }
+	//   if (begin == 25) {
+	//     html += '<a class="nav-item nav-link" id="Z-Z" href="javascript:void(0)">Z('+tmp+')</a>';
+	//   }
+	//   $(".navbar-nav").append(html);
+	//   $(".navbar-nav a").click(function(){
+	//     var alphabet = $(this).attr("id");
+	//     UrlJump({"alphabet":alphabet});
+	//   });
+	// }
+
+	</script>
+</body>
+</html>
