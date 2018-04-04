@@ -106,14 +106,12 @@
             Img = "deepin.png";
             //// debug model
             var div = '<div class="col-md-4" id="item_' + mir + '"><div class="card mb-4 mt-4 box-shadow mir-shadow"><img class="card-img-top" src="img/' + Img + '" alt="Card image cap"><div class="card-body"><p class="card-text">' + Name + '</p><div class="d-flex justify-content-between align-items-center"><div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" name="' + Name + '">下载</button><button type="button" class="btn btn-sm btn-outline-secondary">反馈</button></div></div></div></div></div>';
-            // <small class="text-muted"><span id="downloads_'+Name+'">0</span>次下载</small>
             html += div;
           }
           if (!row) {
             document.getElementById('main_container').innerHTML = '<div class="row"></div>';
             row = main_container.getElementsByClassName('row')[0];
           }
-          // row.innerHTML += html;
           $(row).append(html);
         }
 
@@ -123,6 +121,7 @@
       function addCilckActions() {
         $(".btn-outline-secondary[name]").click(function() {
           var name = $(this).attr("name");
+
           var href = window.location.pathname;
           var hrefArr = href.split('/');
           href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
@@ -139,7 +138,7 @@
         }
       }
 
-      // 瀑布流模式, 检查是否该加载
+      // 瀑布流模式, 检查是否应该加载
       function checkLoad() {
         var contentHeight = $(".col-md-4:last").offset().top;
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;

@@ -88,9 +88,6 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- <script src="http://localhost:3000/js/jquery-3.2.1.min.js"></script>
-    <script src="http://localhost:3000/js/socket.io-2.0.3.js"></script>
-    <script src="http://localhost:3000/js/functions.js"></script> -->
     <script type="text/javascript">var requests = null;
       function loadScript(url, callback) {
         var script = document.createElement("script");
@@ -154,6 +151,7 @@
 						pathNav.appendChild(btn);
           }
         }
+        // 点击导航按钮执行跳转
         $('#pathNav button').each(function() {
           var path = "";
           $(this).click(function() {
@@ -183,18 +181,14 @@
           loadHTML(data.datas);
         });
 
-        function updateDate() {
-          socket.emit('updateData', {
-            updateData: 'updateData'
-          });
-        }
-
+        // 搜索按钮
         $('#btn-search').click(function() {
           UrlJump({
             "query": $("#input-query").val()
           });
         });
 
+        // 回车执行搜索
         $("#input-query").keydown(function(e) {
           switch (e.keyCode) {
           case 13:
@@ -208,9 +202,9 @@
           }
         });
 
+        // 加载网页内容
         function loadHTML(data) {
           var row = 0;
-          var html = "";
           for (var mir = 0; mir < data.length; mir++) {
             var path = data[mir].path;
             var type = data[mir].type;
@@ -222,13 +216,37 @@
             else if (osize < 1024 * 1024 * 1024) 	size = (osize / 1024 / 1024).toFixed(2) + ' MB';
             else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
             
-            var tr = "";
-            if (type == "file") tr = '<tr id="item_' + (parseInt(mir) + 1) + '" ' + type + '><td>' + path + '</td><td>' + size + '</td><td>' + mtime + '</td></tr>';
-            else tr = '<tr id="item_' + (parseInt(mir) + 1) + '" ' + type + '><td>' + path + '</td><td> - </td><td> - </td></tr>';
-            html += tr;
+            var tr = null;
+
+            // if (type == "file") tr = '<tr><td>' + path + '</td><td>' + size + '</td><td>' + mtime + '</td></tr>';
+            // else tr = '<tr><td>' + path + '</td><td> - </td><td> - </td></tr>';
+
+            if(type == "file") {
+            	tr = document.createElement('tr');
+							td1 = document.createElement('td');
+							td1.innerText = path;
+							tr.appendChild(td1);
+							td2 = document.createElement('td');
+							td2.innerText = size;
+							tr.appendChild(td2);
+							td3 = document.createElement('td');
+							td3.innerText = mtime;
+							tr.appendChild(td3);
+            } else {
+							tr = document.createElement('tr');
+							td1 = document.createElement('td');
+							td1.innerText = path;
+							tr.appendChild(td1);
+							td2 = document.createElement('td');
+							td2.innerText = "-";
+							tr.appendChild(td2);
+							td3 = document.createElement('td');
+							td3.innerText = "-";
+							tr.appendChild(td3);
+            }
+            document.getElementById("mirrors").appendChild(tr);
           }
 
-          $("#mirrors").append(html);
           $('#mirrors tr').each(function() {
             $(this).on("click",
             function() {
