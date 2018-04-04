@@ -95,9 +95,9 @@
 <script>
 	var requests = GetRequest();
 	var socket = io('http://localhost:3000');
-	console.log(requests['name']);
+	console.log(requests['software']);
 
-	socket.emit('data',{"type":"details","name":requests['name']});
+	socket.emit('data',{"type":"details","name":requests['software']});
 	socket.on('data', function (data) {
 		// data = dataFilter(data);
 		console.log(data);
