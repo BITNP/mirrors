@@ -32,9 +32,33 @@ function dataFilter(data){
       }
     }
     break;
-    case "details":
+    case "mirrorsDir":
     {
+      var oData = data.datas;
+      filteredData.type = "mirrorsDir";
+      filteredData.datas = [];
 
+      // conditions
+      var query = requests['query'];
+      var alphabet = requests['alphabet'];
+
+      for(i in oData) {
+        var mirName = oData[i].path;
+        var isOK = true;
+        if(query && mirName.indexOf(query) == -1) {
+              isOK = false;
+        }
+        if(alphabet) 
+        {
+              var begin = alphabet.charAt(0);
+              var end = alphabet.charAt(2);
+              var code = mirName.charAt(0).toUpperCase();
+              if(code < begin || code > end) isOK = false;
+        }
+        if(isOK) {
+              filteredData.datas[length++] = oData[i];
+        }
+      }
     }
     break;
   }

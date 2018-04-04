@@ -99,23 +99,13 @@
 
 	socket.emit('data',{"type":"details","name":requests['software']});
 	socket.on('data', function (data) {
-		// data = dataFilter(data);
 		console.log(data);
 		loadHTML(data.datas);
 	});
 
  
 
- // 	socket.emit('detailData',GetRequestName());
-	// socket.on('detailData', function (detailData){
-	// 	// console.log(detailData);
-	// 	var data = JSON.parse(detailData);
-	// 	addMesToHTML(data);
-	// });
-
-  	function updateDate() {
-    	socket.emit('updateData', { updateData: 'updateData' });
-  	}
+ 
 
 	function loadHTML(data) {
 		// for(var i = 65; i <= 90; i++) {
