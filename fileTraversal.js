@@ -3,8 +3,21 @@ var ifDebug = false;
 
 var fs = require('fs');
 
+// 缓存池
+var buffer = {};
+
+// 设置文件缓存过期时间
+setInterval(clearBuffer,10*60*1000); // 10 mins
+
+function clearBuffer(){
+  buffer = {};
+}
+
 
 function fileTraversal(path){
+  if(buffer[path]) {
+    return buffer[path];
+  }
   var dirList = fs.readdirSync(path);
   var list = [];
 
@@ -25,7 +38,7 @@ function fileTraversal(path){
       list.push(obj);
     }
   });
-
+  buffer[path] = list;
   return list;
 }
 
@@ -34,7 +47,7 @@ function fileTraversal(path){
 if (ifDebug) {
   var fileList = [];
   fileList = fileTraversal('./mirrors/deepin/testFolder');
-  // console.log(fileList);
+  console.log(buffer);
 }
 
 exports.fileTraversal = fileTraversal;

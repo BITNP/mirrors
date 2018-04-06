@@ -22,7 +22,7 @@ function clearBuffer(){
 exports.help	=	() => {return buffer.help || (buffer.help = fs.readFileSync('./help.html'))};
 exports.index	=	() => {return buffer.index || (buffer.index = fs.readFileSync('./index.html'))};
 exports.downloads=	() => {return buffer.downloads || (buffer.downloads = fs.readFileSync('./downloads.html'))};
-exports.details =	() => {return buffer.details || (buffer.details = fs.readFileSync('./mirrors/details.html'))};
+// exports.details =	() => {return buffer.details || (buffer.details = fs.readFileSync('./mirrors/details.html'))};
 
 
 // Assets

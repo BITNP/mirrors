@@ -7,7 +7,11 @@
     <!-- 兼容IOS9 -->
     <title>北理镜像站</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
-  
+    <style>
+      .mir-shadow{ box-shadow: 10px 10px 15px #8e8e8e; } 
+      #gotoTop{ position: fixed; bottom: 10px; right: 10px; width: 50px; height: 50px; opacity: 0.5; } 
+      #gotoTop:hover{ opacity: 1; }
+    </style>
   <body>
     <header>
       <div class="collapse bg-dark" id="headerNav">
@@ -72,8 +76,8 @@
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/socket.io-2.0.3.js"></script>
     <script src="js/functions.js"></script>
-    <style>.mir-shadow{ box-shadow: 10px 10px 15px #8e8e8e; } #gotoTop{ position: fixed; bottom: 10px; right: 10px; width: 50px; height: 50px; opacity: 0.5; } #gotoTop:hover{ opacity: 1; }</style>
-    <script>var requests = GetRequest();
+    <script>
+      var requests = GetRequest();
 
       var socket = io('http://localhost:3000');
 
@@ -82,10 +86,8 @@
       });
       socket.on('data',
       function(data) {
-        // console.log("ondata");
         data = dataFilter(data);
-        // 将数据放到全局环境中保存起来，以便瀑布流模式加载
-        window.data = data;
+        window.data = data; // 将数据放到全局环境中保存起来，以便瀑布流模式加载
         loadHTML(data.datas);
       });
 
@@ -95,24 +97,66 @@
       // 		0：全加载
       // 		1：瀑布流模式，num设置加载数，默认为9项, 从start处开始加载
       function loadHTML(data, model = 1, num = 9, start = 0) {
-        var html = '';
+        // var html = '';
         var main_container = document.getElementById('main_container');
         if (model == 1) {
           var row = main_container.getElementsByClassName('row')[0];
+          if (!row) {
+            var div_row = document.createElement('div');
+            div_row.className = "row";
+            document.getElementById('main_container').appendChild(div_row);
+            // document.getElementById('main_container').innerHTML = '<div class="row"></div>';
+            row = main_container.getElementsByClassName('row')[0];
+          }
           for (var mir = start; mir < start + num && mir < data.length; mir++) {
             var Name = data[mir].name;
             var Img = Name + '.png';
             //// debug model
             Img = "deepin.png";
             //// debug model
-            var div = '<div class="col-md-4" id="item_' + mir + '"><div class="card mb-4 mt-4 box-shadow mir-shadow"><img class="card-img-top" src="img/' + Img + '" alt="Card image cap"><div class="card-body"><p class="card-text">' + Name + '</p><div class="d-flex justify-content-between align-items-center"><div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" name="' + Name + '">下载</button><button type="button" class="btn btn-sm btn-outline-secondary">反馈</button></div></div></div></div></div>';
-            html += div;
+            // 备用方案1
+            // var div = '<div class="col-md-4" id="item_' + mir + '"><div class="card mb-4 mt-4 box-shadow mir-shadow"><img class="card-img-top" src="img/' + Img + '" alt="Card image cap"><div class="card-body"><p class="card-text">' + Name + '</p><div class="d-flex justify-content-between align-items-center"><div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" name="' + Name + '">下载</button><button type="button" class="btn btn-sm btn-outline-secondary">反馈</button></div></div></div></div></div>';
+      			var div = document.createElement('div');
+      			div.className = "col-md-4";
+      			div.id = 'item_' + mir;
+      			var div1 = document.createElement('div');
+      			div1.className = "card mb-4 mt-4 box-shadow mir-shadow";
+      			div.appendChild(div1);
+      			var image = document.createElement('img');
+      			image.className = "card-img-top";
+      			image.src = "img/" + Imgs;
+      			image.alt = "Card image cap";
+      			div1.appendChild(image);
+      			var div2 = document.createElement('div');
+      			div2.className = 'card-body';
+      			div1.appendChild(div2);
+      			var p = document.createElement('p');
+      			p.className = "card-text";
+      			p.innerText = Name;
+      			div2.appendChild(p);
+      			var div3 = document.createElement('div');
+      			div3.className = "d-flex justify-content-between align-items-center";
+      			div2.appendChild(div3);
+      			var div4 = document.createElement('div');
+      			div4.className = "btn-group";
+      			div3.appendChild(div4);
+      			var btn1 = document.createElement('button');
+      			btn1.className = 'btn btn-sm btn-outline-secondary';
+      			btn1.type = 'button';
+      			btn1.name = Name;
+      			btn1.innerText = "下载";
+      			div4.appendChild(btn1);
+      			var btn2 = document.createElement('button');
+      			btn2.className = 'btn btn-sm btn-outline-secondary';
+      			btn2.type = 'button';
+      			btn2.innerText = "反馈";
+      			div4.appendChild(btn2)
+
+      			row.appendChild(div);
+            // html += div;
           }
-          if (!row) {
-            document.getElementById('main_container').innerHTML = '<div class="row"></div>';
-            row = main_container.getElementsByClassName('row')[0];
-          }
-          $(row).append(html);
+
+          // $(row).append(html);
         }
 
         addCilckActions();
