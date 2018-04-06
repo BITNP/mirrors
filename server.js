@@ -9,8 +9,8 @@ var PORT = 3000;
 
 
 
-var baseUrl = "mirrors\\";
-var fileName="mirrors\\tuna.json";
+var baseUrl = "datas\\";
+var fileName= baseUrl + "mirrors.json";
 var mirData=JSON.parse(fs.readFileSync(fileName));
 
 function start(route, handle) {
@@ -33,9 +33,6 @@ function start(route, handle) {
       return stream;
     }
     // 静态资源服务器 (Assets server)
-    
-    
-    // route(handle, pathname);
 
     res.writeHead(200, {'Content-type':'text/html;charset=utf-8'});
     var content = route(handle, pathname);
@@ -66,23 +63,7 @@ function start(route, handle) {
           socket.emit('data',{"type":"mirrors","datas":mirData});
         }
         break;
-        case "details":
-        {
-          var filePath = baseUrl + data.name + '\\' + data.name + '.json';
-          if(ifDebug) console.log(filePath);
-          fs.readFile(filePath, (err, fd) => {
-            if (err) {
-              if (err.code === 'ENOENT') {
-                if(ifDebug) console.error('file does not exist:');
 
-                return;
-              }
-              throw err;
-            }
-            socket.emit('data',{"type":"details","datas":JSON.parse(fd)});
-          });
-        }
-        break;
         case "mirrorsDir":
         {
           var datas = [];
@@ -110,3 +91,20 @@ exports.start = start;
 
 
 
+        // case "details":
+        // {
+        //   var filePath = baseUrl + data.name + '\\' + data.name + '.json';
+        //   if(ifDebug) console.log(filePath);
+        //   fs.readFile(filePath, (err, fd) => {
+        //     if (err) {
+        //       if (err.code === 'ENOENT') {
+        //         if(ifDebug) console.error('file does not exist:');
+
+        //         return;
+        //       }
+        //       throw err;
+        //     }
+        //     socket.emit('data',{"type":"details","datas":JSON.parse(fd)});
+        //   });
+        // }
+        // break;
