@@ -179,25 +179,10 @@
         });
 
         // 搜索按钮
-        $('#btn-search').click(function() {
-          UrlJump({
-            "query": $("#input-query").val()
-          });
-        });
+        $('#btn-search').click(function() {UrlJump({"query": $("#input-query").val()});});
 
         // 回车执行搜索
-        $("#input-query").keydown(function(e) {
-          switch (e.keyCode) {
-          case 13:
-            UrlJump({
-              "query":
-              $("#input-query").val()
-            });
-            break;
-          default:
-            break;
-          }
-        });
+        $("#input-query").keydown(function(e) {switch (e.keyCode) {case 13:UrlJump({"query":$("#input-query").val()});break;default:break}});
 
         // 加载网页内容
         function loadHTML(data) {
