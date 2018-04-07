@@ -196,7 +196,7 @@
             var href = window.location.pathname;
             var hrefArr = href.split('/');
             href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
-            href += 'mirrors/details.html?name=' + name;
+            href += 'mirrors/' + name;
             window.location.href = href;
           }
         });
