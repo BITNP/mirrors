@@ -47,12 +47,12 @@
 		<section class="jumbotron text-center">
 			<div class="container">
 				<h1 class="jumbotron-heading">北京理工大学开源软件镜像站使用小贴士</h1>
-				<p>
+				<p id="HowToDownloadMirrors">
 					如何下载镜像
 				</p>
-				<p>
+				<div id="result">
 					下载页点击即可下载，多版本镜像会跳转到版本选择页
-				</p>
+				</div>
 				<p>
 					<a href="downloads.html" class="btn btn-primary">进入下载页</a>
 					<a href="index.html" class="btn btn-secondary">回到主页</a>
@@ -79,7 +79,55 @@
 	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="showdown.min.js"></script>
+    <script>
+        window.onload = function() {
+                var ajax;
 
+                /*1.创建XMLHttpRequest对象*/
+                if(window.XMLHttpRequest) {
+                    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                    ajax = new XMLHttpRequest();
+                } else {
+                    // IE6, IE5 浏览器执行代码
+                    ajax = new ActiveXObject("Microsoft.XMLHTTP");
+                }
 
+                /*设置请求方式和地址  默认是异步*/
+                ajax.open("GET", "_help/test.md");
+                /*发送请求*/
+                ajax.send();
+
+                /*注册回调函数*/
+                ajax.onreadystatechange = function() {
+                    if(ajax.readyState == 4 && ajax.status == 200) {
+                        let Convertor = new showdown.Converter();
+                        let res = ajax.responseText;
+                        let html = Convertor.makeHtml(res);
+                        document.getElementById("result").innerHTML = html;
+                        $("#HowToDownloadMirrors").hide();
+                    }
+                }
+            
+        }
+    </script>
+<style>
+    blockquote {
+        border-left:#eee solid 5px;
+        padding-left:20px;
+    }
+    ul li {
+        line-height: 20px;
+        list-style: none;
+    }
+
+    code {
+        color:#D34B62;
+        background: #F6F6F6;
+    }
+ 	#result {
+ 		text-align: left;
+ 	}
+</style>
 </body>
 </html>
