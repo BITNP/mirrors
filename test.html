@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+            <script type="text/javascript" src="showdown.min.js"></script>
+<style>
+    blockquote {
+        border-left:#eee solid 5px;
+        padding-left:20px;
+    }
+    ul li {
+        line-height: 20px;
+    }
+
+    code {
+        color:#D34B62;
+        background: #F6F6F6;
+    }
+ }
+</style>
+        <script>
+            window.onload = function() {
+                var btn = document.querySelector("button");
+                btn.onclick = function() {
+                    var ajax;
+
+                    /*1.创建XMLHttpRequest对象*/
+                    if(window.XMLHttpRequest) {
+                        //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                        ajax = new XMLHttpRequest();
+                    } else {
+                        // IE6, IE5 浏览器执行代码
+                        ajax = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+
+                    /*设置请求方式和地址  默认是异步*/
+                    ajax.open("GET", "_help/test.md");
+                    /*发送请求*/
+                    ajax.send();
+
+                    /*注册回调函数*/
+                    ajax.onreadystatechange = function() {
+                        if(ajax.readyState == 4 && ajax.status == 200) {
+                            let Convertor = new showdown.Converter();
+                            let res = ajax.responseText;
+                            let html = Convertor.makeHtml(res);
+                            document.getElementById("result").innerHTML = html;
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+
+
+        <button>ajax请求</button>
+           <div id="result"></div>
+    </body>
+
+</html>
