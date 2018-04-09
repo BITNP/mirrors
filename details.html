@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
+	<!-- 兼容IOS9 -->
+	<title>北理镜像站</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<header>
+		<div class="collapse bg-dark" id="headerNav">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-7 py-4">
+						<h4 class="text-white">About</h4>
+						<p class="text-muted">
+							北理镜像站是由北京理工大学网络开拓者协会负责运营的开源镜像站
+						</p>
+					</div>
+					<div class="col-sm-4 offset-md-1 py-4">
+						<h4 class="text-white">Contact</h4>
+						<ul class="list-unstyled">
+							<li><a href="#" class="text-white">北京理工大学官网</a></li>
+							<li><a href="#" class="text-white">网络开拓者协会(BITNP)主页</a></li>
+							<li><a href="#" class="text-white">加入我们</a></li>
+							<li><a href="#" class="text-white">联系我们</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar navbar-dark bg-dark box-shadow">
+			<div class="container d-flex justify-content-between">
+				<a href="../index.html" class="navbar-brand d-flex align-items-center">
+					<strong>北理镜像站</strong>
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNav" aria-controls="navbarHeader" aria-expended="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+		</div>
+	</header>
+	<main>
+		<section class="jumbotron text-center">
+			<div class="container">
+				<h1 class="jumbotron-heading">北京理工大学开源软件镜像站</h1>
+			</div>
+		</section>
+		<div class="py-5 bg-light">
+			<div class="container" id="main_container">
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="basic-addon3">请输入你想搜索的版本号</span>
+				  </div>
+				  <input type="text" class="form-control" id="input-query" aria-describedby="basic-addon3">
+				  <div class="input-group-append"><button class="btn btn-outline-secondary" id="btn-search">搜索</button></div>
+				</div>
+				<table class="table table-hover">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">镜像名</th>
+				      <th scope="col">版本号</th>
+				      <th scope="col">更新时间</th>
+				      <!-- <th scope="col">下载次数</th> -->
+				    </tr>
+				  </thead>
+				  <tbody id="mirrors">
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</main>
+
+	<footer class="text-muted">
+		<div class="container">
+			<p class="float-right">
+				<a href="#">回到顶部</a>
+			</p>
+			<p>
+				Copyright © 1997-2018 Net Pioneer Association of BIT All Rights Reserved. Designed by Maidong
+			</p>
+		</div>
+	</footer>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/socket.io-2.0.3.js"></script>
+	<script src="../js/functions.js"></script>
+
+<script>
+	var requests = GetRequest();
+	var socket = io('http://localhost:3000');
+	console.log(requests['software']);
+
+	socket.emit('data',{"type":"details","name":requests['software']});
+	socket.on('data', function (data) {
+		console.log(data);
+		loadHTML(data.datas);
+	});
+
+ 
+
+ 
+
+	function loadHTML(data) {
+		// for(var i = 65; i <= 90; i++) {
+		// 	$(".navbar-nav").append('<a class="nav-item nav-link disable" href="#">'+String.fromCharCode(i)+'</a>');
+		// }
+		var row = 0;
+		var html = "";
+		for (mir in data) {
+			var requests = GetRequest();
+			var query = requests['query'] != null ? requests['query'] : "";
+			var Name = data[mir].name;
+			var Version = data[mir].version;
+			$(".navbar-nav .nav-item").eq(Name.toUpperCase().charCodeAt(0)-'A'.charCodeAt(0)+1).removeClass('disable');
+			if (Name.indexOf(query) != -1) { // url 参数过滤
+				var times = data[mir].least_update;
+				time = times.split('T')[0];
+				var div = '<tr><th scope="row">'+(parseInt(mir)+1)+'</th><td>'+Name+'</td><td>'+Version+'</td><td>'+time+'</td></tr>'
+				html += div;
+			}
+		}
+		$("#mirrors").append(html);
+		$('#mirrors tr').each(function(){
+			$(this).on("click",function(){
+				var href = window.location.pathname;
+				var hrefArr = href.split('/');
+				href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
+				var requests = GetRequest();
+				href += requests['name'] + "/" + $(this).find('td').eq(0).text() + '.exe';
+				window.location.href = href;
+			});
+		});
+	}
+
+
+	
+	// url 跳转
+	function UrlJump() {
+		var href = window.location.pathname;
+		href  += '?name='+GetRequest()['name']+'&query=' + $("#input-query").val();
+		window.location.href = href;
+	}
+	$('#btn-search').click(UrlJump);
+
+	$("#input-query").keydown(function(e){
+		switch(e.keyCode) {
+			case 13:
+				UrlJump();
+				break;
+			default:
+				break;
+		}
+	});
+
+	// // 获取 url 参数 name
+	// function GetRequestName() {
+	// 	var request = GetRequest();
+	// 	var data = {};
+	// 	if(request['name'])
+	// 		data.name = request['name'];
+	// 	return data;
+	// }
+
+	</script>
+</body>
+</html>

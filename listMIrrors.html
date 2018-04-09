@@ -57,12 +57,19 @@
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" id="btn-search">搜索</button></div>
           </div>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav"></div>
-              <div class="btn-group" role="group" id="pathNav" aria-label="path"></div>
+          <div class="row">
+            <div class="col-md-10">
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav"></div>
+                  <div class="btn-group" role="group" id="pathNav" aria-label="path"></div>
+                </div>
+              </nav>
             </div>
-          </nav>
+            <div class="col-md-2">
+              <button class="btn btn-primary" id="btn_help">查看帮助文档</button>
+            </div>
+          </div>
           <table class="table table-hover">
             <thead>
               <tr>
@@ -85,7 +92,8 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript">var requests = null;
+    <script type="text/javascript">
+      var requests = null;
       function loadScript(url, callback) {
         var script = document.createElement("script");
         script.type = "text/javascript";
@@ -183,6 +191,14 @@
 
         // 回车执行搜索
         $("#input-query").keydown(function(e) {switch (e.keyCode) {case 13:UrlJump({"query":$("#input-query").val()});break;default:break}});
+
+        // 帮助文档按钮
+        $("#btn_help").click(function(){
+          let host = window.location.host;
+          let path = "help.html";
+          console.log(host + ',' + path);
+          window.location.href = "http://" + host + '/' + path;
+        });
 
         // 加载网页内容
         function loadHTML(data) {

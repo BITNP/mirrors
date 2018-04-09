@@ -33,6 +33,12 @@ function route(handle, pathname) {
 			} else if(pathname.indexOf('functions') != -1) { // 动态地址访问静态资源临时补丁
 				if (ifDebug) console.log('bbb');
 				return buffer.functions || (buffer.functions = fs.readFileSync('./js/functions.js'));
+			} else if(pathname.indexOf('popper') != -1) { // 动态地址访问静态资源临时补丁
+				if (ifDebug) console.log('bbb');
+				return buffer.popper || (buffer.popper = fs.readFileSync('./js/popper.min.js'));
+			} else if(pathname.indexOf('bootstrap') != -1) { // 动态地址访问静态资源临时补丁
+				if (ifDebug) console.log('bbb');
+				return buffer.bootstrap || (buffer.bootstrap = fs.readFileSync('./js/bootstrap.min.js'));
 			} else if(pathname.indexOf('jquery') != -1) { // 动态地址访问静态资源临时补丁
 				if (ifDebug) console.log('ccc');
 				return buffer.jquery || (buffer.jquery = fs.readFileSync('./js/jquery-3.2.1.min.js'));
