@@ -6,7 +6,39 @@
 	<!-- 兼容IOS9 -->
 	<title>北理镜像站 | 帮助文档</title>
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		hr, .slideBar-hr {
+			height: 1px;
+			width: 100%;
+		    background: #fff;
+		}
+		.slideBar-hr {
+			background-color: #000;
+		}
+		blockquote {
+	        border-left:#eee solid 5px;
+	        padding-left:20px;
+	    }
+	    ul li {
+	        line-height: 20px;
+	        list-style: none;
+	    }
 
+	    code {
+	        color:#D34B62;
+	        background: #F6F6F6;
+	    }
+	 	#result {
+	 		text-align: left;
+	 	}
+		.md-radius {
+			border-radius: 10px;
+		}
+		.md-shadow {
+			box-shadow: 15px 15px 20px #888;
+		}
+
+	</style>
 	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 </head>
 <body>
@@ -47,20 +79,19 @@
 	<main>
 		<section class="jumbotron">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="input-group mb-3 mt-5">
-							<input type="text" class="form-control" id="input-query" aria-describedby="basic-addon3">
-							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" id="btn-search">搜索</button>
-							</div>
-						</div>
-						<ul class="nav flex-column nav-pills" id="md-slideBar">
-						</ul>
+				<h1 class="text-center mb-5">镜像帮助文档</h1>
+				<div class="input-group mb-5 mt-5">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon3">请输入镜像名</span>
 					</div>
-					<div class="col-md-8">
-						<div id="tabContent"></div>
+					<input type="text" class="form-control" id="input-query" aria-describedby="basic-addon3">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" id="btn-search">搜索</button>
 					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-md-3"><ul class="nav flex-column nav-pills" id="md-slideBar"></ul></div>
+					<div class="col-md-9"><div id="tabContent" class="bg-dark text-white p-3 md-radius md-shadow"></div></div>
 				</div>
 			</div>
 		</section>
@@ -81,12 +112,12 @@
 			</p>
 		</div>		
 	</footer>
-	<!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-    <script src="js/jquery.slim.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--     <script src="js/jquery.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="showdown.min.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/socket.io.2.0.3.js"></script>
@@ -98,9 +129,9 @@
         });
         socket.on('data',
         function(data) {
-          console.log(data);
+          // console.log(data);
           data = dataFilter(data);
-          console.log(data);
+          // console.log(data);
           window.data = data;
           loadHTML(data.datas);
         });
@@ -124,7 +155,7 @@
 					slideBar.insertBefore(li, slideBar.firstChlid);
             	}
 	        }
-			var staticNodes = '<li class="nav-item"><a class="nav-link" href="../mirrors">进入下载页</a></li><li class="nav-item"><a class="nav-link" href="../">回到主页</a></li>';
+			var staticNodes = '<hr class="slideBar-hr"><li class="nav-item"><a class="nav-link" href="../mirrors">进入下载页</a></li><li class="nav-item"><a class="nav-link" href="../">回到主页</a></li>';
 			slideBar.innerHTML += staticNodes;
           // $('#mirrors tr').each(function() {
           //   $(this).on("click",
@@ -157,9 +188,10 @@
                 if(requests['mirror']) {
 	                /*设置请求方式和地址  默认是异步*/
 	                path = '_help/'+requests['mirror']+'.md';
+	               	console.log($("title"));
 	                ajax.open("GET", path);
 	                /*发送请求*/
-	                ajax.send();                	
+	                ajax.send();
                 } else {
                 	ajax.open("GET", "_help/default.md");
                 	ajax.send();
@@ -178,23 +210,5 @@
             
         }
     </script>
-<style>
-    blockquote {
-        border-left:#eee solid 5px;
-        padding-left:20px;
-    }
-    ul li {
-        line-height: 20px;
-        list-style: none;
-    }
-
-    code {
-        color:#D34B62;
-        background: #F6F6F6;
-    }
- 	#result {
- 		text-align: left;
- 	}
-</style>
 </body>
 </html>
