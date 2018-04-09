@@ -119,6 +119,8 @@
       // loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
       //   alert($(window).height());
       // }); 
+      // 
+      
       loadScript(host + "/js/jquery-3.2.1.min.js"); //加载js文件
       loadScript(host + "/js/functions.js"); //加载js文件 
       loadScript(host + "/js/socket.io-2.0.3.js",
@@ -126,7 +128,7 @@
 
         $("#title-index").attr("href", host);
 
-        //判断当前字符串是否以str开始 先判断是否存在function是避免和js原生方法冲突，自定义方法的效率不如原生的高  
+        //判断当前字符串是否以str开始  
         if (typeof String.prototype.startsWith != 'function') {
           String.prototype.startsWith = function(str) {
             return this.slice(0, str.length) == str;
@@ -156,6 +158,31 @@
 						pathNav.appendChild(btn);
           }
         }
+
+        socket.emit('data', {
+          "type": "mirrorsDir",
+          "path": path
+        });
+        socket.on('data',
+        function(data) {
+          // console.log(data);
+          data = dataFilter(data);
+          // console.log(data);
+          window.data = data;
+          loadHTML(data.datas);
+        });
+
+        $('#btn-search').click(function() {UrlJump({"query": $("#input-query").val()});});
+
+        $("#input-query").keydown(function(e) {switch (e.keyCode) {case 13:UrlJump({"query":$("#input-query").val()});break;default:break}});
+
+        $("#btn_help").click(function(){
+          let host = window.location.origin;
+          let path = "help.html";
+          console.log(host + ',' + path);
+          window.location.href = host + '/' + path;
+        });
+
         // 点击导航按钮执行跳转
         $('#pathNav button').each(function() {
           var path = "";
@@ -173,33 +200,6 @@
           });
         });
 
-        socket.emit('data', {
-          "type": "mirrorsDir",
-          "path": path
-        });
-        socket.on('data',
-        function(data) {
-          console.log(data);
-          data = dataFilter(data);
-          console.log(data);
-          window.data = data;
-          loadHTML(data.datas);
-        });
-
-        // 搜索按钮
-        $('#btn-search').click(function() {UrlJump({"query": $("#input-query").val()});});
-
-        // 回车执行搜索
-        $("#input-query").keydown(function(e) {switch (e.keyCode) {case 13:UrlJump({"query":$("#input-query").val()});break;default:break}});
-
-        // 帮助文档按钮
-        $("#btn_help").click(function(){
-          let host = window.location.host;
-          let path = "help.html";
-          console.log(host + ',' + path);
-          window.location.href = "http://" + host + '/' + path;
-        });
-
         // 加载网页内容
         function loadHTML(data) {
           var row = 0;
@@ -215,9 +215,6 @@
             else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
             
             var tr = null;
-
-            // if (type == "file") tr = '<tr><td>' + path + '</td><td>' + size + '</td><td>' + mtime + '</td></tr>';
-            // else tr = '<tr><td>' + path + '</td><td> - </td><td> - </td></tr>';
 
             if(type == "file") {
             	tr = document.createElement('tr');
