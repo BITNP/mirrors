@@ -114,11 +114,6 @@
 	});
 
 
-	function updateDate() {
-  		socket.emit('updateData', { updateData: 'updateData' });
-	}
-
-
 	$('#btn-search').click(function(){
 		UrlJump({"query":$("#input-query").val()});
 	});

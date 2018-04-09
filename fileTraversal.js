@@ -46,7 +46,7 @@ function fileTraversal(path){
 
 if (ifDebug) {
   var fileList = [];
-  fileList = fileTraversal('./mirrors/deepin/testFolder');
+  fileList = fileTraversal('./mirrors/');
   console.log(buffer);
 }
 
