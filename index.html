@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
     <!-- 兼容IOS9 -->
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
     <title>北理镜像站</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+    <link rel="stylesheet" href="{{ css bootstrap.min }}">
+  </head>
     <style>
       .mir-shadow{ box-shadow: 10px 10px 15px #8e8e8e; } 
       #gotoTop{ position: fixed; bottom: 10px; right: 10px; width: 50px; height: 50px; opacity: 0.5; } 
@@ -88,18 +90,16 @@
     <div class="erweima">
       <img src="img/erweima.jpg" alt="">
     </div>
-    <style>
 
-    </style>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/socket.io-2.0.3.js"></script>
-    <script src="js/functions.js"></script>
+    <script src="{{ js jquery.min }}"></script>
+    <script src="{{ js popper.min }}"></script>
+    <script src="{{ js bootstrap.min }}"></script>
+    <script src="{{ js socket.io-2.0.3 }}"></script>
+    <script src="{{ js functions }}"></script>
     <script>
       var requests = GetRequest();
 
-      var socket = io('http://localhost:3000');
+      var socket = io('http://{{IPAddress}}:3000');
 
       socket.emit('data', {
         "type": "mirrors"
@@ -125,7 +125,6 @@
             var div_row = document.createElement('div');
             div_row.className = "row";
             document.getElementById('main_container').appendChild(div_row);
-            // document.getElementById('main_container').innerHTML = '<div class="row"></div>';
             row = main_container.getElementsByClassName('row')[0];
           }
           for (var mir = start; mir < start + num && mir < data.length; mir++) {
@@ -134,8 +133,6 @@
             //// debug model
             // Img = "deepin.png";
             //// debug model
-            // 备用方案1
-            // var div = '<div class="col-md-4" id="item_' + mir + '"><div class="card mb-4 mt-4 box-shadow mir-shadow"><img class="card-img-top" src="img/' + Img + '" alt="Card image cap"><div class="card-body"><p class="card-text">' + Name + '</p><div class="d-flex justify-content-between align-items-center"><div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" name="' + Name + '">下载</button><button type="button" class="btn btn-sm btn-outline-secondary">反馈</button></div></div></div></div></div>';
       			var div = document.createElement('div');
       			div.className = "col-md-4";
       			div.id = 'item_' + mir;
@@ -144,7 +141,7 @@
       			div.appendChild(div1);
       			var image = document.createElement('img');
       			image.className = "card-img-top";
-      			image.src = "img/" + Img;
+      			image.src = "./img/" + Img;
       			image.alt = "Card image cap";
       			div1.appendChild(image);
       			var div2 = document.createElement('div');
@@ -174,10 +171,7 @@
       			div4.appendChild(btn2)
 
       			row.appendChild(div);
-            // html += div;
           }
-
-          // $(row).append(html);
         }
 
         addCilckActions();
@@ -196,9 +190,6 @@
             window.location.href = href;
           }
         });
-        // $(".fankui").click(function(){
-        //   $(".erweima").toggle();
-        // });
         $(".erweima").click(function(){
           $(this).hide();
         });

@@ -2,6 +2,7 @@
 var ifDebug = false;
 
 var fs = require('fs');
+var render = require('./templateRender');
 
 // 路由文件缓存，缓存不经常修改的文件资源，如 HTML 文件
 var buffer = {};
@@ -19,9 +20,9 @@ function clearBuffer(){
 }
 
 // Pages
-exports.help	=	() => {return buffer.help || (buffer.help = fs.readFileSync('./help.html'))};
-exports.index	=	() => {return buffer.index || (buffer.index = fs.readFileSync('./index.html'))};
-exports.downloads=	() => {return buffer.downloads || (buffer.downloads = fs.readFileSync('./downloads.html'))};
+exports.help	=	() => {return buffer.help || (buffer.help = render.render(fs.readFileSync('./help.html')))};
+exports.index	=	() => {return buffer.index || (buffer.index = render.render(fs.readFileSync('./index.html')))};
+exports.downloads=	() => {return buffer.downloads || (buffer.downloads = render.render(fs.readFileSync('./downloads.html')))};
 // exports.details =	() => {return buffer.details || (buffer.details = fs.readFileSync('./mirrors/details.html'))};
 
 

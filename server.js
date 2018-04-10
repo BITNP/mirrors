@@ -5,8 +5,16 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var ft = require('./fileTraversal');
-var PORT = 3000;
+var PORT = null;
 
+var appjson = JSON.parse(fs.readFileSync('./app.json'));
+
+if(appjson.port) {
+  PORT = appjson.port;
+} else {
+  console.log('配置文件 app.json 中 port 属性缺失，端口号设为默认值3000');
+  PORT = 3000;
+}
 
 
 var baseUrl = "datas/";
@@ -33,10 +41,15 @@ function start(route, handle) {
       return stream;
     }
     // 静态资源服务器 (Assets server)
-
-    res.writeHead(200, {'Content-type':'text/html;charset=utf-8'});
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+    res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    // res.writeHead(200, {'Content-type':'text/html;charset=utf-8'});
+    res.writeHead(200);
     var content = route(handle, pathname);
+
     res.write(content);
+
     res.end();
   }
 
@@ -70,9 +83,7 @@ function start(route, handle) {
           if(data.path == undefined)
             datas = ft.fileTraversal('./mirrors');
           else {
-            // datas.push(ft.fileTraversal('./mirrors' + '/' + data.software));
             datas = ft.fileTraversal('.' + data.path);
-            // datas.push('../');
           }
           socket.emit('data',{"type":"mirrorsDir", "datas":datas});
         }
@@ -84,27 +95,3 @@ function start(route, handle) {
 
 
 exports.start = start;
-
-
-
-
-
-
-
-        // case "details":
-        // {
-        //   var filePath = baseUrl + data.name + '\\' + data.name + '.json';
-        //   if(ifDebug) console.log(filePath);
-        //   fs.readFile(filePath, (err, fd) => {
-        //     if (err) {
-        //       if (err.code === 'ENOENT') {
-        //         if(ifDebug) console.error('file does not exist:');
-
-        //         return;
-        //       }
-        //       throw err;
-        //     }
-        //     socket.emit('data',{"type":"details","datas":JSON.parse(fd)});
-        //   });
-        // }
-        // break;
