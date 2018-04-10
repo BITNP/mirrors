@@ -111,8 +111,7 @@
         loadHTML(data.datas);
       });
 
-      // 加载数据
-      // 默认加载9项
+      // 加载数据, 默认加载9项
       // model
       // 		0：全加载
       // 		1：瀑布流模式，num设置加载数，默认为9项, 从start处开始加载
@@ -130,9 +129,6 @@
           for (var mir = start; mir < start + num && mir < data.length; mir++) {
             var Name = data[mir].name;
             var Img = Name + '.png';
-            //// debug model
-            // Img = "deepin.png";
-            //// debug model
       			var div = document.createElement('div');
       			div.className = "col-md-4";
       			div.id = 'item_' + mir;
