@@ -23,7 +23,8 @@ function route(handle, pathname) {
 			if (ifDebug) console.log(pathname);
 			if (buffer[pathname]) {
 				return buffer[pathname];
-			} else if((pathname.indexOf('/mirrors/') == 0 || pathname == '/mirrors') && pathname.indexOf('.') == -1) { // 访问 /mirrors 文件夹下的静态资源
+			// 访问 /mirrors 文件夹下的静态资源
+			} else if((pathname.indexOf('/mirrors/') == 0 || pathname == '/mirrors') && pathname.indexOf('.') == -1) {
 				return buffer.mirrors || (buffer.mirrors = render.render(fs.readFileSync('./listMirrors.html')));
 			}  else {
 				buffer[pathname] = fs.readFileSync('.'+pathname);
@@ -31,6 +32,7 @@ function route(handle, pathname) {
 			}
 		}
 		catch(err) {
+			// 如果是图片，加载默认图片
 			if (pathname.indexOf('.jpg') != -1 || pathname.indexOf('.png') != -1)
 				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./img/default.png'));
 			if (ifDebug) console.log("No request hadler found for " + pathname);
@@ -38,19 +40,6 @@ function route(handle, pathname) {
 		}
 	}
 }
-
-
-
-// else if((pathname.indexOf('/img/') == 0 || pathname == '/img') && pathname.indexOf('.') != -1) { // 访问 /img 文件夹下的图片资源
-// 					console.log(pathname);
-// 					fs.readFileSync('.' + pathname, (err, data) => {
-// 						if(err) {
-// 							return fs.readFileSync('./450x300.png');
-// 						}
-// 						return data;
-// 					});
-// 			}
-
 
 
 
