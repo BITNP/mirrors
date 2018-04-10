@@ -7,7 +7,8 @@
     <!-- listMirrors -->
     <!-- 兼容IOS9 -->
     <title>北理镜像站</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+    <link rel="stylesheet" href="{{ css bootstrap.min }}">
+  </head>
   
   <body>
     <header>
@@ -89,42 +90,47 @@
         <p>Copyright © 1997-2018 Net Pioneer Association of BIT All Rights Reserved. Designed by Maidong</p>
       </div>
     </footer>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="{{ js jquery.min }}"></script>
+    <script src="{{ js popper.min }}"></script>
+    <script src="{{ js bootstrap.min }}"></script>
+    <script src="{{ js socket.io-2.0.3 }}"></script>
+    <script src="{{ js functions }}"></script>
+
     <script type="text/javascript">
       var requests = null;
-      function loadScript(url, callback) {
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        if (typeof(callback) != "undefined") {
-          if (script.readyState) {
-            script.onreadystatechange = function() {
-              if (script.readyState == "loaded" || script.readyState == "complete") {
-                script.onreadystatechange = null;
-                callback();
-              }
-            };
-          } else {
-            script.onload = function() {
-              callback();
-            };
-          }
-        }
-        script.src = url;
-        document.body.appendChild(script);
-      }
       var host = window.location.origin;
-      console.log(host);
-      // loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
-      //   alert($(window).height());
-      // }); 
-      // 
+      // function loadScript(url, callback) {
+      //   var script = document.createElement("script");
+      //   script.type = "text/javascript";
+      //   if (typeof(callback) != "undefined") {
+      //     if (script.readyState) {
+      //       script.onreadystatechange = function() {
+      //         if (script.readyState == "loaded" || script.readyState == "complete") {
+      //           script.onreadystatechange = null;
+      //           callback();
+      //         }
+      //       };
+      //     } else {
+      //       script.onload = function() {
+      //         callback();
+      //       };
+      //     }
+      //   }
+      //   script.src = url;
+      //   document.body.appendChild(script);
+      // }
+      // var host = window.location.origin;
+      // // console.log(host);
+      // // loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
+      // //   alert($(window).height());
+      // // }); 
+      // // 
       
-      loadScript(host + "/js/jquery-3.2.1.min.js"); //加载js文件
-      loadScript(host + "/js/functions.js"); //加载js文件 
-      loadScript(host + "/js/socket.io-2.0.3.js",
-      function() { // 为了确保在该文件加载完后才执行下面的代码，将剩下的代码全部放进这个匿名函数中
+      // loadScript(host + "/js/jquery-3.2.1.min.js"); //加载js文件
+      // loadScript(host + "/js/functions.js"); //加载js文件 
+      // loadScript(host + "/js/socket.io-2.0.3.js",
+      // function() { // 为了确保在该文件加载完后才执行下面的代码，将剩下的代码全部放进这个匿名函数中
 
         $("#title-index").attr("href", host);
 
@@ -143,7 +149,7 @@
 
         requests = GetRequest();
 
-        var socket = io('http://localhost:3000');
+        var socket = io('http://{{IPAddress}}:3000');
 
         // 根据文件目录生成导航
         var path = window.location.pathname;
@@ -165,9 +171,9 @@
         });
         socket.on('data',
         function(data) {
-          // console.log(data);
+          console.log(data);
           data = dataFilter(data);
-          // console.log(data);
+          console.log(data);
           window.data = data;
           loadHTML(data.datas);
         });
@@ -253,7 +259,9 @@
         }
 
 
-      });</script>
+    //  });
+
+</script>
   </body>
 
 </html>
