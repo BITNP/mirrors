@@ -1,11 +1,11 @@
 // 调试模式开关
 var ifDebug = false;
 var fs = require('fs');
-
+var protocol = null;
 var PORT = null;
 
 var appjson = JSON.parse(fs.readFileSync('./app.json'));
-
+protocol = appjson.protocol?appjson.protocol:"http";
 PORT = appjson.port?appjson.port:3000;
 
 
@@ -20,15 +20,14 @@ function render(page) {
 	var output = page;
 	if(ifDebug) console.log(data);
 	for(item in data) {
-		// if(ifDebug) console.log(data[item]);
 		if(data[item].indexOf('IPAddress') != -1) {
-			output = output.replace(data[item], getIPAddress());
+			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT);
 		} else if(data[item].indexOf('js') != -1) {
 			var jsname = data[item].match(/{{\s+js\s+(\S+)\s+}}/, data[item]);
-			output = output.replace(data[item], 'http://' + getIPAddress() + ':' + PORT + '/js/' + jsname[1] + '.js');
+			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT + '/js/' + jsname[1] + '.js');
 		} else if(data[item].indexOf('css') != -1) {
 			var jsname = data[item].match(/{{\s+css\s+(\S+)\s+}}/, data[item]);
-			output = output.replace(data[item], 'http://' + getIPAddress() + ':' + PORT + '/css/' + jsname[1] + '.css');
+			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT + '/css/' + jsname[1] + '.css');
 		}
 	}
 	return output;
