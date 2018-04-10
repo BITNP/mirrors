@@ -34,7 +34,7 @@ function route(handle, pathname) {
 		catch(err) {
 			// 如果是图片，加载默认图片
 			if (pathname.indexOf('.jpg') != -1 || pathname.indexOf('.png') != -1)
-				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./img/default.png'));
+				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./Assets/img/default.png'));
 			if (ifDebug) console.log("No request hadler found for " + pathname);
 			return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync('./404.html')));
 		}

@@ -36,7 +36,6 @@
 				      <th scope="col">#</th>
 				      <th scope="col">镜像名</th>
 				      <th scope="col">更新时间</th>
-				      <!-- <th scope="col">下载次数</th> -->
 				    </tr>
 				  </thead>
 				  <tbody id="mirrors">
@@ -72,7 +71,6 @@
 	$("#input-query").keydown(function(e){
 		switch(e.keyCode) {
 			case 13:
-				// console.log({'query':$("#input-query").val()});
 				UrlJump({"query":$("#input-query").val()});
 				break;
 			default:
@@ -102,7 +100,7 @@
 	    	times = data[mir].least_update;
 	    	time = times.split('T')[0];
 	    }
-	    var tr = '<tr id="item_'+(parseInt(mir)+1)+'"><th scope="row">'+(parseInt(mir)+1)+'</th><td><img src="img/tubiao.png" alt="image" />'+Name+'</td><td>'+time+'</td></tr>';
+	    var tr = '<tr id="item_'+(parseInt(mir)+1)+'"><th scope="row">'+(parseInt(mir)+1)+'</th><td><img src="./Assets/img/tubiao.png" alt="image" />'+Name+'</td><td>'+time+'</td></tr>';
 	    html += tr;
 	}
 	  $("#mirrors").append(html);
