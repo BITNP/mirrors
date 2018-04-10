@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ css bootstrap.min }}">
 </head>
 <body>
-	
     {{ template body_header }}
 	<main>
 		<section class="jumbotron text-center">
@@ -50,15 +49,12 @@
 			</div>
 		</div>
 	</main>
-
-
-	{{template body_footer}}
+	{{template body_footer}}	
     <script src="{{ js jquery.min }}"></script>
     <script src="{{ js popper.min }}"></script>
     <script src="{{ js bootstrap.min }}"></script>
     <script src="{{ js socket.io-2.0.3 }}"></script>
     <script src="{{ js functions }}"></script>
-
 <script>
 	var requests = GetRequest();
 	var socket = io('{{IPAddress}}');
@@ -69,8 +65,6 @@
 		window.data = data;
 		loadHTML(data.datas);
 	});
-
-
 	$('#btn-search').click(function(){
 		UrlJump({"query":$("#input-query").val()});
 	});
@@ -86,8 +80,6 @@
 
 		}
 	});
-
-
 	function loadHTML(data) {
 		// NavDatas数组，用于生成字母导航，第27个数字是镜像总数
 	  var navDatas = [];
@@ -113,11 +105,7 @@
 	    var tr = '<tr id="item_'+(parseInt(mir)+1)+'"><th scope="row">'+(parseInt(mir)+1)+'</th><td><img src="img/tubiao.png" alt="image" />'+Name+'</td><td>'+time+'</td></tr>';
 	    html += tr;
 	}
-	    // console.log(mir);
-	    
 	  $("#mirrors").append(html);
-	  // alert(navDatas[26]);
-	  // 显示导航条
 	  showNavbar(navDatas);
 	  $('#mirrors tr').each(function(){
 	    $(this).on("click",function(){
@@ -128,9 +116,6 @@
 	      window.location.href = href;
 	    });
 	  });
-	
-
-
 	  // 加载分页
 	  var numPerPage = 15;
 	  var currentPage = 1;
@@ -206,7 +191,6 @@
 	    UrlJump({"alphabet":alphabet});
 	  });
 	}
-
 	</script>
 </body>
 </html>

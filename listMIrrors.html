@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
     <!-- listMirrors -->
     <!-- 兼容IOS9 -->
-    <title>北理镜像站</title>
+    <title>北理镜像站 | 镜像列表</title>
     <link rel="stylesheet" href="{{ css bootstrap.min }}">
   </head>
-  
   <body>
-    
     {{ template body_header }}
     <main>
       <section class="jumbotron text-center">
@@ -52,9 +49,7 @@
         </div>
       </div>
     </main>
-
     {{template body_footer}}
-
     <script src="{{ js jquery.min }}"></script>
     <script src="{{ js popper.min }}"></script>
     <script src="{{ js bootstrap.min }}"></script>
@@ -64,9 +59,7 @@
     <script type="text/javascript">
       var requests = null;
       var host = window.location.origin;
-
         $("#title-index").attr("href", host);
-
         //判断当前字符串是否以str开始  
         if (typeof String.prototype.startsWith != 'function') {
           String.prototype.startsWith = function(str) {
@@ -79,11 +72,8 @@
             return this.slice( - str.length) == str;
           };
         }
-
         requests = GetRequest();
-
         var socket = io('{{IPAddress}}');
-
         // 根据文件目录生成导航
         var path = window.location.pathname;
         var pathParts = path.split('/');
@@ -97,7 +87,6 @@
 						pathNav.appendChild(btn);
           }
         }
-
         socket.emit('data', {
           "type": "mirrorsDir",
           "path": path
@@ -110,18 +99,14 @@
           window.data = data;
           loadHTML(data.datas);
         });
-
         $('#btn-search').click(function() {UrlJump({"query": $("#input-query").val()});});
-
         $("#input-query").keydown(function(e) {switch (e.keyCode) {case 13:UrlJump({"query":$("#input-query").val()});break;default:break}});
-
         $("#btn_help").click(function(){
           let host = window.location.origin;
           let path = "help.html";
           console.log(host + ',' + path);
           window.location.href = host + '/' + path;
         });
-
         // 点击导航按钮执行跳转
         $('#pathNav button').each(function() {
           var path = "";
@@ -138,7 +123,6 @@
             window.location.href = href.substring(0, href.length - 1);
           });
         });
-
         // 加载网页内容
         function loadHTML(data) {
           var row = 0;
@@ -152,9 +136,7 @@
             else if (osize < 1024 * 1024) 				size = (osize / 1024).toFixed(2) + ' KB';
             else if (osize < 1024 * 1024 * 1024) 	size = (osize / 1024 / 1024).toFixed(2) + ' MB';
             else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
-            
             var tr = null;
-
             if(type == "file") {
             	tr = document.createElement('tr');
 							td1 = document.createElement('td');
@@ -190,44 +172,6 @@
             });
           });
         }
-
-
-
-
 </script>
-  </body>
-
+</body>
 </html>
-
-<!--       // function loadScript(url, callback) {
-      //   var script = document.createElement("script");
-      //   script.type = "text/javascript";
-      //   if (typeof(callback) != "undefined") {
-      //     if (script.readyState) {
-      //       script.onreadystatechange = function() {
-      //         if (script.readyState == "loaded" || script.readyState == "complete") {
-      //           script.onreadystatechange = null;
-      //           callback();
-      //         }
-      //       };
-      //     } else {
-      //       script.onload = function() {
-      //         callback();
-      //       };
-      //     }
-      //   }
-      //   script.src = url;
-      //   document.body.appendChild(script);
-      // }
-      // var host = window.location.origin;
-      // // console.log(host);
-      // // loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
-      // //   alert($(window).height());
-      // // }); 
-      // // 
-      
-      // loadScript(host + "/js/jquery-3.2.1.min.js"); //加载js文件
-      // loadScript(host + "/js/functions.js"); //加载js文件 
-      // loadScript(host + "/js/socket.io-2.0.3.js",
-      // function() { // 为了确保在该文件加载完后才执行下面的代码，将剩下的代码全部放进这个匿名函数中
-    //  }); -->
