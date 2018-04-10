@@ -23,16 +23,16 @@ function route(handle, pathname) {
 			if (ifDebug) console.log(pathname);
 			if (buffer[pathname]) {
 				return buffer[pathname];
-			// } else if(pathname.indexOf('/helps') == 0) {
-			// 	return buffer[pathname] || (buffer[pathname] == fs.readFileSync('.' + pathname));
 			} else if((pathname.indexOf('/mirrors/') == 0 || pathname == '/mirrors') && pathname.indexOf('.') == -1) { // 访问 /mirrors 文件夹下的静态资源
 				return buffer.mirrors || (buffer.mirrors = render.render(fs.readFileSync('./listMirrors.html')));
-			} else {
+			}  else {
 				buffer[pathname] = fs.readFileSync('.'+pathname);
 				return buffer[pathname];
 			}
 		}
 		catch(err) {
+			if (pathname.indexOf('.jpg') != -1 || pathname.indexOf('.png') != -1)
+				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./img/default.png'));
 			if (ifDebug) console.log("No request hadler found for " + pathname);
 			return buffer.notFound || (buffer.notFound = fs.readFileSync('./404.html'));
 		}
@@ -41,28 +41,17 @@ function route(handle, pathname) {
 
 
 
-
+// else if((pathname.indexOf('/img/') == 0 || pathname == '/img') && pathname.indexOf('.') != -1) { // 访问 /img 文件夹下的图片资源
+// 					console.log(pathname);
+// 					fs.readFileSync('.' + pathname, (err, data) => {
+// 						if(err) {
+// 							return fs.readFileSync('./450x300.png');
+// 						}
+// 						return data;
+// 					});
+// 			}
 
 
 
 
 exports.route = route;
-
- // else if(pathname.indexOf('socket.io') != -1) { // 动态地址访问静态资源临时补丁
-	// 			if (ifDebug) console.log('aaa');
-	// 			return buffer.socketio || (buffer.socketio = fs.readFileSync('./js/socket.io-2.0.3.js'));
-	// 		} else if(pathname.indexOf('functions') != -1) { // 动态地址访问静态资源临时补丁
-	// 			if (ifDebug) console.log('bbb');
-	// 			return buffer.functions || (buffer.functions = fs.readFileSync('./js/functions.js'));
-	// 		} else if(pathname.indexOf('popper') != -1) { // 动态地址访问静态资源临时补丁
-	// 			if (ifDebug) console.log('bbb');
-	// 			return buffer.popper || (buffer.popper = fs.readFileSync('./js/popper.min.js'));
-	// 		} else if(pathname.indexOf('jquery') != -1) { // 动态地址访问静态资源临时补丁
-	// 			if (ifDebug) console.log('ccc');
-	// 			return buffer.jquery || (buffer.jquery = fs.readFileSync('./js/jquery-3.2.1.min.js'));
-	// 		}
-
- // else if(pathname.indexOf('bootstrap') != -1) { // 动态地址访问静态资源临时补丁
-	// 			if (ifDebug) console.log('bbb');
-	// 			return buffer.bootstrap || (buffer.bootstrap = fs.readFileSync('./js/bootstrap.min.js'));
-	// 		}

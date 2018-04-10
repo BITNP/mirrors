@@ -28,8 +28,6 @@ function start(route, handle) {
     var pathname = url.parse(req.url).pathname;
     if (ifDebug) console.log("Request for " + pathname + " received.");
 
-    // console.log(pathname);
-
     // 静态资源服务器 (Assets server)
     if(pathname.indexOf('/mirrors') == 0 && pathname.indexOf('.') != -1) {
       var stream = fs.createReadStream('.' + pathname, {flags : "r", encoding : null});
@@ -44,7 +42,6 @@ function start(route, handle) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
     res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    // res.writeHead(200, {'Content-type':'text/html;charset=utf-8'});
     res.writeHead(200);
     var content = route(handle, pathname);
 
@@ -57,7 +54,7 @@ function start(route, handle) {
   var app = http.createServer(onRequest);
   var io = require('socket.io')(app);
   app.listen(PORT);
-  if (ifDebug) console.log("Server has started.");
+  console.log("Server has started.");
 
 
 
