@@ -9,7 +9,7 @@ var PORT = 3000;
 
 
 
-var baseUrl = "datas\\";
+var baseUrl = "datas/";
 var fileName= baseUrl + "mirrors.json";
 var mirData=JSON.parse(fs.readFileSync(fileName));
 
