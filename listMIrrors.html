@@ -11,39 +11,8 @@
   </head>
   
   <body>
-    <header>
-      <div class="collapse bg-dark" id="headerNav">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">北理镜像站是由北京理工大学网络开拓者协会负责运营的开源镜像站</p></div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <a href="http://www.bit.edu.cn/" class="text-white">北京理工大学官网</a></li>
-                <li>
-                  <a href="https://www.bitnp.net/" class="text-white">网络开拓者协会(BITNP)主页</a></li>
-                <li>
-                  <a href="https://www.bitnp.net/" class="text-white">加入我们</a></li>
-                <li>
-                  <a href="https://www.bitnp.net/" class="text-white">联系我们</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a class="navbar-brand d-flex align-items-center" id="title-index">
-            <strong>北理镜像站</strong></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNav" aria-controls="navbarHeader" aria-expended="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
-    </header>
+    
+    {{ template body_header }}
     <main>
       <section class="jumbotron text-center">
         <div class="container">
@@ -83,13 +52,8 @@
         </div>
       </div>
     </main>
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">回到顶部</a></p>
-        <p>Copyright © 1997-2018 Net Pioneer Association of BIT All Rights Reserved. Designed by Maidong</p>
-      </div>
-    </footer>
+
+    {{template body_footer}}
 
     <script src="{{ js jquery.min }}"></script>
     <script src="{{ js popper.min }}"></script>
@@ -100,37 +64,6 @@
     <script type="text/javascript">
       var requests = null;
       var host = window.location.origin;
-      // function loadScript(url, callback) {
-      //   var script = document.createElement("script");
-      //   script.type = "text/javascript";
-      //   if (typeof(callback) != "undefined") {
-      //     if (script.readyState) {
-      //       script.onreadystatechange = function() {
-      //         if (script.readyState == "loaded" || script.readyState == "complete") {
-      //           script.onreadystatechange = null;
-      //           callback();
-      //         }
-      //       };
-      //     } else {
-      //       script.onload = function() {
-      //         callback();
-      //       };
-      //     }
-      //   }
-      //   script.src = url;
-      //   document.body.appendChild(script);
-      // }
-      // var host = window.location.origin;
-      // // console.log(host);
-      // // loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
-      // //   alert($(window).height());
-      // // }); 
-      // // 
-      
-      // loadScript(host + "/js/jquery-3.2.1.min.js"); //加载js文件
-      // loadScript(host + "/js/functions.js"); //加载js文件 
-      // loadScript(host + "/js/socket.io-2.0.3.js",
-      // function() { // 为了确保在该文件加载完后才执行下面的代码，将剩下的代码全部放进这个匿名函数中
 
         $("#title-index").attr("href", host);
 
@@ -259,9 +192,42 @@
         }
 
 
-    //  });
+
 
 </script>
   </body>
 
 </html>
+
+<!--       // function loadScript(url, callback) {
+      //   var script = document.createElement("script");
+      //   script.type = "text/javascript";
+      //   if (typeof(callback) != "undefined") {
+      //     if (script.readyState) {
+      //       script.onreadystatechange = function() {
+      //         if (script.readyState == "loaded" || script.readyState == "complete") {
+      //           script.onreadystatechange = null;
+      //           callback();
+      //         }
+      //       };
+      //     } else {
+      //       script.onload = function() {
+      //         callback();
+      //       };
+      //     }
+      //   }
+      //   script.src = url;
+      //   document.body.appendChild(script);
+      // }
+      // var host = window.location.origin;
+      // // console.log(host);
+      // // loadScript(host+"/js/jquery-3.2.1.min.js", function () { //加载,并执行回调函数
+      // //   alert($(window).height());
+      // // }); 
+      // // 
+      
+      // loadScript(host + "/js/jquery-3.2.1.min.js"); //加载js文件
+      // loadScript(host + "/js/functions.js"); //加载js文件 
+      // loadScript(host + "/js/socket.io-2.0.3.js",
+      // function() { // 为了确保在该文件加载完后才执行下面的代码，将剩下的代码全部放进这个匿名函数中
+    //  }); -->
