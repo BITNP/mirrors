@@ -27,10 +27,10 @@ function render(page) {
 			output = output.replace(data[item], fs.readFileSync('./template/' + htmlname[1] + '.html') || '');
 		} else if(data[item].indexOf('js') != -1) {
 			var jsname = data[item].match(/{{\s*js\s+(\S+)\s*}}/, data[item]);
-			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT + '/js/' + jsname[1] + '.js');
+			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT + '/Assets/js/' + jsname[1] + '.js');
 		} else if(data[item].indexOf('css') != -1) {
 			var cssname = data[item].match(/{{\s*css\s+(\S+)\s*}}/, data[item]);
-			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT + '/css/' + cssname[1] + '.css');
+			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT + '/Assets/css/' + cssname[1] + '.css');
 		}
 	}
 	return output;
