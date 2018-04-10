@@ -39,7 +39,6 @@
 		}
 
 	</style>
-	<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 </head>
 <body>
 	<header>
@@ -120,7 +119,7 @@
     <script src="{{ js functions }}"></script>
     <script>
 		requests = GetRequest();
-        var socket = io('http://{{IPAddress}}:3000');
+        var socket = io('{{IPAddress}}');
         socket.emit('data', {
           "type": "mirrorsDir"
         });

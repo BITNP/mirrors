@@ -99,7 +99,7 @@
     <script>
       var requests = GetRequest();
 
-      var socket = io('http://{{IPAddress}}:3000');
+      var socket = io('{{IPAddress}}');
 
       socket.emit('data', {
         "type": "mirrors"
