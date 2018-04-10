@@ -1,9 +1,9 @@
 // 调试模式开关
 var ifDebug = false;
 
-var server = require("./server");
-var router = require("./router");
-var rh = require("./requestHandlers");
+var server = require("./node_server/server");
+var router = require("./node_server/router");
+var rh = require("./node_server/requestHandlers");
 
 
 var handle = {
