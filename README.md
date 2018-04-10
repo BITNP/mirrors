@@ -1,16 +1,18 @@
 # mirrors
 
-环境要求:
-node.js
-安装socket.IO模块
+## 环境要求
+> node.js
+>安装socket.IO模块
 
-如何运行
+## 如何运行
 
 启动服务器
-node index.js
+> node index.js
 
-配置端口(server.js):默认为 3000
 
+## 配置文件（app.json)
+> 端口默认为 3000
+> 可在配置文件中修改 port 属性
 
 
 
