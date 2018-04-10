@@ -36,7 +36,7 @@ function route(handle, pathname) {
 			if (pathname.indexOf('.jpg') != -1 || pathname.indexOf('.png') != -1)
 				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./img/default.png'));
 			if (ifDebug) console.log("No request hadler found for " + pathname);
-			return buffer.notFound || (buffer.notFound = fs.readFileSync('./404.html'));
+			return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync('./404.html')));
 		}
 	}
 }
