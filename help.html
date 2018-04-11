@@ -82,7 +82,7 @@
 		requests = GetRequest();
         var socket = io('{{IPAddress}}');
         socket.emit('data', {
-          "type": "mirrorsDir"
+          "type": "mdlist"
         });
         socket.on('data',
         function(data) {
@@ -99,15 +99,16 @@
 			var slideBar = document.getElementById("md-slideBar");
         	for (var mir = 0; mir < data.length; mir++) {
 	            var path = data[mir].path;
+	            if(path == "default.md") continue;
 	            var type = data[mir].type;
 	            var li = null;
-	            if(type == "directory") {
+	            if(type == "file") {
 					li = document.createElement('li');
 					li.className = 'nav-item';
 					a = document.createElement('a');
 					a.className = 'nav-link';
-					a.href = '?mirror='+path;
-					a.innerText = path;
+					a.href = '?mirror='+path.substring(0,path.length - 3);
+					a.innerText = path.substring(0,path.length - 3);
 					li.appendChild(a);
 					slideBar.insertBefore(li, slideBar.firstChlid);
             	}
@@ -136,13 +137,13 @@
                 }
                 if(requests['mirror']) {
 	                /*设置请求方式和地址  默认是异步*/
-	                path = '_help/'+requests['mirror']+'.md';
+	                path = '_help/'+requests['mirror'];
 	               	console.log($("title"));
-	                ajax.open("GET", path);
+	                ajax.open("GET", path + '.md');
 	                /*发送请求*/
 	                ajax.send();
                 } else {
-                	ajax.open("GET", "_help/default.md");
+                	ajax.open("GET", "./_help/default.md");
                 	ajax.send();
                 }
 

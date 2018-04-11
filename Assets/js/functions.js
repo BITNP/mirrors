@@ -32,10 +32,10 @@ function dataFilter(data){
       }
     }
     break;
-    case "mirrorsDir":
+    case "mirrorsDir":case "mdlist":
     {
       var oData = data.datas;
-      filteredData.type = "mirrorsDir";
+      filteredData.type = data.type;
       filteredData.datas = [];
 
       // conditions

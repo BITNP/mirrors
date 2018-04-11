@@ -53,10 +53,10 @@
     {{template body_footer}}
     
     <a id="gotoTop" href="#">
-      <img src="img/gotoTop.png" width="50" height="50" alt="" />
+      <img src="./Assets/img/gotoTop.png" width="50" height="50" alt="" />
     </a>
     <div class="erweima">
-      <img src="img/erweima.jpg" alt="">
+      <img src="./Assets/img/erweima.jpg" alt="">
     </div>
 
     <script src="{{ js jquery.min }}"></script>
@@ -127,12 +127,18 @@
       			btn1.name = Name;
       			btn1.innerText = "下载";
       			div4.appendChild(btn1);
-      			var btn2 = document.createElement('button');
-      			btn2.className = 'btn btn-sm btn-outline-secondary';
-            btn2.name = "fankui";
-      			btn2.type = 'button';
-      			btn2.innerText = "反馈";
-      			div4.appendChild(btn2)
+            var btn2 = document.createElement('button');
+            btn2.className = 'btn btn-sm btn-outline-secondary';
+            btn2.name = "help";
+            btn2.type = 'button';
+            btn2.innerText = "帮助";
+            div4.appendChild(btn2)
+            var btn3 = document.createElement('button');
+            btn3.className = 'btn btn-sm btn-outline-secondary';
+            btn3.name = "fankui";
+            btn3.type = 'button';
+            btn3.innerText = "反馈";
+            div4.appendChild(btn3)
 
       			row.appendChild(div);
           }
@@ -146,6 +152,13 @@
           var name = $(this).attr("name");
           if(name=="fankui") {
             $(".erweima").show();
+          } else if (name == "help"){
+            var href = window.location.pathname;
+            var hrefArr = href.split('/');
+            href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
+            let mdname = $(this).parent().parent().parent().find('.card-text').text();
+            href += 'help.html?mirror=' + mdname;
+            window.location.href = href;
           } else { 
             var href = window.location.pathname;
             var hrefArr = href.split('/');
