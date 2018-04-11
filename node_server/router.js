@@ -1,5 +1,5 @@
 // 调试模式开关
-var ifDebug = false;
+var ifDebug = true;
 
 var fs = require('fs');
 var render = require('./templateRender');
