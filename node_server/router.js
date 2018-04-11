@@ -1,5 +1,5 @@
 // 调试模式开关
-var ifDebug = true;
+var ifDebug = false;
 
 var fs = require('fs');
 var render = require('./templateRender');
@@ -35,6 +35,9 @@ function route(handle, pathname) {
 			// 如果是图片，加载默认图片
 			if (pathname.indexOf('.jpg') != -1 || pathname.indexOf('.png') != -1)
 				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./Assets/img/default.png'));
+			// 如果是帮助文件，加载默认帮助文件
+			else if (pathname.indexOf('.md') != -1)
+				return buffer.defaultMD || (buffer.defaultMD = fs.readFileSync('./_help/default.md'));
 			if (ifDebug) console.log("No request hadler found for " + pathname);
 			return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync('./404.html')));
 		}

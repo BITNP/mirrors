@@ -79,6 +79,14 @@ function start(route, handle) {
           socket.emit('data',{"type":"mirrorsDir", "datas":datas});
         }
         break;
+
+        case "mdlist":
+        {
+          var datas = [];
+          datas = ft.fileTraversal('./_help');
+          socket.emit('data',{"type":"mdlist", "datas":datas});
+        }
+        break;
       }
     });
   });
