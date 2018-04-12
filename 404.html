@@ -5,10 +5,10 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
 	<!-- 兼容IOS9 -->
 	<title>北理镜像站</title>
-    <link rel="stylesheet" href="{{ css bootstrap.min }}">
+    <link rel="stylesheet" href="{% css bootstrap.min %}">
 </head>
 <body>	
-    {{ template body_header }}
+    {% template body_header %}
 	<main>
 		<section class="jumbotron text-center">
 			<div class="container">
@@ -30,9 +30,9 @@
 			</div>
 		</div>
 	</main>
-	{{template body_footer}}
-    <script src="{{ js jquery.min }}"></script>
-    <script src="{{ js popper.min }}"></script>
-    <script src="{{ js bootstrap.min }}"></script>
+	{% template body_footer %}
+    <script src="{% js jquery.min %}"></script>
+    <script src="{% js popper.min %}"></script>
+    <script src="{% js bootstrap.min %}"></script>
 </body>
 </html>
