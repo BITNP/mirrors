@@ -37,7 +37,7 @@ function route(handle, pathname) {
 				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./Assets/img/default.png'));
 			// 如果是帮助文件，加载默认帮助文件
 			else if (pathname.indexOf('.md') != -1)
-				return buffer.defaultMD || (buffer.defaultMD = fs.readFileSync('./_help/default.md'));
+				return buffer.defaultMD || (buffer.defaultMD = fs.readFileSync('./_help/error.md'));
 			if (ifDebug) console.log("No request hadler found for " + pathname);
 			return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync('./404.html')));
 		}

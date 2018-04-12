@@ -99,7 +99,7 @@
 			var slideBar = document.getElementById("md-slideBar");
         	for (var mir = 0; mir < data.length; mir++) {
 	            var path = data[mir].path;
-	            if(path == "default.md") continue;
+	            if(path == "default.md" || path == "upFolder.md" || path == "error.md") continue;
 	            var type = data[mir].type;
 	            var li = null;
 	            if(type == "file") {
@@ -137,10 +137,13 @@
                 }
                 if(requests['mirror']) {
 	                /*设置请求方式和地址  默认是异步*/
-	                path = '_help/'+requests['mirror'];
-	               	console.log($("title"));
-	                ajax.open("GET", path + '.md');
-	                /*发送请求*/
+	                let path = "";
+	                if(requests['mirror'].indexOf("../") == -1) {
+		                path = './_help/'+requests['mirror'];
+	                } else {
+	                	path = "./_help/upFolder";
+	                }
+					ajax.open("GET", path + '.md');
 	                ajax.send();
                 } else {
                 	ajax.open("GET", "./_help/default.md");
