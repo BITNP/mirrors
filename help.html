@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
 	<!-- 兼容IOS9 -->
 	<title>北理镜像站 | 帮助文档</title>
-    <link rel="stylesheet" href="{{ css bootstrap.min }}">
+    <link rel="stylesheet" href="{% css bootstrap.min %}">
 	<style>
 		hr, .slideBar-hr {
 			height: 1px;
@@ -42,7 +42,7 @@
 </head>
 <body>
 	
-    {{ template body_header }}
+    {% template body_header %}
 
 	<main>
 		<section class="jumbotron">
@@ -70,17 +70,17 @@
 		</div>
 	</main>
 
-	{{template body_footer}}
+	{% template body_footer %}
 	
-    <script src="{{ js jquery.min }}"></script>
-    <script src="{{ js popper.min }}"></script>
-    <script src="{{ js bootstrap.min }}"></script>
-    <script src="{{ js showdown.min }}"></script>
-    <script src="{{ js socket.io-2.0.3 }}"></script>
-    <script src="{{ js functions }}"></script>
+    <script src="{% js jquery.min %}"></script>
+    <script src="{% js popper.min %}"></script>
+    <script src="{% js bootstrap.min %}"></script>
+    <script src="{% js showdown.min %}"></script>
+    <script src="{% js socket.io-2.0.3 %}"></script>
+    <script src="{% js functions %}"></script>
     <script>
 		requests = GetRequest();
-        var socket = io('{{IPAddress}}');
+        var socket = io('{% IPAddress %}');
         socket.emit('data', {
           "type": "mdlist"
         });

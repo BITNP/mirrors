@@ -7,7 +7,7 @@
     <!-- 兼容IOS9 -->
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
     <title>北理镜像站</title>
-    <link rel="stylesheet" href="{{ css bootstrap.min }}">
+    <link rel="stylesheet" href="{% css bootstrap.min %}">
   </head>
     <style>
       .mir-shadow{ box-shadow: 10px 10px 15px #8e8e8e; } 
@@ -32,7 +32,7 @@
       } 
     </style>
   <body>
-    {{ template body_header }}
+    {% template body_header %}
     <main>
       <section class="jumbotron text-center">
         <div class="container">
@@ -50,7 +50,7 @@
       </div>
     </main>
 
-    {{template body_footer}}
+    {% template body_footer %}
     
     <a id="gotoTop" href="#">
       <img src="./Assets/img/gotoTop.png" width="50" height="50" alt="" />
@@ -59,15 +59,15 @@
       <img src="./Assets/img/erweima.jpg" alt="">
     </div>
 
-    <script src="{{ js jquery.min }}"></script>
-    <script src="{{ js popper.min }}"></script>
-    <script src="{{ js bootstrap.min }}"></script>
-    <script src="{{ js socket.io-2.0.3 }}"></script>
-    <script src="{{ js functions }}"></script>
+    <script src="{% js jquery.min %}"></script>
+    <script src="{% js popper.min %}"></script>
+    <script src="{% js bootstrap.min %}"></script>
+    <script src="{% js socket.io-2.0.3 %}"></script>
+    <script src="{% js functions %}"></script>
     <script>
       var requests = GetRequest();
 
-      var socket = io('{{IPAddress}}');
+      var socket = io('{% IPAddress %}');
 
       socket.emit('data', {
         "type": "mirrors"

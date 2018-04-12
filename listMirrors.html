@@ -6,10 +6,10 @@
     <!-- listMirrors -->
     <!-- 兼容IOS9 -->
     <title>北理镜像站 | 镜像列表</title>
-    <link rel="stylesheet" href="{{ css bootstrap.min }}">
+    <link rel="stylesheet" href="{% css bootstrap.min %}">
   </head>
   <body>
-    {{ template body_header }}
+    {% template body_header %}
     <main>
       <section class="jumbotron text-center">
         <div class="container">
@@ -49,12 +49,12 @@
         </div>
       </div>
     </main>
-    {{template body_footer}}
-    <script src="{{ js jquery.min }}"></script>
-    <script src="{{ js popper.min }}"></script>
-    <script src="{{ js bootstrap.min }}"></script>
-    <script src="{{ js socket.io-2.0.3 }}"></script>
-    <script src="{{ js functions }}"></script>
+    {% template body_footer %}
+    <script src="{% js jquery.min %}"></script>
+    <script src="{% js popper.min %}"></script>
+    <script src="{% js bootstrap.min %}"></script>
+    <script src="{% js socket.io-2.0.3 %}"></script>
+    <script src="{% js functions %}"></script>
 
     <script type="text/javascript">
       var requests = null;
@@ -73,7 +73,7 @@
           };
         }
         requests = GetRequest();
-        var socket = io('{{IPAddress}}');
+        var socket = io('{% IPAddress %}');
         // 根据文件目录生成导航
         var path = window.location.pathname;
         var pathParts = path.split('/');
