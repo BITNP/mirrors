@@ -13,7 +13,6 @@ function clearBuffer(){
   buffer = {};
 }
 
-
 function fileTraversal(path){
   if(buffer[path]) {
     return buffer[path];
@@ -41,8 +40,6 @@ function fileTraversal(path){
   buffer[path] = list;
   return list;
 }
-
-
 
 if (ifDebug) {
   var fileList = [];

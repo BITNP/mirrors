@@ -1,8 +1,9 @@
 // 调试模式开关
-var ifDebug = false;
+var ifDebug = true;
 
 var fs = require('fs');
-var render = require('./templateRender');
+var render = require('./render');
+// var rh = require("./requestHandlers");
 // 路由文件缓存，缓冲经常修改的动态资源，如，图片
 var buffer = {};
 
@@ -14,33 +15,48 @@ function clearBuffer(){
 }
 
 
-function route(handle, pathname) {
+String.prototype.in_array = function(arr) {
+	for(item in arr) {
+		if(this == arr[item])
+			return true;
+	}
+	return false;
+};
+
+
+
+function route(pathname) {
 	if (ifDebug) console.log("About to route a request for " + pathname);
-	if(typeof handle[pathname] === 'function') {
-		return handle[pathname]();
-	}else{
-		try{
-			if (ifDebug) console.log(pathname);
-			if (buffer[pathname]) {
-				return buffer[pathname];
-			// 访问 /mirrors 文件夹下的静态资源
-			} else if((pathname.indexOf('/mirrors/') == 0 || pathname == '/mirrors') && pathname.indexOf('.') == -1) {
-				return buffer.mirrors || (buffer.mirrors = render.render(fs.readFileSync('./listMirrors.html')));
-			}  else {
-				buffer[pathname] = fs.readFileSync('.'+pathname);
-				return buffer[pathname];
-			}
-		}
-		catch(err) {
-			// 如果是图片，加载默认图片
-			if (pathname.indexOf('.jpg') != -1 || pathname.indexOf('.png') != -1)
-				return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./Assets/img/default.png'));
-			// 如果是帮助文件，加载默认帮助文件
-			else if (pathname.indexOf('.md') != -1)
-				return buffer.defaultMD || (buffer.defaultMD = fs.readFileSync('./_help/error.md'));
-			if (ifDebug) console.log("No request hadler found for " + pathname);
-			return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync('./404.html')));
-		}
+
+	try{
+		// 访问缓存
+		if(buffer[pathname]) return buffer[pathname];
+
+		if(pathname.in_array(['/', '/index', '/index/']))
+			return (buffer[pathname] = render.render(fs.readFileSync('./index.html')));
+
+		if(pathname.match(/^\/download/) != null)
+			return (buffer[pathname] = render.render(fs.readFileSync("./download.html")));
+
+		if(pathname.match(/^\/help/) != null)
+			return (buffer[pathname] = render.render(fs.readFileSync("./help.html")));
+
+		if(pathname.match(/^\/mirror/) != null)
+			return (buffer[pathname] = render.render(fs.readFileSync("./mirror.html")));
+
+		buffer[pathname] = fs.readFileSync('.'+pathname);
+		return buffer[pathname];
+	}
+	catch(err) {
+		// 加载默认图片
+		if (pathname.match(/(\.jpg)|(\.png)/) != null)
+			return buffer.defaultImg || (buffer.defaultImg = fs.readFileSync('./Assets/img/default.png'));
+		// 加载默认帮助文件
+		if (pathname.match(/\.md/) != null)
+			return buffer.defaultMD || (buffer.defaultMD = fs.readFileSync('./_help/error.md'));
+
+		if (ifDebug) console.log("No request handler found for " + pathname);
+		return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync('./404.html')));
 	}
 }
 

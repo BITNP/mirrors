@@ -8,9 +8,6 @@ var appjson = JSON.parse(fs.readFileSync('./app.json'));
 protocol = appjson.protocol?appjson.protocol:"http";
 PORT = appjson.port?appjson.port:3000;
 
-
-
-
 function render(page) {
 	if (typeof page != 'string') {
 		page = page.toString();
@@ -53,7 +50,6 @@ function getIPAddress(){
 
 
 if(ifDebug) {
-	// var page = '{%IPAddress%} &&&& {% js jquery.min %} &&&& {%IPAddress%}</a>';
 	var page = '<script src="{% js jquery.min %}"></script>'
 	var output = render(page);
 	console.log(output);
