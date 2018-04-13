@@ -103,7 +103,7 @@
         $("#input-query").keydown(function(e) {switch (e.keyCode) {case 13:UrlJump({"query":$("#input-query").val()});break;default:break}});
         $("#btn_help").click(function(){
           let host = window.location.origin;
-          let path = "help.html";
+          let path = "help";
           console.log(host + ',' + path);
           window.location.href = host + '/' + path;
         });

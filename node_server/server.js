@@ -21,15 +21,15 @@ var baseUrl = "datas/";
 var fileName= baseUrl + "mirrors.json";
 var mirData=JSON.parse(fs.readFileSync(fileName));
 
-function start(route, handle) {
+function start(route) {
 
 
   function onRequest (req, res) {
     var pathname = url.parse(req.url).pathname;
     if (ifDebug) console.log("Request for " + pathname + " received.");
 
-    // 静态资源服务器 (Assets server)
-    if(pathname.indexOf('/mirrors') == 0 && pathname.indexOf('.') != -1) {
+    // 镜像资源下载服务器 (download server)
+    if(pathname.indexOf('/mirror') == 0 && pathname.indexOf('.') != -1) {
       var stream = fs.createReadStream('.' + pathname, {flags : "r", encoding : null});
       stream.on("error", function() {
         res.writeHead(404);
@@ -38,17 +38,19 @@ function start(route, handle) {
       stream.pipe(res);
       return stream;
     }
-    // 静态资源服务器 (Assets server)
+    // 镜像资源下载服务器 (download server)
+
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
     res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.writeHead(200);
-    var content = route(handle, pathname);
+    var content = route(pathname);
 
     res.write(content);
 
     res.end();
   }
+  
   var app = http.createServer(onRequest);
   var io = require('socket.io')(app);
   app.listen(PORT);

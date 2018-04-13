@@ -107,13 +107,14 @@
 					li.className = 'nav-item';
 					a = document.createElement('a');
 					a.className = 'nav-link';
-					a.href = '?mirror='+path.substring(0,path.length - 3);
-					a.innerText = path.substring(0,path.length - 3);
+					let mdname = path.substring(0,path.length - 3);
+					a.href = window.location.origin + '/help/'+mdname;
+					a.innerText = mdname;
 					li.appendChild(a);
 					slideBar.insertBefore(li, slideBar.firstChlid);
             	}
 	        }
-			var staticNodes = '<hr class="slideBar-hr"><li class="nav-item"><a class="nav-link" href="../mirrors">进入下载页</a></li><li class="nav-item"><a class="nav-link" href="../">回到主页</a></li>';
+			var staticNodes = '<hr class="slideBar-hr"><li class="nav-item"><a class="nav-link" href="../mirror">进入下载页</a></li><li class="nav-item"><a class="nav-link" href="../">回到主页</a></li>';
 			slideBar.innerHTML += staticNodes;
         }
 
@@ -135,26 +136,38 @@
                     // IE6, IE5 浏览器执行代码
                     ajax = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-                if(requests['mirror']) {
-	                /*设置请求方式和地址  默认是异步*/
-	                let path = "";
-	                if(requests['mirror'].indexOf("../") == -1) {
-		                path = './_help/'+requests['mirror'];
-	                } else {
-	                	path = "./_help/upFolder";
-	                }
-					ajax.open("GET", path + '.md');
-	                ajax.send();
-                } else {
-                	ajax.open("GET", "./_help/default.md");
-                	ajax.send();
-                }
+     //            if(requests['mirror']) {
+	    //             /*设置请求方式和地址  默认是异步*/
+	    //             let path = "";
+	    //             if(requests['mirror'].indexOf("../") == -1) {
+		   //              path = './_help/'+requests['mirror'];
+	    //             } else {
+	    //             	path = "./_help/upFolder";
+	    //             }
+					// ajax.open("GET", path + '.md');
+	    //             ajax.send();
+     //            } else {
+     //            	ajax.open("GET", "./_help/default.md");
+     //            	ajax.send();
+     //            }
 
+                var path = window.location.pathname;
+                var mdname = "";
+                if(path == '/help' || path == '/help/'){
+	            	ajax.open("GET", "../_help/default.md");
+				}
+                else{
+                	mdname = path.match(/^\/help\/(.*)/);
+                	ajax.open("GET", "../_help/" + mdname[1] + ".md");
+                }
+                ajax.send();
                 /*注册回调函数*/
                 ajax.onreadystatechange = function() {
                     if(ajax.readyState == 4 && ajax.status == 200) {
+                    	console.log('success');
                         let Convertor = new showdown.Converter();
                         let res = ajax.responseText;
+                        console.log(res);
                         let html = Convertor.makeHtml(res);
                         document.getElementById("tabContent").innerHTML = html;
                         $("#HowToDownloadMirrors").hide();
