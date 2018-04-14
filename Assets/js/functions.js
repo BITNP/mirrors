@@ -2,66 +2,32 @@
 function dataFilter(data){
   var filteredData = {};
   var length = 0;
-  switch(data.type){
-    case "mirrors":
-    {
-      var oData = data.datas;
-      filteredData.type = "mirrors";
-      filteredData.datas = [];
-      // conditions
-      var query = requests['query'];
-      var alphabet = requests['alphabet'];
-      
-      for(i in oData) 
-      {
-            var mirName = oData[i].name;
-            var isOK = true;
-            if(query && mirName.indexOf(query) == -1) {
-                  isOK = false;
-            }
-            if(alphabet) 
-            {
-                  var begin = alphabet.charAt(0);
-                  var end = alphabet.charAt(2);
-                  var code = mirName.charAt(0).toUpperCase();
-                  if(code < begin || code > end) isOK = false;
-            }
-            if(isOK) {
-                  filteredData.datas[length++] = oData[i];
-            }
-      }
-    }
-    break;
-    case "mirrorsDir":case "mdlist":
-    {
-      var oData = data.datas;
-      filteredData.type = data.type;
-      filteredData.datas = [];
+  var oData = data.datas;
+  filteredData.type = data.type;
+  filteredData.datas = [];
 
-      // conditions
-      var query = requests['query'];
-      var alphabet = requests['alphabet'];
+  // conditions
+  var query = requests['query'];
+  var alphabet = requests['alphabet'];
 
-      for(i in oData) {
-        var mirName = oData[i].path;
-        var isOK = true;
-        if(query && mirName.indexOf(query) == -1) {
-              isOK = false;
-        }
-        if(alphabet) 
-        {
-              var begin = alphabet.charAt(0);
-              var end = alphabet.charAt(2);
-              var code = mirName.charAt(0).toUpperCase();
-              if(code < begin || code > end) isOK = false;
-        }
-        if(isOK) {
-              filteredData.datas[length++] = oData[i];
-        }
-      }
+  for(i in oData) {
+    var mirName = oData[i].path?oData[i].path:oData[i].name;
+    var isOK = true;
+    if(query && mirName.indexOf(query) == -1) {
+          isOK = false;
     }
-    break;
+    if(alphabet) 
+    {
+          var begin = alphabet.charAt(0);
+          var end = alphabet.charAt(2);
+          var code = mirName.charAt(0).toUpperCase();
+          if(code < begin || code > end) isOK = false;
+    }
+    if(isOK) {
+          filteredData.datas[length++] = oData[i];
+    }
   }
+
   return filteredData;}
 
 
