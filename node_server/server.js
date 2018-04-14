@@ -57,12 +57,18 @@ function start(route) {
   var app = http.createServer(onRequest);
   var io = require('socket.io')(app);
   app.listen(PORT);
+  console.log("--------------------------------");
   console.log("Server has started.");
+  console.log("--------------------------------");
 
   // socket.io listeners
   io.on('connection', function (socket) {
     // 记录日志
-    if (ifDebug) console.log('New connection.');
+    if (ifDebug){
+      console.log("--------------------------------");
+      console.log('New connection.');
+      console.log("--------------------------------");
+    } 
 
 
     socket.on('data', function(data){
