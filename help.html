@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="author" content="Maidong">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
 	<!-- 兼容IOS9 -->
 	<title>北理镜像站 | 帮助文档</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{% css bootstrap.min %}">
 	<style>
 		code {color:#D34B62;background:#F6F6F6;}
@@ -44,7 +47,6 @@
 		</section>
 		<div class="py-5 bg-light">
 			<div class="container" id="main_container">
-
 			</div>
 		</div>
 	</main>
@@ -58,6 +60,8 @@
     <script src="{% js socket.io-2.0.3 %}"></script>
     <script src="{% js functions %}"></script>
     <script>
+    	"use strict"
+
     	var requests = GetRequest();
         var socket = io('{% IPAddress %}');
         socket.emit('data', {
@@ -82,7 +86,7 @@
 	            if(type == "file") {
 					li = document.createElement('li');
 					li.className = 'nav-item';
-					a = document.createElement('a');
+					let a = document.createElement('a');
 					a.className = 'nav-link';
 					let mdname = path.substring(0,path.length - 3);
 					a.href = window.location.origin + '/help/'+mdname;
@@ -105,40 +109,36 @@
 
         window.onload = function() {
 
-                var ajax;
+            var ajax;
 
-                /*1.创建XMLHttpRequest对象*/
-                if(window.XMLHttpRequest) {
-                    //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-                    ajax = new XMLHttpRequest();
-                } else {
-                    // IE6, IE5 浏览器执行代码
-                    ajax = new ActiveXObject("Microsoft.XMLHTTP");
-                }
+            /*1.创建XMLHttpRequest对象*/
+            if(window.XMLHttpRequest) {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                ajax = new XMLHttpRequest();
+            } else {
+                // IE6, IE5 浏览器执行代码
+                ajax = new ActiveXObject("Microsoft.XMLHTTP");
+            }
 
-                var path = window.location.pathname;
-                var mdname = "";
-                if(path == '/help' || path == '/help/'){
-	            	ajax.open("GET", "../_help/default.md");
-				}
-                else{
-                	mdname = path.match(/^\/help\/(.*)/);
-                	ajax.open("GET", "../_help/" + mdname[1] + ".md");
+            var path = window.location.pathname;
+            var mdname = "";
+            if(path == '/help' || path == '/help/'){
+            	ajax.open("GET", "../_help/default.md");
+			}
+            else{
+            	mdname = path.match(/^\/help\/(.*)/);
+            	ajax.open("GET", "../_help/" + mdname[1] + ".md");
+            }
+            ajax.send();
+            /*注册回调函数*/
+            ajax.onreadystatechange = function() {
+                if(ajax.readyState == 4 && ajax.status == 200) {
+                    let Convertor = new showdown.Converter();
+                    let res = ajax.responseText;
+                    let html = Convertor.makeHtml(res);
+                    document.getElementById("tabContent").innerHTML = html;
                 }
-                ajax.send();
-                /*注册回调函数*/
-                ajax.onreadystatechange = function() {
-                    if(ajax.readyState == 4 && ajax.status == 200) {
-                    	// console.log('success');
-                        let Convertor = new showdown.Converter();
-                        let res = ajax.responseText;
-                        // console.log(res);
-                        let html = Convertor.makeHtml(res);
-                        document.getElementById("tabContent").innerHTML = html;
-                        $("#HowToDownloadMirrors").hide();
-                    }
-                }
-            
+            }
         }
     </script>
 </body>

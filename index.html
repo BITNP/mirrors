@@ -3,10 +3,12 @@
   
   <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Maidong">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
     <!-- 兼容IOS9 -->
-    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
     <title>北理镜像站</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{% css bootstrap.min %}">
   </head>
     <style>
@@ -65,12 +67,14 @@
     <script src="{% js socket.io-2.0.3 %}"></script>
     <script src="{% js functions %}"></script>
     <script>
+      "use strict"
+
       var requests = GetRequest();
 
       var socket = io('{% IPAddress %}');
 
       socket.emit('data', {
-        "type": "mirrorsDir"
+        "type": "mirrorDir"
       });
       socket.on('data',
       function(data) {

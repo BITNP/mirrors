@@ -12,7 +12,7 @@ var appjson = JSON.parse(fs.readFileSync('./app.json'));
 if(appjson.port) {
   PORT = appjson.port;
 } else {
-  console.log('配置文件 app.json 中 port 属性缺失，端口号设为默认值3000');
+  console.log('端口配置缺失，端口号设为默认值3000');
   PORT = 3000;
 }
 
@@ -39,13 +39,16 @@ function start(route) {
       return stream;
     }
     // 镜像资源下载服务器 (download server)
-
+    // 
+    // 反向缓存权限设置
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
     res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    // 反向缓存权限设置
     res.writeHead(200);
     var content = route(pathname);
 
+    // res.setHeader('Content-Type', 'text/plain');
     res.write(content);
 
     res.end();
@@ -64,13 +67,7 @@ function start(route) {
 
     socket.on('data', function(data){
       switch(data.type){
-        case "mirrors":
-        {
-          socket.emit('data',{"type":"mirrors","datas":mirData});
-        }
-        break;
-
-        case "mirrorsDir":
+        case "mirrorDir": // 获取镜像列表，基于文件目录
         {
           var datas = [];
           if(data.path == undefined)
@@ -78,11 +75,11 @@ function start(route) {
           else {
             datas = ft.fileTraversal('.' + data.path);
           }
-          socket.emit('data',{"type":"mirrorsDir", "datas":datas});
+          socket.emit('data',{"type":"mirrorDir", "datas":datas});
         }
         break;
 
-        case "mdlist":
+        case "mdlist": // 获取帮助文件列表，基于文件目录
         {
           var datas = [];
           datas = ft.fileTraversal('./_help');
