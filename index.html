@@ -39,8 +39,8 @@
           <h1 class="jumbotron-heading">北京理工大学开源软件镜像站</h1>
           <p>网络开拓者协会（Net Pioneer Association of BIT，以下简称网协），成立于1997年，是北京理工大学校内规模最大的社团之一，本着“网络无限，开拓不懈”的精神，不断摸索、引领校园网络建设，后成为校团委领导的全校唯一IT类学生组织。经过20年的不断成长，各项规章制度和硬件设备基本完善，成长为北理最大的网络服务提供团体，拥有每日最高的访问量，从学校学生工作，到日常娱乐服务，协会的服务范围仍然在继续的扩大。同时，协会自身也在不断努力的增强实力，拓展业务。</p>
           <p>
-            <a href="download" class="btn btn-primary">进入下载页</a>
-            <a href="help" class="btn btn-secondary">帮助</a></p>
+            <a href="./mirror" class="btn btn-primary">进入下载页</a>
+            <a href="./help" class="btn btn-secondary">帮助</a></p>
         </div>
       </section>
       <div class="py-5 bg-light">
@@ -70,7 +70,7 @@
       var socket = io('{% IPAddress %}');
 
       socket.emit('data', {
-        "type": "mirrors"
+        "type": "mirrorsDir"
       });
       socket.on('data',
       function(data) {
@@ -95,7 +95,7 @@
             row = main_container.getElementsByClassName('row')[0];
           }
           for (var mir = start; mir < start + num && mir < data.length; mir++) {
-            var Name = data[mir].name;
+            var Name = data[mir].path;
             var Img = Name + '.png';
       			var div = document.createElement('div');
       			div.className = "col-md-4";
@@ -121,50 +121,45 @@
       			var div4 = document.createElement('div');
       			div4.className = "btn-group";
       			div3.appendChild(div4);
-      			var btn1 = document.createElement('button');
-      			btn1.className = 'btn btn-sm btn-outline-secondary';
-      			btn1.type = 'button';
-      			btn1.name = Name;
-      			btn1.innerText = "下载";
-      			div4.appendChild(btn1);
-            var btn2 = document.createElement('button');
-            btn2.className = 'btn btn-sm btn-outline-secondary';
-            btn2.name = "help";
-            btn2.type = 'button';
-            btn2.innerText = "帮助";
-            div4.appendChild(btn2)
-            var btn3 = document.createElement('button');
-            btn3.className = 'btn btn-sm btn-outline-secondary';
-            btn3.name = "fankui";
-            btn3.type = 'button';
-            btn3.innerText = "反馈";
-            div4.appendChild(btn3)
-
+            var btn = '\
+            <button class="btn btn-sm btn-outline-secondary" type="button" name="' + Name + '">下载</button>\
+            <button class="btn btn-sm btn-outline-secondary" type="button" name="' + Name + '">帮助</button>\
+            <button class="btn btn-sm btn-outline-secondary" type="button" name="' + Name + '">反馈</button>';
+            div4.innerHTML = btn;
       			row.appendChild(div);
           }
         }
-
         addCilckActions();
       }
       // 绑定鼠标单击事件
       function addCilckActions() {
         $(".btn-outline-secondary[name]").click(function() {
+          console.log($(this).index());
           var name = $(this).attr("name");
-          if(name=="fankui") {
-            $(".erweima").show();
-          } else if (name == "help"){
-            var href = window.location.pathname;
-            var hrefArr = href.split('/');
-            href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
-            let mdname = $(this).parent().parent().parent().find('.card-text').text();
-            href += 'help?mirror=' + mdname;
-            window.location.href = href;
-          } else { 
-            var href = window.location.pathname;
-            var hrefArr = href.split('/');
-            href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
-            href += 'mirror/' + name;
-            window.location.href = href;
+          switch($(this).index()) {
+            case 0: /*下载*/
+            {
+              var href = window.location.pathname;
+              var hrefArr = href.split('/');
+              href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
+              href += 'mirror/' + name;
+              window.location.href = href;
+            }
+            break;
+            case 1: /*帮助*/
+            {
+              var href = window.location.pathname;
+              var hrefArr = href.split('/');
+              href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
+              href += 'help/' + name;
+              window.location.href = href;
+            }
+            break;
+            case 2: /*反馈*/
+            {
+              $(".erweima").show();
+            }
+            break;
           }
         });
         $(".erweima").click(function(){
@@ -190,5 +185,4 @@
         }
       };</script>
   </body>
-
 </html>

@@ -74,7 +74,7 @@ function start(route) {
         {
           var datas = [];
           if(data.path == undefined)
-            datas = ft.fileTraversal('./mirrors');
+            datas = ft.fileTraversal('./mirror');
           else {
             datas = ft.fileTraversal('.' + data.path);
           }

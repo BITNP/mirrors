@@ -12,11 +12,22 @@ setInterval(clearBuffer,10*60*1000); // 10 mins
 function clearBuffer(){
   buffer = {};
 }
-
+function fsExistsSync(path) {
+    try{
+        fs.accessSync(path,fs.F_OK);
+    }catch(e){
+        return false;
+    }
+    return true;
+}
 function fileTraversal(path){
+  if(!fsExistsSync(path)) {
+    return -1;
+  }
   if(buffer[path]) {
     return buffer[path];
   }
+
   var dirList = fs.readdirSync(path);
   var list = [];
 
@@ -26,6 +37,7 @@ function fileTraversal(path){
       var obj = {};
       obj.path = item;
       obj.type = "directory";
+      obj.help = hasHelp(obj.path);
       list.push(obj);
     }
     else {
@@ -41,10 +53,21 @@ function fileTraversal(path){
   return list;
 }
 
+
+var helpList = [];
+helpList = fileTraversal('./_help');
+
+function hasHelp(path) {
+  for(item in helpList) {
+    if(path + '.md' == helpList[item].path) return true;
+  }
+  return false;
+}
+
 if (ifDebug) {
   var fileList = [];
-  fileList = fileTraversal('../_help');
-  console.log(buffer);
+  fileList = fileTraversal('../mirror/deepin');
+  console.log(fileList);
 }
 
 exports.fileTraversal = fileTraversal;

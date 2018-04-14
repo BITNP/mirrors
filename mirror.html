@@ -32,17 +32,20 @@
                   <div class="btn-group" role="group" id="pathNav" aria-label="path"></div>
                 </div>
               </nav>
-            </div>
+            </div><!-- 
             <div class="col-md-2">
               <button class="btn btn-primary" id="btn_help">查看帮助文档</button>
-            </div>
+            </div> -->
           </div>
+          <ul class="nav"></ul>
           <table class="table table-hover">
             <thead>
               <tr>
                 <td>镜像名</td>
                 <td>大小</td>
-                <td>修改时间</td></tr>
+                <td>修改时间</td>
+                <td>帮助文件</td>
+              </tr>
             </thead>
             <tbody id="mirrors"></tbody>
           </table>
@@ -94,7 +97,7 @@
         socket.on('data',
         function(data) {
           console.log(data);
-          data = dataFilter(data);
+          data = (data.datas == -1)?data:dataFilter(data);
           console.log(data);
           window.data = data;
           loadHTML(data.datas);
@@ -125,53 +128,163 @@
         });
         // 加载网页内容
         function loadHTML(data) {
-          var row = 0;
-          for (var mir = 0; mir < data.length; mir++) {
-            var path = data[mir].path;
-            var type = data[mir].type;
-            var osize = parseInt(data[mir].size);
-            var mtime = data[mir].mtime;
-            var size = null;
-            if (osize < 1024) 										size = osize + ' B';
-            else if (osize < 1024 * 1024) 				size = (osize / 1024).toFixed(2) + ' KB';
-            else if (osize < 1024 * 1024 * 1024) 	size = (osize / 1024 / 1024).toFixed(2) + ' MB';
-            else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
-            var tr = null;
-            if(type == "file") {
-            	tr = document.createElement('tr');
-							td1 = document.createElement('td');
-							td1.innerText = path;
-							tr.appendChild(td1);
-							td2 = document.createElement('td');
-							td2.innerText = size;
-							tr.appendChild(td2);
-							td3 = document.createElement('td');
-							td3.innerText = mtime;
-							tr.appendChild(td3);
-            } else {
-							tr = document.createElement('tr');
-							td1 = document.createElement('td');
-							td1.innerText = path;
-							tr.appendChild(td1);
-							td2 = document.createElement('td');
-							td2.innerText = "-";
-							tr.appendChild(td2);
-							td3 = document.createElement('td');
-							td3.innerText = "-";
-							tr.appendChild(td3);
-            }
-            document.getElementById("mirrors").appendChild(tr);
+          console.log(data);
+          // NavDatas数组，用于生成字母导航，第27个数字是镜像总数
+          var navDatas = [];
+          for (var i = 0; i <= 26; i++) {
+            navDatas[i] = 0;
           }
+          var row = 0;
+          if(window.location.pathname != '/mirror' && window.location.pathname != '/mirror/') {
+            var tr_first = null;
+            tr_first = document.createElement('tr');
+            tr_first.id = 'tr_first';
+            td1 = document.createElement('td');
+            td1.innerText = '上级目录';
+            tr_first.appendChild(td1);
+            td2 = document.createElement('td');
+            td2.innerText = "-";
+            tr_first.appendChild(td2);
+            td3 = document.createElement('td');
+            td3.innerText = "-";
+            tr_first.appendChild(td3);
+            td4 = document.createElement('td');
+            td4.innerText = "-";
+            tr_first.appendChild(td4);
+            document.getElementById("mirrors").appendChild(tr_first);            
+          }
+          if(data == -1) {
+            var tr_not_found = null;
+            tr_not_found = document.createElement('tr');
+            tr_not_found.id = 'tr_not_found';
+            td1 = document.createElement('td');
+            td1.innerText = '当前目录不存在';
+            tr_not_found.appendChild(td1);
+            td2 = document.createElement('td');
+            td2.innerText = "-";
+            tr_not_found.appendChild(td2);
+            td3 = document.createElement('td');
+            td3.innerText = "-";
+            tr_not_found.appendChild(td3);
+            td4 = document.createElement('td');
+            td4.innerText = "-";
+            tr_not_found.appendChild(td4);
+            document.getElementById("mirrors").appendChild(tr_not_found);
+          } else {
 
-          $('#mirrors tr').each(function() {
-            $(this).on("click",
-            function() {
-              var href = window.location.pathname;
-              href += '/' + $(this).find('td').eq(0).text();
-              window.location.href = href;
+            for (var mir = 0; mir < data.length; mir++) {
+              var path = data[mir].path;
+              var type = data[mir].type;
+              var osize = parseInt(data[mir].size);
+              var mtime = data[mir].mtime;
+              var size = null;
+              // 更新NavDatas数组
+              navDatas[path.toUpperCase().charCodeAt(0)-'A'.charCodeAt(0)]++;
+              if (osize < 1024) 										size = osize + ' B';
+              else if (osize < 1024 * 1024) 				size = (osize / 1024).toFixed(2) + ' KB';
+              else if (osize < 1024 * 1024 * 1024) 	size = (osize / 1024 / 1024).toFixed(2) + ' MB';
+              else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
+              var tr = null;
+              if(type == "file") {
+              	tr = document.createElement('tr');
+  							td1 = document.createElement('td');
+  							td1.innerText = path;
+  							tr.appendChild(td1);
+  							td2 = document.createElement('td');
+  							td2.innerText = size;
+  							tr.appendChild(td2);
+  							td3 = document.createElement('td');
+  							td3.innerText = mtime;
+  							tr.appendChild(td3);
+                td4 = document.createElement('td');
+                td4.innerText = "-";
+                tr.appendChild(td4);
+              } else {
+                let hasHelp = data[mir].help;
+  							tr = document.createElement('tr');
+  							td1 = document.createElement('td');
+  							td1.innerText = path;
+  							tr.appendChild(td1);
+  							td2 = document.createElement('td');
+  							td2.innerText = "-";
+  							tr.appendChild(td2);
+                td3 = document.createElement('td');
+                td3.innerText = "-";
+                tr.appendChild(td3);
+                td4 = document.createElement('td');
+                td4.innerHTML = hasHelp?'<button class="btn" name="gotoHelp" onclick="gotoHelp()">查看帮助文档</button>':'-';
+                tr.appendChild(td4);
+              }
+              document.getElementById("mirrors").appendChild(tr);
+            }
+            $('#mirrors tr').not("#tr_first").each(function() {
+              $(this).find('td:lt(3)').on("click",
+              function() {
+                var href = window.location.pathname;
+                href += '/' + $(this).parent().find(":eq(0)").text();
+                window.location.href = href;
+              });
             });
+            $("button[name='gotoHelp']").each(function(){
+              $(this).on('click',function(){
+                var href = window.location.origin;
+                href += '/help/' + $(this).parent().parent().find('td').eq(0).text();
+                window.location.href = href;
+              });
+            });
+            showNavbar(navDatas);
+          }
+          $("#tr_first").click(function(){
+            var path = window.location.pathname;
+            var pathParts = path.split('/');
+            var href = window.location.origin;
+            if(pathParts[pathParts.length-1].match(/^\s$/) || pathParts[pathParts.length-1] == '') pathParts.pop();
+            pathParts.pop();
+            window.location.href = href + pathParts.join('/');
           });
+
         }
+
+function gotoHelp() {
+  var href = window.location.origin;
+  href += '/help/' + $(this).parent().parent().find('td').eq(0).text();
+  window.location.href = href;
+}
+
+
+  // navDatas 是一个数组，26个值，分别对应A-Z出现次数，不分大小写
+  function showNavbar(navDatas){
+    var html = "";
+    var total = navDatas[26]; // 获取镜像总数
+    var average = Math.ceil(total/5);
+    var begin = 0;
+    var end = 0;
+    var tmp = 0;
+    while(end < 26) {
+      tmp += navDatas[end];
+      if (tmp >= average && tmp) {
+        if (begin == end) {
+          html += '<li class="nav-item"><a class="nav-link" id="'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'" href="javascript:void(0)">'+String.fromCharCode(begin+65)+'('+tmp+')</a></li>';
+        }
+        else
+        {
+          html += '<li class="nav-item"><a class="nav-link" id="'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'" href="javascript:void(0)">'+String.fromCharCode(begin+65)+'-'+String.fromCharCode(end+65)+'('+tmp+')</a></li>';
+        }
+        tmp = 0;
+        begin = end + 1;
+      }
+      end++;
+    }
+    if (begin == 25) {
+      html += '<li class="nav-item"><a class="nav-link" id="Z-Z" href="javascript:void(0)">Z('+tmp+')</a></li>';
+    }
+    $("ul.nav").append(html);
+    $("ul.nav li").click(function(){
+      var alphabet = $(this).find('a').attr("id");
+      UrlJump({"alphabet":alphabet});
+    });
+  }
+
 </script>
 </body>
 </html>

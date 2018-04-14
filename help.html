@@ -7,37 +7,16 @@
 	<title>北理镜像站 | 帮助文档</title>
     <link rel="stylesheet" href="{% css bootstrap.min %}">
 	<style>
-		hr, .slideBar-hr {
-			height: 1px;
-			width: 100%;
-		    background: #fff;
-		}
-		.slideBar-hr {
-			background-color: #000;
-		}
-		blockquote {
-	        border-left:#eee solid 5px;
-	        padding-left:20px;
-	    }
-	    ul li {
-	        line-height: 20px;
-	        list-style: none;
-	    }
+		code {color:#D34B62;background:#F6F6F6;}
+		blockquote {border-left:#eee solid 5px;padding-left:20px;}
+		ul li {line-height:20px;list-style:none;}
+		hr,.slideBar-hr {height:1px;width:100%;background:#fff;}
 
-	    code {
-	        color:#D34B62;
-	        background: #F6F6F6;
-	    }
-	 	#result {
-	 		text-align: left;
-	 	}
-		.md-radius {
-			border-radius: 10px;
-		}
-		.md-shadow {
-			box-shadow: 15px 15px 20px #888;
-		}
-
+		.slideBar-hr {background-color:#000;}
+		.md-radius {border-radius:10px;}
+		.md-shadow {box-shadow:15px 15px 20px #888;}
+		
+		#result {text-align:left;}
 	</style>
 </head>
 <body>
@@ -79,16 +58,14 @@
     <script src="{% js socket.io-2.0.3 %}"></script>
     <script src="{% js functions %}"></script>
     <script>
-		requests = GetRequest();
+    	var requests = GetRequest();
         var socket = io('{% IPAddress %}');
         socket.emit('data', {
           "type": "mdlist"
         });
         socket.on('data',
         function(data) {
-          // console.log(data);
           data = dataFilter(data);
-          // console.log(data);
           window.data = data;
           loadHTML(data.datas);
         });
@@ -114,7 +91,9 @@
 					slideBar.insertBefore(li, slideBar.firstChlid);
             	}
 	        }
-			var staticNodes = '<hr class="slideBar-hr"><li class="nav-item"><a class="nav-link" href="../mirror">进入下载页</a></li><li class="nav-item"><a class="nav-link" href="../">回到主页</a></li>';
+			var staticNodes = '<hr class="slideBar-hr">\
+			<li class="nav-item"><a class="nav-link" href="../mirror">进入下载页</a></li>\
+			<li class="nav-item"><a class="nav-link" href="../">回到主页</a></li>';
 			slideBar.innerHTML += staticNodes;
         }
 
@@ -136,20 +115,6 @@
                     // IE6, IE5 浏览器执行代码
                     ajax = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-     //            if(requests['mirror']) {
-	    //             /*设置请求方式和地址  默认是异步*/
-	    //             let path = "";
-	    //             if(requests['mirror'].indexOf("../") == -1) {
-		   //              path = './_help/'+requests['mirror'];
-	    //             } else {
-	    //             	path = "./_help/upFolder";
-	    //             }
-					// ajax.open("GET", path + '.md');
-	    //             ajax.send();
-     //            } else {
-     //            	ajax.open("GET", "./_help/default.md");
-     //            	ajax.send();
-     //            }
 
                 var path = window.location.pathname;
                 var mdname = "";
@@ -164,10 +129,10 @@
                 /*注册回调函数*/
                 ajax.onreadystatechange = function() {
                     if(ajax.readyState == 4 && ajax.status == 200) {
-                    	console.log('success');
+                    	// console.log('success');
                         let Convertor = new showdown.Converter();
                         let res = ajax.responseText;
-                        console.log(res);
+                        // console.log(res);
                         let html = Convertor.makeHtml(res);
                         document.getElementById("tabContent").innerHTML = html;
                         $("#HowToDownloadMirrors").hide();

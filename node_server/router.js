@@ -23,7 +23,7 @@ function route(pathname) {
 		if(buffer[pathname]) return buffer[pathname];
 
 		if(pathname.in_array(['/', '/index', '/index/'])) 	return (buffer[pathname] = render.render(fs.readFileSync("./index.html")));
-		if(pathname.match(/^\/download/) != null) 			return (buffer[pathname] = render.render(fs.readFileSync("./download.html")));
+		// if(pathname.match(/^\/download/) != null) 			return (buffer[pathname] = render.render(fs.readFileSync("./download.html")));
 		if(pathname.match(/^\/help/) != null) 				return (buffer[pathname] = render.render(fs.readFileSync("./help.html")));
 		if(pathname.match(/^\/mirror/) != null) 			return (buffer[pathname] = render.render(fs.readFileSync("./mirror.html")));
 

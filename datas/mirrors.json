@@ -28,25 +28,5 @@
 		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/ubuntu/",
 		"size":"253G",
 		"error_msg":"open /var/syncfile/log/tunasync/ubuntu/ubuntu_2018-03-26_11_28.log"
-	},
-	{
-		"name":"ubuntu",
-		"worker":"main_worker",
-		"is_master":true,
-		"status":"failed",
-		"least_update":"0001-01-01T00:00:00Z",
-		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/ubuntu/",
-		"size":"253G",
-		"error_msg":"open /var/syncfile/log/tunasync/ubuntu/ubuntu_2018-03-26_11_28.log"
-	},
-	{
-		"name":"ubuntu",
-		"worker":"main_worker",
-		"is_master":true,
-		"status":"failed",
-		"least_update":"0001-01-01T00:00:00Z",
-		"upstream":"rsync:mirrors.tuna.tsinghua.edu.cn/ubuntu/",
-		"size":"253G",
-		"error_msg":"open /var/syncfile/log/tunasync/ubuntu/ubuntu_2018-03-26_11_28.log"
 	}
 ]
