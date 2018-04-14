@@ -82,6 +82,11 @@ function start(route) {
             datas = ft.fileTraversal('.' + data.path);
           }
           socket.emit('data',{"type":"mirrorDir", "datas":datas});
+          if (ifDebug){
+            console.log("--------------------------------");
+            console.log('mirrorDir data sent.');
+            console.log("--------------------------------");
+          } 
         }
         break;
 
@@ -90,6 +95,11 @@ function start(route) {
           var datas = [];
           datas = ft.fileTraversal('./_help');
           socket.emit('data',{"type":"mdlist", "datas":datas});
+          if (ifDebug){
+            console.log("--------------------------------");
+            console.log('mdlist data sent.');
+            console.log("--------------------------------");
+          } 
         }
         break;
       }
