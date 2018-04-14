@@ -1,5 +1,5 @@
 // 调试模式开关
-var ifDebug = false;
+var ifDebug = true;
 
 var http = require('http');
 var url = require('url');
