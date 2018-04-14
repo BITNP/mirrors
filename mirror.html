@@ -2,10 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Maidong">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no">
     <!-- listMirrors -->
     <!-- 兼容IOS9 -->
     <title>北理镜像站 | 镜像列表</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{% css bootstrap.min %}">
   </head>
   <body>
@@ -32,10 +35,7 @@
                   <div class="btn-group" role="group" id="pathNav" aria-label="path"></div>
                 </div>
               </nav>
-            </div><!-- 
-            <div class="col-md-2">
-              <button class="btn btn-primary" id="btn_help">查看帮助文档</button>
-            </div> -->
+            </div>
           </div>
           <ul class="nav"></ul>
           <table class="table table-hover">
@@ -44,7 +44,7 @@
                 <td>镜像名</td>
                 <td>大小</td>
                 <td>修改时间</td>
-                <td>帮助文件</td>
+                <td>帮助文档</td>
               </tr>
             </thead>
             <tbody id="mirrors"></tbody>
@@ -60,6 +60,8 @@
     <script src="{% js functions %}"></script>
 
     <script type="text/javascript">
+      "use strict"
+
       var requests = null;
       var host = window.location.origin;
         $("#title-index").attr("href", host);
@@ -80,7 +82,7 @@
         // 根据文件目录生成导航
         var path = window.location.pathname;
         var pathParts = path.split('/');
-        for (item in pathParts) {
+        for (var item in pathParts) {
           if (pathParts[item] != "") {
             var btn = document.createElement('button');
 						btn.type = 'button';
@@ -91,7 +93,7 @@
           }
         }
         socket.emit('data', {
-          "type": "mirrorsDir",
+          "type": "mirrorDir",
           "path": path
         });
         socket.on('data',
@@ -136,42 +138,13 @@
           }
           var row = 0;
           if(window.location.pathname != '/mirror' && window.location.pathname != '/mirror/') {
-            var tr_first = null;
-            tr_first = document.createElement('tr');
-            tr_first.id = 'tr_first';
-            td1 = document.createElement('td');
-            td1.innerText = '上级目录';
-            tr_first.appendChild(td1);
-            td2 = document.createElement('td');
-            td2.innerText = "-";
-            tr_first.appendChild(td2);
-            td3 = document.createElement('td');
-            td3.innerText = "-";
-            tr_first.appendChild(td3);
-            td4 = document.createElement('td');
-            td4.innerText = "-";
-            tr_first.appendChild(td4);
-            document.getElementById("mirrors").appendChild(tr_first);            
+            var tr_first = '<tr id="tr_first"><td>上级目录</td><td>-</td><td>-</td><td>-</td></tr>';
+            document.getElementById("mirrors").innerHTML = tr_first;            
           }
           if(data == -1) {
-            var tr_not_found = null;
-            tr_not_found = document.createElement('tr');
-            tr_not_found.id = 'tr_not_found';
-            td1 = document.createElement('td');
-            td1.innerText = '当前目录不存在';
-            tr_not_found.appendChild(td1);
-            td2 = document.createElement('td');
-            td2.innerText = "-";
-            tr_not_found.appendChild(td2);
-            td3 = document.createElement('td');
-            td3.innerText = "-";
-            tr_not_found.appendChild(td3);
-            td4 = document.createElement('td');
-            td4.innerText = "-";
-            tr_not_found.appendChild(td4);
-            document.getElementById("mirrors").appendChild(tr_not_found);
+            var tr_not_found = '<tr id="tr_not_found"><td>当前目录不存在</td><td>-</td><td>-</td><td>-</td></tr>';
+            document.getElementById("mirrors").innerHTML = tr_not_found;
           } else {
-
             for (var mir = 0; mir < data.length; mir++) {
               var path = data[mir].path;
               var type = data[mir].type;
@@ -187,31 +160,31 @@
               var tr = null;
               if(type == "file") {
               	tr = document.createElement('tr');
-  							td1 = document.createElement('td');
+  							let td1 = document.createElement('td');
   							td1.innerText = path;
   							tr.appendChild(td1);
-  							td2 = document.createElement('td');
+  							let td2 = document.createElement('td');
   							td2.innerText = size;
   							tr.appendChild(td2);
-  							td3 = document.createElement('td');
+  							let td3 = document.createElement('td');
   							td3.innerText = mtime;
   							tr.appendChild(td3);
-                td4 = document.createElement('td');
+                let td4 = document.createElement('td');
                 td4.innerText = "-";
                 tr.appendChild(td4);
               } else {
                 let hasHelp = data[mir].help;
   							tr = document.createElement('tr');
-  							td1 = document.createElement('td');
+  							let td1 = document.createElement('td');
   							td1.innerText = path;
   							tr.appendChild(td1);
-  							td2 = document.createElement('td');
+  							let td2 = document.createElement('td');
   							td2.innerText = "-";
   							tr.appendChild(td2);
-                td3 = document.createElement('td');
+                let td3 = document.createElement('td');
                 td3.innerText = "-";
                 tr.appendChild(td3);
-                td4 = document.createElement('td');
+                let td4 = document.createElement('td');
                 td4.innerHTML = hasHelp?'<button class="btn" name="gotoHelp" onclick="gotoHelp()">查看帮助文档</button>':'-';
                 tr.appendChild(td4);
               }

@@ -14,7 +14,6 @@ var a = href.split('/');
 
 output = '/'.in_array(['/', '/index', '/index/'])
 
-console.log(a);
 
 
 if(a[a.length-1].match(/^\s$/) || a[a.length-1] == '') {
@@ -24,5 +23,14 @@ if(a[a.length-1].match(/^\s$/) || a[a.length-1] == '') {
 a.pop();
 
 
+function test(){
+	for(item in arguments) {
+		console.log(arguments[item]);
+	}
+}
 
-console.log(a.join('/'));
+// test(1,3,5,2,"fdgsdf")
+
+console.log(typeof /^\/help/)
+console.log(typeof [])
+

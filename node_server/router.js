@@ -13,7 +13,6 @@ function clearBuffer(){
 	buffer = {};
 }
 
-String.prototype.in_array = function(arr) { for(item in arr) if(this == arr[item]) return true; return false; };
 
 function route(pathname) {
 	if (ifDebug) console.log("About to route a request for " + pathname);
@@ -23,7 +22,6 @@ function route(pathname) {
 		if(buffer[pathname]) return buffer[pathname];
 
 		if(pathname.in_array(['/', '/index', '/index/'])) 	return (buffer[pathname] = render.render(fs.readFileSync("./index.html")));
-		// if(pathname.match(/^\/download/) != null) 			return (buffer[pathname] = render.render(fs.readFileSync("./download.html")));
 		if(pathname.match(/^\/help/) != null) 				return (buffer[pathname] = render.render(fs.readFileSync("./help.html")));
 		if(pathname.match(/^\/mirror/) != null) 			return (buffer[pathname] = render.render(fs.readFileSync("./mirror.html")));
 
@@ -40,5 +38,13 @@ function route(pathname) {
 		return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync('./404.html')));
 	}
 }
+
+
+
+
+String.prototype.in_array = function(arr) { for(item in arr) if(this == arr[item]) return true; return false; };
+
+
+
 
 exports.route = route;
