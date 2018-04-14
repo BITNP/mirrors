@@ -19,12 +19,15 @@ function render(page) {
 	for(item in data) {
 		if(data[item].indexOf('IPAddress') != -1) {
 			output = output.replace(data[item], protocol + '://' + getIPAddress() + ':' + PORT);
+
 		} else if(data[item].indexOf('template') != -1) {
 			var htmlname = data[item].match(/{%\s*template\s+(\S+)\s*%}/, data[item]);
 			output = output.replace(data[item], render(fs.readFileSync('./template/' + htmlname[1] + '.html').toString()) || '');
+		
 		} else if(data[item].indexOf('js') != -1) {
 			var jsname = data[item].match(/{%\s*js\s+(\S+)\s*%}/, data[item]);
 			output = output.replace(data[item], '/Assets/js/' + jsname[1] + '.js');
+		
 		} else if(data[item].indexOf('css') != -1) {
 			var cssname = data[item].match(/{%\s*css\s+(\S+)\s*%}/, data[item]);
 			output = output.replace(data[item], '/Assets/css/' + cssname[1] + '.css');
