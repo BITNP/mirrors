@@ -146,49 +146,26 @@
             document.getElementById("mirrors").innerHTML = tr_not_found;
           } else {
             for (var mir = 0; mir < data.length; mir++) {
-              var path = data[mir].path;
+              var name = data[mir].path;
               var type = data[mir].type;
               var osize = parseInt(data[mir].size);
               var mtime = data[mir].mtime;
               var size = null;
               // 更新NavDatas数组
-              navDatas[path.toUpperCase().charCodeAt(0)-'A'.charCodeAt(0)]++;
+              navDatas[name.toUpperCase().charCodeAt(0)-'A'.charCodeAt(0)]++;
               if (osize < 1024) 										size = osize + ' B';
               else if (osize < 1024 * 1024) 				size = (osize / 1024).toFixed(2) + ' KB';
               else if (osize < 1024 * 1024 * 1024) 	size = (osize / 1024 / 1024).toFixed(2) + ' MB';
               else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
               var tr = null;
               if(type == "file") {
-              	tr = document.createElement('tr');
-  							let td1 = document.createElement('td');
-  							td1.innerText = path;
-  							tr.appendChild(td1);
-  							let td2 = document.createElement('td');
-  							td2.innerText = size;
-  							tr.appendChild(td2);
-  							let td3 = document.createElement('td');
-  							td3.innerText = mtime;
-  							tr.appendChild(td3);
-                let td4 = document.createElement('td');
-                td4.innerText = "-";
-                tr.appendChild(td4);
+              	tr = '<tr><td>' + name + '</td><td>' + size + '</td><td>' + mtime + '</td><td>-</td></tr>';
               } else {
                 let hasHelp = data[mir].help;
-  							tr = document.createElement('tr');
-  							let td1 = document.createElement('td');
-  							td1.innerText = path;
-  							tr.appendChild(td1);
-  							let td2 = document.createElement('td');
-  							td2.innerText = "-";
-  							tr.appendChild(td2);
-                let td3 = document.createElement('td');
-                td3.innerText = "-";
-                tr.appendChild(td3);
-                let td4 = document.createElement('td');
-                td4.innerHTML = hasHelp?'<button class="btn" name="gotoHelp" onclick="gotoHelp()">查看帮助文档</button>':'-';
-                tr.appendChild(td4);
+                let helpHTML = hasHelp?'<button class="btn" name="gotoHelp" onclick="gotoHelp()">查看帮助文档</button>':'-';
+                tr = '<tr><td>' + name + '</td><td>' + '-' + '</td><td>' + '-' + '</td><td>' + helpHTML + '</td></tr>';
               }
-              document.getElementById("mirrors").appendChild(tr);
+              document.getElementById("mirrors").innerHTML += tr;
             }
             $('#mirrors tr').not("#tr_first").each(function() {
               $(this).find('td:lt(3)').on("click",
