@@ -20,6 +20,7 @@ function fsExistsSync(path) {
     }
     return true;
 }
+
 function fileTraversal(path){
   if(!fsExistsSync(path)) {
     return -1;

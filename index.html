@@ -32,6 +32,7 @@
         z-index:99;
         display: none; 
       } 
+      .nav-link:hover{background-color: yellow;color: black;}
     </style>
   <body>
     {% template body_header %}
@@ -48,7 +49,20 @@
       <div class="py-5 bg-light">
         <div class="container" id="main_container">
           <div class="row">
-
+<!--             <div class="col-md-4" id="item_0">
+              <div class="card mb-4 mt-4 box-shadow mir-shadow">
+                <img class="card-img-top" src="./Assets/img/deepin.png" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">deepin</p>
+                    <nav class="nav nav-pills nav-fill">
+                      <a class="nav-item nav-link" href="#" name="ubuntu">下载</a>
+                      <a class="nav-item nav-link" href="#">帮助</a>
+                      <a class="nav-item nav-link" href="#">反馈</a>
+                    </nav>
+                  </div>
+                </div>
+              </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -70,7 +84,6 @@
     <script src="{% js functions %}"></script>
     <script>
       "use strict"
-
       var requests = GetRequest();
 
       var socket = io('{% IPAddress %}');
@@ -78,8 +91,10 @@
       socket.emit('data', {
         "type": "mirrorDir"
       });
+      console.log("yes");
       socket.on('data',
       function(data) {
+        console.log(data);
         data = dataFilter(data);
         window.data = data; // 将数据放到全局环境中保存起来，以便瀑布流模式加载
         loadHTML(data.datas);
@@ -103,43 +118,51 @@
           for (var mir = start; mir < start + num && mir < data.length; mir++) {
             var Name = data[mir].path;
             var Img = Name + '.png';
-      			var div = document.createElement('div');
-      			div.className = "col-md-4";
-      			div.id = 'item_' + mir;
-      			var div1 = document.createElement('div');
-      			div1.className = "card mb-4 mt-4 box-shadow mir-shadow";
-      			div.appendChild(div1);
-      			var image = document.createElement('img');
-      			image.className = "card-img-top";
-      			image.src = "./Assets/img/" + Img;
-      			image.alt = "Card image cap";
-      			div1.appendChild(image);
-      			var div2 = document.createElement('div');
-      			div2.className = 'card-body';
-      			div1.appendChild(div2);
-      			var p = document.createElement('p');
-      			p.className = "card-text";
-      			p.innerText = Name;
-      			div2.appendChild(p);
-      			var div3 = document.createElement('div');
-      			div3.className = "d-flex justify-content-between align-items-center";
-      			div2.appendChild(div3);
-      			var div4 = document.createElement('div');
-      			div4.className = "btn-group";
-      			div3.appendChild(div4);
-            var btn = '\
-            <button class="btn btn-sm btn-outline-secondary" type="button" name="' + Name + '">下载</button>\
-            <button class="btn btn-sm btn-outline-secondary" type="button" name="' + Name + '">帮助</button>\
-            <button class="btn btn-sm btn-outline-secondary" type="button" name="' + Name + '">反馈</button>';
-            div4.innerHTML = btn;
-      			row.appendChild(div);
+      			// var div = document.createElement('div');
+      			// div.className = "col-md-4";
+      			// div.id = 'item_' + mir;
+      			// var div1 = document.createElement('div');
+      			// div1.className = "card mb-4 mt-4 box-shadow mir-shadow";
+      			// div.appendChild(div1);
+      			// var image = document.createElement('img');
+      			// image.className = "card-img-top";
+      			// image.src = "./Assets/img/" + Img;
+      			// image.alt = "Card image cap";
+      			// div1.appendChild(image);
+      			// var div2 = document.createElement('div');
+      			// div2.className = 'card-body';
+      			// div1.appendChild(div2);
+      			// var p = document.createElement('p');
+      			// p.className = "card-text";
+      			// p.innerText = Name;
+      			// div2.appendChild(p);
+      			// // div3.className = "d-flex justify-content-between align-items-center";
+      			// // div2.appendChild(div3);
+      			// // var div4 = document.createElement('div');
+      			// // div4.className = "btn-group";
+      			// // div3.appendChild(div4);
+      			var div = '<div class="col-md-4" id="item_0">\
+              <div class="card mb-4 mt-4 box-shadow mir-shadow">\
+                <img class="card-img-top" src="./Assets/img/' + Name + '.png" alt="Card image cap">\
+                <div class="card-body">\
+                  <p class="card-text">' + Name + '</p>\
+                    <nav class="nav nav-pills nav-fill">\
+                      <a class="nav-item nav-link" href="#" name="' + Name + '">下载</a>\
+                      <a class="nav-item nav-link" href="#" name="' + Name + '">帮助</a>\
+                      <a class="nav-item nav-link" href="#" name="' + Name + '">反馈</a>\
+                    </nav>\
+                  </div>\
+                </div>\
+              </div>';
+              console.log(div);
+            row.innerHTML += div;
           }
         }
         addCilckActions();
       }
       // 绑定鼠标单击事件
       function addCilckActions() {
-        $(".btn-outline-secondary[name]").click(function() {
+        $(".nav-link[name]").click(function() {
           console.log($(this).index());
           var name = $(this).attr("name");
           switch($(this).index()) {
