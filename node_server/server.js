@@ -52,11 +52,14 @@ function start(route) {
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
     res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     // 反向缓存权限设置
-    res.writeHead(200);
     var content = route(pathname);
-
-    // res.setHeader('Content-Type', 'text/plain');
-    res.write(content);
+    if(content == -1) {
+      res.writeHead(404);
+      res.write(render.render(fs.readFileSync('./public/' + mode + '/404.html')));
+    } else {
+      res.writeHead(200);
+      res.write(content);
+    }
 
     res.end();
   }
