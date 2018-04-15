@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% css bootstrap.min %}">
   </head>
   <body>
-    {% template body_header %}
+    {% template body_header.min %}
     <main>
       <section class="jumbotron text-center mb-0">
         <div class="container">
@@ -51,7 +51,7 @@
         </div>
       </div>
     </main>
-    {% template body_footer %}
+    {% template body_footer.min %}
     <script src="{% js jquery.min %}"></script>
     <script src="{% js popper.min %}"></script>
     <script src="{% js bootstrap.min %}"></script>
@@ -59,18 +59,18 @@
     <script src="{% js functions %}"></script>
 
     <script type="text/javascript">
-      "use strict"
+      "use strict";
 
       var requests = null;
       var host = window.location.origin;
         $("#title-index").attr("href", host);
-        //判断当前字符串是否以str开始  
+        /* 判断当前字符串是否以str开始 */
         if (typeof String.prototype.startsWith != 'function') {
           String.prototype.startsWith = function(str) {
             return this.slice(0, str.length) == str;
           };
         }　　　　
-        //判断当前字符串是否以str结束  
+        /* 判断当前字符串是否以str结束 */
         if (typeof String.prototype.endsWith != 'function') {
           String.prototype.endsWith = function(str) {
             return this.slice( - str.length) == str;
@@ -78,7 +78,7 @@
         }
         requests = GetRequest();
         var socket = io('{% IPAddress %}');
-        // 根据文件目录生成导航
+        /* 根据文件目录生成导航 */
         var path = window.location.pathname;
         var pathParts = path.split('/');
         for (var item in pathParts) {
@@ -111,7 +111,7 @@
           console.log(host + ',' + path);
           window.location.href = host + '/' + path;
         });
-        // 点击导航按钮执行跳转
+        /*  点击导航按钮执行跳转 */
         $('#pathNav button').each(function() {
           var path = "";
           $(this).click(function() {
@@ -127,10 +127,10 @@
             window.location.href = href.substring(0, href.length - 1);
           });
         });
-        // 加载网页内容
+        /*  加载网页内容 */
         function loadHTML(data) {
           console.log(data);
-          // NavDatas数组，用于生成字母导航，第27个数字是镜像总数
+          /*  NavDatas数组，用于生成字母导航，第27个数字是镜像总数 */
           var navDatas = [];
           for (var i = 0; i <= 26; i++) {
             navDatas[i] = 0;
@@ -138,7 +138,7 @@
           var row = 0;
           if(window.location.pathname != '/mirror' && window.location.pathname != '/mirror/') {
             var tr_first = '<tr id="tr_first"><td>上级目录</td><td>-</td><td>-</td><td>-</td></tr>';
-            document.getElementById("mirrors").innerHTML = tr_first;            
+            document.getElementById("mirrors").innerHTML = tr_first;
           }
           if(data == -1) {
             var tr_not_found = '<tr id="tr_not_found"><td>当前目录不存在</td><td>-</td><td>-</td><td>-</td></tr>';
@@ -150,7 +150,7 @@
               var osize = parseInt(data[mir].size);
               var mtime = data[mir].mtime;
               var size = null;
-              // 更新NavDatas数组
+              /*  更新NavDatas数组 */
               navDatas[name.toUpperCase().charCodeAt(0)-'A'.charCodeAt(0)]++;
               if (osize < 1024) 										size = osize + ' B';
               else if (osize < 1024 * 1024) 				size = (osize / 1024).toFixed(2) + ' KB';
@@ -201,10 +201,10 @@ function gotoHelp() {
 }
 
 
-  // navDatas 是一个数组，26个值，分别对应A-Z出现次数，不分大小写
+  /*  navDatas 是一个数组，26个值，分别对应A-Z出现次数，不分大小写 */
   function showNavbar(navDatas){
     var html = "";
-    var total = navDatas[26]; // 获取镜像总数
+    var total = navDatas[26]; /*  获取镜像总数 */
     var average = Math.ceil(total/5);
     var begin = 0;
     var end = 0;

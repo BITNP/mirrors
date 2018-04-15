@@ -1,13 +1,15 @@
-// debug
-var ifDebug = false;
-
+/* 运行模式 */
+var mode = 'release';
 var fs = require('fs');
+var appjson = JSON.parse(fs.readFileSync('./app.json'));
+mode = appjson.mode;
 
-// 缓存池
+
+/* 缓存池 */
 var buffer = {};
 
-// 设置文件缓存过期时间
-setInterval(clearBuffer,10*60*1000); // 10 mins
+/* 设置文件缓存过期时间 */
+setInterval(clearBuffer,10*60*1000); /* 10 mins */
 
 function clearBuffer(){
   buffer = {};
@@ -65,7 +67,7 @@ function hasHelp(path) {
   return false;
 }
 
-if (ifDebug) {
+if (mode == 'debug') {
   var fileList = [];
   fileList = fileTraversal('../mirror/deepin');
   console.log(fileList);

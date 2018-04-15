@@ -1,10 +1,12 @@
-// 调试模式开关
-var ifDebug = false;
+/* 运行模式 */
+var mode = 'release';
 var fs = require('fs');
+var appjson = JSON.parse(fs.readFileSync('./app.json'));
+mode = appjson.mode;
+
 var protocol = null;
 var PORT = null;
 
-var appjson = JSON.parse(fs.readFileSync('./app.json'));
 protocol = appjson.protocol?appjson.protocol:"http";
 PORT = appjson.port?appjson.port:3000;
 
@@ -15,7 +17,7 @@ function render(page) {
 	let reg = /{%(.*?)%}/g;
 	let data = page.match(reg, 'page');
 	var output = page;
-	if(ifDebug) console.log(data);
+	if(mode == 'debug') console.log(data);
 	for(item in data) {
 		if(data[item].indexOf('IPAddress') != -1) {
 			output = output.replace(data[item], "'+window.location.protocol+'//'+window.location.hostname+(window.location.port?(':'+ window.location.port):'')+'");
@@ -36,7 +38,7 @@ function render(page) {
 	return output;
 }
 
-if(ifDebug) {
+if(mode == 'debug') {
 	var page = '<script src="{% js jquery.min %}"></script>'
 	var output = render(page);
 	console.log(output);
