@@ -1,4 +1,4 @@
-/* 调试模式开关 */
+// 调试模式开关
 var mode = 'release';
 var fs = require('fs');
 var appjson = JSON.parse(fs.readFileSync('./app.json'));
@@ -6,6 +6,7 @@ mode = appjson.mode;
 
 var http = require('http');
 var url = require('url');
+var qs = require('querystring');
 var ft = require('./fileTraversal');
 var PORT = null;
 
@@ -27,10 +28,14 @@ function start(route) {
 
   function onRequest (req, res) {
     var pathname = url.parse(req.url).pathname;
+    var query = url.parse(req.url).query;
     if (mode == 'debug') console.log("Request for " + pathname + " received.");
 
-    /* 镜像资源下载服务器 (download server) */
-    if(pathname.indexOf('/mirror') == 0 && pathname.indexOf('.') != -1) {
+    // 镜像资源下载服务器 (download server)
+    var parseQuery = qs.parse(query);
+    console.log(parseQuery.type);
+
+    if(pathname.indexOf('/mirror') == 0 && parseQuery.type != undefined && parseQuery.type == "file") {
       var stream = fs.createReadStream('.' + pathname, {flags : "r", encoding : null});
       stream.on("error", function() {
         res.writeHead(404);
@@ -39,17 +44,18 @@ function start(route) {
       stream.pipe(res);
       return stream;
     }
-    /* 镜像资源下载服务器 (download server) */
-    /*  */
-    /* 反向缓存权限设置 */
+    // 镜像资源下载服务器 (download server)
+
+    // 
+    // 反向缓存权限设置
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
     res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    /* 反向缓存权限设置 */
+    // 反向缓存权限设置
     res.writeHead(200);
     var content = route(pathname);
 
-    /* res.setHeader('Content-Type', 'text/plain'); */
+    // res.setHeader('Content-Type', 'text/plain');
     res.write(content);
 
     res.end();
@@ -62,9 +68,9 @@ function start(route) {
   console.log("Server has started.");
   console.log("--------------------------------");
 
-  /* socket.io listeners */
+  // socket.io listeners
   io.on('connection', function (socket) {
-    /* 记录日志 */
+    // 记录日志
     if (mode == 'debug'){
       console.log("--------------------------------");
       console.log('New connection.');
@@ -74,7 +80,7 @@ function start(route) {
 
     socket.on('data', function(data){
       switch(data.type){
-        case "mirrorDir": /* 获取镜像列表，基于文件目录 */
+        case "mirrorDir": // 获取镜像列表，基于文件目录
         {
           var datas = [];
           if(data.path == undefined)
@@ -91,7 +97,7 @@ function start(route) {
         }
         break;
 
-        case "mdlist": /* 获取帮助文件列表，基于文件目录 */
+        case "mdlist": // 获取帮助文件列表，基于文件目录
         {
           var datas = [];
           datas = ft.fileTraversal('./_help');

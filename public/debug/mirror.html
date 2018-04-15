@@ -158,11 +158,11 @@
               else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
               var tr = null;
               if(type == "file") {
-              	tr = '<tr><td>' + name + '</td><td>' + size + '</td><td>' + mtime + '</td><td>-</td></tr>';
+              	tr = '<tr type="' + type + '"><td>' + name + '</td><td>' + size + '</td><td>' + mtime + '</td><td>-</td></tr>';
               } else {
                 let hasHelp = data[mir].help;
                 let helpHTML = hasHelp?'<button class="btn" name="gotoHelp" onclick="gotoHelp()">查看帮助文档</button>':'-';
-                tr = '<tr><td>' + name + '</td><td>' + '-' + '</td><td>' + '-' + '</td><td>' + helpHTML + '</td></tr>';
+                tr = '<tr type="' + type + '"><td>' + name + '</td><td>' + '-' + '</td><td>' + '-' + '</td><td>' + helpHTML + '</td></tr>';
               }
               document.getElementById("mirrors").innerHTML += tr;
             }
@@ -171,6 +171,8 @@
               function() {
                 var href = window.location.pathname;
                 href += '/' + $(this).parent().find(":eq(0)").text();
+                if($(this).parent().attr("type") == 'file')
+                  href += "?type=file";
                 window.location.href = href;
               });
             });
