@@ -1,5 +1,5 @@
 {
 	"protocol":"http",
 	"port":3000,
-	"mode":"debug"
+	"mode":"release"
 }

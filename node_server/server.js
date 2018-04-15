@@ -35,8 +35,6 @@ function start(route) {
 
     // 镜像资源下载服务器 (download server)
     var parseQuery = qs.parse(query);
-    console.log(parseQuery.type);
-
     if(pathname.indexOf('/mirror') == 0 && parseQuery.type != undefined && parseQuery.type == "file") {
       var stream = fs.createReadStream('.' + pathname, {flags : "r", encoding : null});
       stream.on("error", function() {

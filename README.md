@@ -12,23 +12,11 @@
 
 ## 配置文件（app.json)
 > 端口默认为 3000
-> 可在配置文件中修改 port 属性
+> 可在配置文件中修改
 
+## 目录结构
 
-
-
-img 	主页的图片，大小为450x300，格式为png
-
-js		客户端静态js文件
-
-mirrors	内含镜像
-
-mirrors.json 	所有镜像的信息
-
-index.js 	服务器启动入口
-
-server.js 	服务器主文件
-
-router.js 	服务器路由配置 (带路由文件缓存，10分钟清理一次)
-
-requestHandlers.js 	服务器路由 (带路由文件缓存, 30分钟清理一次)
+> Assets	静态资源目录，如图片等
+> datas		镜像信息
+> mirror	储存镜像的位置，请在本地新建该目录，须放置于项目根目录
+> node_server	node服务器文件
