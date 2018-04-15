@@ -67,3 +67,5 @@ typings/
 mirror/
 test/
 node_server/test.js
+package.json
+package-lock.json

@@ -7,6 +7,8 @@ mode = appjson.mode;
 var http = require('http');
 var url = require('url');
 var qs = require('querystring');
+var render = require('./render');
+var NotFound = null;
 var ft = require('./fileTraversal');
 var PORT = null;
 
@@ -55,11 +57,11 @@ function start(route) {
     var content = route(pathname);
     if(content == -1) {
       res.writeHead(404);
-      res.write(render.render(fs.readFileSync('./public/' + mode + '/404.html')));
+      content = NotFound || (NotFound = render.render(fs.readFileSync('./public/' + mode + '/404.html')));
     } else {
       res.writeHead(200);
-      res.write(content);
     }
+    res.write(content);
 
     res.end();
   }
