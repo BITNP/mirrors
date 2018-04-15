@@ -1,3 +1,6 @@
+# Mirror test files should never be committed
+mirror/
+
 # Logs
 logs
 *.log
