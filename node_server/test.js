@@ -31,6 +31,11 @@ function test(){
 
 // test(1,3,5,2,"fdgsdf")
 
-console.log(typeof /^\/help/)
-console.log(typeof [])
+// console.log(typeof /^\/help/)
+// console.log(typeof [])
 
+
+
+var protocol = 'http:';
+
+var origin = (protocol.indexOf(":") != -1)?"//":"://"
