@@ -39,7 +39,7 @@ function route(pathname) {
 		if (pathname.match(/\.md/) != null) return buffer.defaultMD || (buffer.defaultMD = fs.readFileSync('./_help/error.md'));
 
 		if (mode == 'debug') console.log("No request handler found for " + pathname);
-		return buffer.notFound || (buffer.notFound = render.render(fs.readFileSync(baseURL + '404.html')));
+		return -1;
 	}
 }
 String.prototype.in_array = function(arr) { for(item in arr) if(this == arr[item]) return true; return false; };
