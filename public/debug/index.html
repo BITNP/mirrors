@@ -40,6 +40,8 @@
       }
       .nav-link:hover{background-color: yellow;color: black;}
       @media (max-width: 568px) {.erweima img{width: 80%;}}
+      @media (min-width: 238px) {#img-bitnp {margin-left: -45px;margin-right: -45px;}}
+      @media (max-width: 237px) {#img-bitnp {margin-left: -45px;margin-right: -45px;width:100%;}}
     </style>
   <body>
     {% template body_header.min %}
@@ -48,7 +50,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12 col-sm-12 col-md-3 text-center">
-              <img src="/Assets/img/bitnp.png" alt="bitnp">
+              <img src="/Assets/img/bitnp.png" alt="bitnp" id="img-bitnp">
             </div>
             <div class="col-12 col-sm-12 col-md-8 offset-md-1">
               <h1 class="mb-5">北京理工大学开源软件镜像站</h1>
