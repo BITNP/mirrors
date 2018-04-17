@@ -9,6 +9,9 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="{% css bootstrap.min %}">
+    <style>
+      @media (max-width:767px) {.md-hidden-xs {display:none!important}}
+    </style>
   </head>
   <body>
     {% template body_header.min %}
@@ -28,7 +31,7 @@
           </div>
           <div class="row">
             <div class="col-md-10">
-              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <nav class="navbar navbar-expand navbar-light bg-light">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div class="navbar-nav"></div>
                   <div class="btn-group" role="group" id="pathNav" aria-label="path"></div>
@@ -36,13 +39,13 @@
               </nav>
             </div>
           </div>
-          <ul class="nav"></ul>
+          <ul class="nav" id="mdlistNav"></ul>
           <table class="table table-hover">
             <thead>
               <tr>
                 <td>镜像名</td>
                 <td>大小</td>
-                <td>修改时间</td>
+                <td class="md-hidden-xs">修改时间</td>
                 <td>帮助文档</td>
               </tr>
             </thead>
@@ -56,7 +59,7 @@
     <script src="{% js popper.min %}"></script>
     <script src="{% js bootstrap.min %}"></script>
     <script src="{% js socket.io-2.0.3 %}"></script>
-    <script src="{% js functions %}"></script>
+    <script src="{% js functions.min %}"></script>
 
     <script type="text/javascript">
       "use strict";
@@ -137,11 +140,11 @@
           }
           var row = 0;
           if(window.location.pathname != '/mirror' && window.location.pathname != '/mirror/') {
-            var tr_first = '<tr id="tr_first"><td>上级目录</td><td>-</td><td>-</td><td>-</td></tr>';
+            var tr_first = '<tr id="tr_first"><td>上级目录</td><td>-</td><td class="md-hidden-xs">-</td><td>-</td></tr>';
             document.getElementById("mirrors").innerHTML = tr_first;
           }
           if(data == -1) {
-            var tr_not_found = '<tr id="tr_not_found"><td>当前目录不存在</td><td>-</td><td>-</td><td>-</td></tr>';
+            var tr_not_found = '<tr id="tr_not_found"><td>当前目录不存在</td><td>-</td><td class="md-hidden-xs">-</td><td>-</td></tr>';
             document.getElementById("mirrors").innerHTML = tr_not_found;
           } else {
             for (var mir = 0; mir < data.length; mir++) {
@@ -158,11 +161,11 @@
               else 																	size = (osize / 1024 / 1024 / 1024).toFixed(2) + ' GB';
               var tr = null;
               if(type == "file") {
-              	tr = '<tr type="' + type + '"><td>' + name + '</td><td>' + size + '</td><td>' + mtime + '</td><td>-</td></tr>';
+              	tr = '<tr type="' + type + '"><td>' + name + '</td><td>' + size + '</td><td class="md-hidden-xs">' + mtime + '</td><td>-</td></tr>';
               } else {
                 let hasHelp = data[mir].help;
                 let helpHTML = hasHelp?'<button class="btn" name="gotoHelp" onclick="gotoHelp()">查看帮助文档</button>':'-';
-                tr = '<tr type="' + type + '"><td>' + name + '</td><td>' + '-' + '</td><td>' + '-' + '</td><td>' + helpHTML + '</td></tr>';
+                tr = '<tr type="' + type + '"><td>' + name + '</td><td>' + '-' + '</td><td class="md-hidden-xs">' + '-' + '</td><td>' + helpHTML + '</td></tr>';
               }
               document.getElementById("mirrors").innerHTML += tr;
             }

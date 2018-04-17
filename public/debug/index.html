@@ -39,11 +39,27 @@
         opacity: 1;
       }
       .nav-link:hover{background-color: yellow;color: black;}
+      @media (max-width: 568px) {.erweima img{width: 80%;}}
     </style>
   <body>
     {% template body_header.min %}
     <main>
-      <section class="jumbotron text-center mb-0">
+      <section class="jumbotron mb-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-3 text-center">
+              <img src="/Assets/img/bitnp.png" alt="bitnp">
+            </div>
+            <div class="col-12 col-sm-12 col-md-8 offset-md-1">
+              <h1 class="mb-5">北京理工大学开源软件镜像站</h1>
+              <p>
+                网络开拓者协会（Net Pioneer Association of BIT，以下简称网协），成立于1997年，本着“网络无限，开拓不懈”的精神，不断摸索、引领校园网络建设，后成为校团委领导的全校唯一IT类学生组织。经过20年的不断成长，已成为北理最大的网络服务提供团体，从学生工作，到日常娱乐服务，协会的服务范围仍然在继续的扩大。同时，协会自身也在不断努力的增强实力，拓展业务。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+<!--       <section class="jumbotron text-center mb-0">
         <div class="container">
           <div class="media md-media">
               <img src="/Assets/img/bitnp.png" class="align-self-center  mr-3" alt="bitnp">
@@ -56,7 +72,7 @@
             <a href="./mirror" class="btn btn-primary">进入下载页</a>
             <a href="./help" class="btn btn-secondary">帮助</a></p>
         </div>
-      </section>
+      </section> -->
       <div class="py-5 bg-light">
         <div class="container" id="main_container">
           <div class="row">
@@ -76,7 +92,7 @@
     <script src="{% js popper.min %}"></script>
     <script src="{% js bootstrap.min %}"></script>
     <script src="{% js socket.io-2.0.3 %}"></script>
-    <script src="{% js functions %}"></script>
+    <script src="{% js functions.min %}"></script>
     <script>
       "use strict";
       var requests = GetRequest();
@@ -133,15 +149,15 @@
       			/* // var div4 = document.createElement('div'); */
       			/* // div4.className = "btn-group"; */
       			/* // div3.appendChild(div4); */
-      			var div = '<div class="col-md-4" id="item_0">\
+      			var div = '<div class="col-12 col-sm-12 col-md-4" id="item_0">\
               <div class="card mb-4 mt-4 box-shadow mir-shadow">\
                 <img class="card-img-top" src="./Assets/img/' + Name + '.png" alt="Card image cap">\
                 <div class="card-body">\
                   <p class="card-text">' + Name + '</p>\
                     <nav class="nav nav-pills nav-fill">\
-                      <a class="nav-item nav-link" href="#" name="' + Name + '">下载</a>\
-                      <a class="nav-item nav-link" href="#" name="' + Name + '">帮助</a>\
-                      <a class="nav-item nav-link" href="#" name="' + Name + '">反馈</a>\
+                      <a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">下载</a>\
+                      <a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">帮助</a>\
+                      <a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">反馈</a>\
                     </nav>\
                   </div>\
                 </div>\
