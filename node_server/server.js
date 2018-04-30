@@ -1,5 +1,55 @@
 // 调试模式开关
 var mode = 'release';
+
+
+// var express = require('express');
+// var app = express();
+// var fs = require("fs");
+
+// var appjson = JSON.parse(fs.readFileSync('./app.json'));
+// mode = appjson.mode;
+
+// var ejs = require("ejs");
+
+// var bodyParser = require('body-parser');
+// var multer = require('multer');
+// var cookieParser = require('cookie-parser');
+// var util = require('util');
+
+// /* express设置部分开始 */
+
+// //设置渲染引擎
+// app.set("viewengine",'ejs');
+// //设置模板目录为当前index.js目录同级views目录下的模板
+// app.set("views",__dirname);
+
+// /* 创建中间件 */
+// app.use(express.static('Assets'));
+// /* 创建 application/x-www-form-urlencoded 编码解析 */
+// app.use(bodyParser.urlencoded({ extended: false}));
+// // 处理ajax post传来的json数据
+// app.use(bodyParser.json());
+// app.use(cookieParser());
+// app.use(multer({dest: '/tmp/'}).array('image'));
+
+// /* express设置部分结束 */
+
+
+// /* app.get部分开始 */
+// app.get('/', function (req, res) {
+//   res.render('public\\'+mode+'\\index.ejs');
+// });
+
+
+
+// /* app.get部分结束 */
+
+
+
+
+
+
+
 var fs = require('fs');
 var appjson = JSON.parse(fs.readFileSync('./app.json'));
 mode = appjson.mode;
@@ -25,6 +75,8 @@ var baseUrl = "datas/";
 var fileName= baseUrl + "mirrors.json";
 var mirData=JSON.parse(fs.readFileSync(fileName));
 
+
+
 function start(route) {
 
 
@@ -35,8 +87,8 @@ function start(route) {
 
     // 镜像资源下载服务器 (download server)
     var parseQuery = qs.parse(query);
-    if(pathname.indexOf('/mirror') == 0 && parseQuery.type != undefined && parseQuery.type == "file") {
-      var stream = fs.createReadStream('.' + pathname, {flags : "r", encoding : null});
+    if(parseQuery.type != undefined && parseQuery.type == "file") {
+      var stream = fs.createReadStream('./mirror' + pathname, {flags : "r", encoding : null});
       stream.on("error", function() {
         res.writeHead(404);
         res.end();
@@ -88,8 +140,10 @@ function start(route) {
           var datas = [];
           if(data.path == undefined)
             datas = ft.fileTraversal('./mirror');
-          else {
-            datas = ft.fileTraversal('.' + data.path);
+          else if (data.path == '/mirror') {
+            datas = ft.fileTraversal('./mirror');
+          } else {
+            datas = ft.fileTraversal('./mirror' + data.path);
           }
           socket.emit('data',{"type":"mirrorDir", "datas":datas});
           if (mode == 'debug'){

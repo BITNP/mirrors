@@ -14,6 +14,7 @@ setInterval(clearBuffer,10*60*1000); /* 10 mins */
 function clearBuffer(){
   buffer = {};
 }
+
 function fsExistsSync(path) {
     try{
         fs.accessSync(path,fs.F_OK);

@@ -173,6 +173,7 @@
               $(this).find('td:lt(3)').on("click",
               function() {
                 var href = window.location.pathname;
+                if (href == "/mirror") href = '';
                 href += '/' + $(this).parent().find(":eq(0)").text();
                 if($(this).parent().attr("type") == 'file')
                   href += "?type=file";
@@ -194,7 +195,11 @@
             var href = window.location.origin;
             if(pathParts[pathParts.length-1].match(/^\s$/) || pathParts[pathParts.length-1] == '') pathParts.pop();
             pathParts.pop();
-            window.location.href = href + pathParts.join('/');
+            var pathAppend = pathParts.join('/');
+            // console.log(pathAppend);
+            if(pathAppend == "") pathAppend = '/mirror';
+            // console.log(pathAppend);
+            window.location.href = href + pathAppend;
           });
 
         }

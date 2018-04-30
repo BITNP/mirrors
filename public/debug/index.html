@@ -44,19 +44,20 @@
       @media (max-width: 237px) {#img-bitnp {margin-left: -45px;margin-right: -45px;width:100%;}}
     </style>
   <body>
-    {% template body_header.min %}
+    {% template body_header %}
     <main>
       <section class="jumbotron mb-0">
         <div class="container">
           <div class="row">
             <div class="col-12 col-sm-12 col-md-3 text-center">
-              <img src="/Assets/img/bitnp.png" alt="bitnp" id="img-bitnp">
+              <img src="/img/bitnp.png" alt="bitnp" id="img-bitnp">
             </div>
             <div class="col-12 col-sm-12 col-md-8 offset-md-1">
               <h1 class="mb-5">北京理工大学开源软件镜像站</h1>
               <p>
                 网络开拓者协会（Net Pioneer Association of BIT，以下简称网协），成立于1997年，本着“网络无限，开拓不懈”的精神，不断摸索、引领校园网络建设，后成为校团委领导的全校唯一IT类学生组织。经过20年的不断成长，已成为北理最大的网络服务提供团体，从学生工作，到日常娱乐服务，协会的服务范围仍然在继续的扩大。同时，协会自身也在不断努力的增强实力，拓展业务。
               </p>
+              <a class="nav-item nav-link text-center h3" href="javascript:(0);" id="fankui" name="aa" style="color: #007bff;">反馈</a>
             </div>
           </div>
         </div>
@@ -64,7 +65,7 @@
 <!--       <section class="jumbotron text-center mb-0">
         <div class="container">
           <div class="media md-media">
-              <img src="/Assets/img/bitnp.png" class="align-self-center  mr-3" alt="bitnp">
+              <img src="/img/bitnp.png" class="align-self-center  mr-3" alt="bitnp">
               <div class="media-body text-left">
                 <h1 class="mb-5">北京理工大学开源软件镜像站</h1>
                 网络开拓者协会（Net Pioneer Association of BIT，以下简称网协），成立于1997年，本着“网络无限，开拓不懈”的精神，不断摸索、引领校园网络建设，后成为校团委领导的全校唯一IT类学生组织。经过20年的不断成长，已成为北理最大的网络服务提供团体，从学生工作，到日常娱乐服务，协会的服务范围仍然在继续的扩大。同时，协会自身也在不断努力的增强实力，拓展业务。
@@ -85,10 +86,10 @@
     </main>
     {% template body_footer.min %}
     <a id="gotoTop" href="#">
-      <img src="./Assets/img/gotoTop.png" width="50" height="50" alt="" />
+      <img src="/img/gotoTop.png" width="50" height="50" alt="" />
     </a>
     <div class="erweima">
-      <img src="./Assets/img/bitnp_qrcode.jpg" alt="">
+      <img src="/img/bitnp_qrcode.jpg" alt="">
     </div>
     <script src="{% js jquery.min %}"></script>
     <script src="{% js popper.min %}"></script>
@@ -128,42 +129,20 @@
           for (var mir = start; mir < start + num && mir < data.length; mir++) {
             var Name = data[mir].path;
             var Img = Name + '.png';
-      			/* var div = document.createElement('div'); */
-      			/* div.className = "col-md-4"; */
-      			/* div.id = 'item_' + mir; */
-      			/* var div1 = document.createElement('div'); */
-      			/* div1.className = "card mb-4 mt-4 box-shadow mir-shadow"; */
-      			/* div.appendChild(div1); */
-      			/* var image = document.createElement('img'); */
-      			/* image.className = "card-img-top"; */
-      			/* image.src = "./Assets/img/" + Img; */
-      			/* image.alt = "Card image cap"; */
-      			/* div1.appendChild(image); */
-      			/* var div2 = document.createElement('div'); */
-      			/* div2.className = 'card-body'; */
-      			/* div1.appendChild(div2); */
-      			/* var p = document.createElement('p'); */
-      			/* p.className = "card-text"; */
-      			/* p.innerText = Name; */
-      			/* div2.appendChild(p); */
-      			/* // div3.className = "d-flex justify-content-between align-items-center"; */
-      			/* // div2.appendChild(div3); */
-      			/* // var div4 = document.createElement('div'); */
-      			/* // div4.className = "btn-group"; */
-      			/* // div3.appendChild(div4); */
-      			var div = '<div class="col-12 col-sm-12 col-md-4" id="item_0">\
-              <div class="card mb-4 mt-4 box-shadow mir-shadow">\
-                <img class="card-img-top" src="./Assets/img/' + Name + '.png" alt="Card image cap">\
-                <div class="card-body">\
-                  <p class="card-text">' + Name + '</p>\
-                    <nav class="nav nav-pills nav-fill">\
-                      <a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">下载</a>\
-                      <a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">帮助</a>\
-                      <a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">反馈</a>\
-                    </nav>\
-                  </div>\
-                </div>\
-              </div>';
+      			var div = '';
+            div += '<div class="col-12 col-sm-12 col-md-4" id="item_0">';
+            div += '<div class="card mb-4 mt-4 box-shadow mir-shadow">';
+            div += '<img class="card-img-top" src="/img/' + Name + '.png" alt="Card image cap">';
+            div += '<div class="card-body">';
+            div += '<p class="card-text">' + Name + '</p>';
+            div += '<nav class="nav nav-pills nav-fill">';
+            div += '<a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">下载</a>';
+            div += '<a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">帮助</a>';
+            // div += '<a class="nav-item nav-link" href="javascript:(0);" name="' + Name + '">反馈</a>';
+            div += '</nav>';
+            div += '</div>';
+            div += '</div>';
+            div += '</div>';
               console.log(div);
             row.innerHTML += div;
           }
@@ -181,7 +160,7 @@
               var href = window.location.pathname;
               var hrefArr = href.split('/');
               href = href.substring(0, href.length - hrefArr[hrefArr.length - 1].length);
-              href += 'mirror/' + name;
+              href += name;
               window.location.href = href;
             }
             break;
@@ -194,13 +173,14 @@
               window.location.href = href;
             }
             break;
-            case 2: /*反馈*/
-            {
-              $(".erweima").css('display','flex');
-            }
-            break;
+            // case 2: /*反馈*/
+            // {
+            //   $(".erweima").css('display','flex');
+            // }
+            // break;
           }
         });
+        $("#fankui").click(() => $(".erweima").css('display','flex'));
         $(".erweima").click(function(){
           $(this).hide();
         });
@@ -220,6 +200,7 @@
         if (contentHeight < scrollTop + pageHeight) {
           return true;
         }
-      };</script>
+      };
+    </script>
   </body>
 </html>
