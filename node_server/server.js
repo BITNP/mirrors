@@ -86,19 +86,19 @@ function start(route) {
     if (mode == 'debug') console.log("Request for " + pathname + " received.");
 
     // 镜像资源下载服务器 (download server)
-    var parseQuery = qs.parse(query);
-    if(parseQuery.type != undefined && parseQuery.type == "file") {
-      var stream = fs.createReadStream('./mirror' + pathname, {flags : "r", encoding : null});
-      stream.on("error", function() {
-        res.writeHead(404);
-        res.end();
-      });
-      stream.pipe(res);
-      return stream;
-    }
+    // var isfile = fs.statSync('./mirror'+pathname);
+    // if(isfile.isFile()) {
+    //   var stream = fs.createReadStream('./mirror' + pathname, {flags : "r", encoding : null});
+    //   stream.on("error", function() {
+    //     res.writeHead(404);
+    //     res.end();
+    //   });
+    //   stream.pipe(res);
+    //   return stream;
+    // }
     // 镜像资源下载服务器 (download server)
 
-    // 
+
     // 反向缓存权限设置
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");

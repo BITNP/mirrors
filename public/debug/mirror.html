@@ -175,8 +175,8 @@
                 var href = window.location.pathname;
                 if (href == "/mirror") href = '';
                 href += '/' + $(this).parent().find(":eq(0)").text();
-                if($(this).parent().attr("type") == 'file')
-                  href += "?type=file";
+                /* if($(this).parent().attr("type") == 'file') */
+                /*   href += "?type=file"; */
                 window.location.href = href;
               });
             });
