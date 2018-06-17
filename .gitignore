@@ -66,5 +66,6 @@ typings/
 # test file
 mirror/
 test/
+node_modules/
 package-lock.json
 test.*
