@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+<head>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="keywords" content="HTML5 Template" />
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>{{title}}</title>
+
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<!-- Google Webfont -->
+	<link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="js/vendor/slick/slick.css">
+	<link rel="stylesheet" href="css/prettyphoto.css">
+	<link rel="stylesheet" href="js/vendor/owl-carousel/owl.carousel.css">
+	<link rel="stylesheet" href="js/vendor/owl-carousel/owl.theme.css">
+	<link rel="stylesheet" href="js/vendor/owl-carousel/owl.transitions.css">
+	<link rel="stylesheet" href="css/style.css">
+{{#each pagecss }}
+	<link rel="stylesheet" type="text/css" href="css/{{.}}">
+{{/each}}
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	{{{body}}}
+
+
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/vendor/slick/slick.js"></script>
+<script src="js/vendor/isotope/isotope.pkgd.js"></script>
+<script src="js/vendor/owl-carousel/owl.carousel.js"></script>
+<script src="js/jquery.appear.js"></script>
+<script src="js/jquery.inview.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/vendor/flex-slider/jquery.flexslider.js"></script>
+<script src="js/vendor/flex-slider/main.js"></script>
+<script type="text/javascript" src="js/jquery.countdown.js"></script>
+<script src="js/jquery.prettyphoto.js"></script>
+<script src="js/vendor/remodal/jquery.remodal.js"></script>
+<script src="js/vendor/flex-slider/jquery.flexslider.js"></script>
+<script src="js/vendor/flex-slider/main.js"></script>
+<script src="js/main.js"></script>
+
+<script src="js/functions.js"></script>
+<script src="js/handlebars.runtime.min.js"></script>
+
+{{#each pagejs}}
+<script src="js/{{.}}"></script>
+{{/each}}
+
+
+</body>
+</html>
