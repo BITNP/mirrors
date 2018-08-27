@@ -7,7 +7,7 @@ const path = require('path');
 
 
 
- 
+
 
 const properties = require('../properties.js');
 
@@ -16,7 +16,7 @@ var upload = multer({dest:properties.image_upload_folder});
 var mirror = require('./mirrors');
 var help = require('./helps');
 
-var month_letter = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 
+var month_letter = ['Jan.', 'Feb.', 'Mar.', 'Apr.',
                     'May',  'June', 'July', 'Aug.',
                     'Sept.','Oct.', 'Nov.', 'Dec.'];
 
@@ -39,35 +39,19 @@ routes = function () {
     }));
 
     externalRoutes.use(bodyParser.json());
-    
-    
+
+
     /* 静态资源 */
-    externalRoutes.get('/css/*', (req, res) => {
-        res.sendFile(req.originalUrl, {
-            'root': './'
-        });
-    });
-
-    externalRoutes.get('/js/*', (req, res) => {
-        res.sendFile(req.originalUrl, {
-            'root': './'
-        });
-    });
-
-    externalRoutes.get('/iamges/*', (req, res) => {
-        res.sendFile(req.originalUrl, {
-            'root': './'
-        });
-    });
-
-    externalRoutes.get('/_help/*', (req, res) => {
+    externalRoutes.get(properties.basepath+'/_help/*', (req, res) => {
         res.sendFile(req.originalUrl, {
             'root': './'
         });
     });
     /* 静态资源 */
 
-    externalRoutes.get('/', function(req, res) {
+    const rootRoutes = properties.basepath == "" ? ['/'] : ['/', properties.basepath+'/']
+
+    externalRoutes.get(rootRoutes, function(req, res) {
         res.status(200);
         res.render('mirror',{
             title: "北理镜像站 | 镜像列表",
@@ -83,7 +67,7 @@ routes = function () {
     //     });
     // });
 
-    externalRoutes.route('/submit_mirror')
+    externalRoutes.route(properties.basepath+'/submit_mirror')
         .get((req, res) => {
             res.status(200);
             res.render('submit_mirror',{
@@ -109,14 +93,14 @@ routes = function () {
             res.end();
         });
 
-    externalRoutes.get('/submit_help', (req, res) => {
+    externalRoutes.get(properties.basepath+'/submit_help', (req, res) => {
             res.status(200);
             res.render('submit_help',{
                 title: "北理镜像站 | 提交帮助",
                 pagejs: ['imageupload.js', 'submit_help.js']
             });
         })
-    externalRoutes.post('/submit_help', upload.single('myfile'), (req, res) => {
+    externalRoutes.post(properties.basepath+'/submit_help', upload.single('myfile'), (req, res) => {
             var file = req.file;
             res.header("Access-Control-Allow-Origin", "*");
             res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
@@ -168,7 +152,7 @@ routes = function () {
 
         });
 
-    externalRoutes.route('/helps')
+    externalRoutes.route(properties.basepath+'/helps')
         .get((req, res) => {
             res.status(200);
             res.render('helps',{
@@ -200,7 +184,7 @@ routes = function () {
         });
 
 
-    externalRoutes.route('/help_single')
+    externalRoutes.route(properties.basepath+'/help_single')
         .get((req, res) => {
             console.log("GET /help_single")
             console.log(req.query.help_name)
@@ -208,7 +192,7 @@ routes = function () {
             var myDate = new Date(_help.help_info.last_update);
             var year = myDate.getFullYear();    //获取完整的年份(4位,1970-????)
             var month = myDate.getMonth();       //获取当前月份(0-11,0代表1月)
-            var date = myDate.getDate();        //获取当前日(1-31) 
+            var date = myDate.getDate();        //获取当前日(1-31)
 
             res.status(200);
             res.render('help_single',{
@@ -239,7 +223,7 @@ routes = function () {
         });
 
 
-    externalRoutes.route('/mirror')
+    externalRoutes.route(properties.basepath+'/mirror')
         .get((req, res) => {
             res.status(200);
             res.render('mirror',{

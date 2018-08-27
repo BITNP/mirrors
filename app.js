@@ -3,10 +3,11 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 
+const properties = require('./properties.js');
 var routes = require('./node_server/routes');
 
 const handlebars = require('express3-handlebars').create({defaultLayout: 'main'});
-app.use(express.static('public'));
+app.use(properties.basepath_static+'/', express.static('public'));
 app.engine('handlebars',handlebars.engine);
 app.set('view engine', 'handlebars');
 
