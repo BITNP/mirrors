@@ -279,7 +279,7 @@ routes = function () {
             // }
 
 
-            request.get('http://localhost:8888' + req.body.filter.mirror_path,{}, function(err, data) {
+            request.get(properties.apache_server + req.body.filter.mirror_path,{}, function(err, data) {
                 // console.log(data)
                 // let sendData = data.body.match(/\<pre\>.*/)
                 // console.log(data.body)
@@ -289,10 +289,6 @@ routes = function () {
                 // console.log(sendData)
                 res.json({data: sendData})
             })
-
-
-
-
 
             // var start = parseInt(req.body.start);
             // var num = parseInt(req.body.num);

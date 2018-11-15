@@ -15,7 +15,8 @@ const properties = {
 	privilige: {
 		hide: 0,
 		show: 1
-	}
+	},
+	apache_server: "http://localhost:8888"
 }
 
 module.exports = properties;
