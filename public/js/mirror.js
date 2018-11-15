@@ -11,6 +11,8 @@ if (!_num) {
   _num = 10;
 }
 
+var mirror_obj = null
+
 $.ajax('/mirror', {
   data: {
     start: (_page - 1) * _num,
@@ -32,7 +34,49 @@ $.ajax('/mirror', {
   dataType: 'json',
   type: 'POST'
 }).then((data) => {
-  console.log(data);
+  console.log('/mirror')
+  console.log(data)
+
+  // {name: "erwer.txt", last_update: "2018-11-15T02:52:56.457Z", size: 9, type: "file"}
+  // ["Description", "ubuntu/", "2018-11-12", "00:13", "-", ""]
+
+
+  mirror_obj = $(data.data).text().replace(/[ ]{1,}/g,' ').split('\n').slice(0,-1).map((val)=>{return val.split(' ')})
+  if(mirror_obj[0].length > 6) {
+    mirror_obj[0].splice(0, mirror_obj[0].length - 6)
+  }
+  console.log(mirror_obj)
+  mirror_obj = mirror_obj.map((val, index, arr) => {
+    if(val[0] == 'Size') {
+      return {
+        name: val[2],
+        last_update: '',
+        size: val[4],
+        type: 'directory'
+      }
+    } else {
+      return {
+        name: val[1],
+        last_update: val[2],
+        size: val[4],
+        type: (val[1].endsWith('/')) ? 'directory' : 'file'
+      }
+    }
+  })
+  console.log(mirror_obj)
+  if(mirror_obj[0].name === "Parent") {
+    mirror_obj.splice(0,1)
+  }
+
+  data = {
+    status: 200,
+    total: mirror_obj.length,
+    mirrors_info: mirror_obj
+  }
+
+  console.log(data)
+
+  // return
   $('.start').text((_page - 1) * _num + 1);
   $('.end').text((_page * _num > data.total) ? data.total : _page * _num);
   $('.total').text(data.total);
@@ -294,11 +338,13 @@ function showNavbar(navDatas) {
 
 var pre
 var json = []
-var requestHref = "http://localhost:8888/"
+var requestHref = "http://localhost:8888"// + getQueryString('path')
 // var requestHref = window.location.href
 
 $.get(requestHref, function(result) {
+  console.log(requestHref)
   pre = $(result)
+  var html = $(pre.toArray()[4]).text().replace(/[ ]{1,}/g,' ').split('\n').slice(0,-1).map((val)=>{return val.split(' ')})
   pre = $(pre.toArray()[4]).find('a').slice(4).toArray()
   // console.log(pre[0])
   json = pre.map((val, index, arr) => {
@@ -307,9 +353,19 @@ $.get(requestHref, function(result) {
       text: val.text
     }
   })
-  console.log(json)
+  // console.log(json)
+  if(html[0].length > 6) {
+    html[0].splice(0, html[0].length - 6)
+  }
+  // console.log(JSON.stringify(html))
 })
 
+function getQueryString(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+  var r = location.search.substr(1).match(reg);
+  if (r != null) return unescape(decodeURI(r[2]));
+  return null;
+}
 
 
 // // 加载字母分类
