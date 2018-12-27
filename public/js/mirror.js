@@ -30,7 +30,6 @@ $.ajax(get_url, {
 
   // 加载镜像
   loadMirrors()
-  console.log("mirror_show:", mirror_show)
 
   // 加载字母分类
   // loadAlphabetCategory(mirror_show)
