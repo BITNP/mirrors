@@ -1,6 +1,12 @@
 # 本网站是北京理工大学开源软件镜像站go版本
 
-## 运行demo
+## 线上demo地址
+前端
+http://m.zhanzhinet.com:9000
+go服务器地址
+http://m.zhanzhinet.com:9090
+
+## 本地运行demo
 
 > 安装 go
 
