@@ -1,0 +1,21 @@
+{{#each data }}
+<article>
+	<h4><a href="./help_single?help_name={{ name }}">{{ name }}</a></h4>
+	<div class="blog-thumb">
+		<img src="images/help/{{ image }}" class="img-responsive" alt=""/>
+	</div>
+	<div class="blog-excerpt">
+		<p>{{ brief_intro }}</p>
+		<a href="./help_single?help_name={{ name }}" class="bmore">查看详情</a>
+	</div>
+	<div class="clearfix"></div>
+	<div class="post-meta">
+		<span><i class="fa fa-calendar"></i>{{ last_update }}</span>
+		<span><i class="fa fa-user"></i> {{ author }}</span>
+<!-- 		<span><i class="fa fa-folder"></i> Category Name</span>
+		<span><i class="fa fa-tag"></i> <a href="#">girl</a>,<a href="#">pink</a>,<a href="#">cute</a>,<a href="#">sweet</a></span>
+		<span><i class="fa fa-comments"></i> 3 Comments</span>
+		<span><i class="fa fa-eye"></i> 43</span> -->
+	</div>
+</article>
+{{/each }}

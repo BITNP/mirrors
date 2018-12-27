@@ -1,22 +1,47 @@
-# mirrors
+# 本网站是北京理工大学开源软件镜像站apache版本
 
-## 环境要求
-> node.js
->安装socket.IO模块
+## 运行demo
 
-## 如何运行
+> 安装apache服务器，并开启目录检索服务
+>
+> 修改 properties中的 apache_sesrver 字段，将其改为相应的apache服务器地址
+>
+> 不要对目录检索界面做自定义操作
+```
+# httpd.conf 设置参考（apache服务器）
 
-启动服务器
-> node index.js
+# 将node服务器文件下的mirror文件夹作为目录检索的根目录
+DocumentRoot "D:\myproducts\ProgramLanguages\github\mirrors_front_end/mirror"
+<Directory "D:\myproducts\ProgramLanguages\github\mirrors_front_end/mirror">
+    
+    Options Indexes FollowSymLinks MultiViews
 
+    MultiviewsMatch Any
 
-## 配置文件（app.json)
-> 端口默认为 3000
-> 可在配置文件中修改
+    IndexOrderDefault Descending Date
 
-## 目录结构
+    IndexOptions NameWidth=100 Charset=UTF-8 FancyIndexing FoldersFirst
 
-> Assets	静态资源目录，如图片等
-> datas		镜像信息
-> mirror	储存镜像的位置，请在本地新建该目录，须放置于项目根目录
-> node_server	node服务器文件
+    AllowOverride None
+    
+    Require all granted
+</Directory>
+```
+
+> 安装 nodejs
+
+```
+yum install nodejs
+```
+
+> 安装依赖
+```nodejs
+npm install
+```
+> 启动
+```
+node app.js
+```
+> 镜像的根目录为 mirror 文件夹，请将镜像放置于此，如无 mirror 文件夹，自行创建即可
+
+> 当前版本为基础版本，由于apache的限制，检索功能暂时不可用，将于下一次魔改后提交

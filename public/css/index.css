@@ -1,0 +1,31 @@
+      .mir-shadow{ box-shadow: 10px 10px 15px #8e8e8e; }
+      #gotoTop{ position: fixed; bottom: 10px; right: 10px; width: 50px; height: 50px; opacity: 0.5; }
+      #gotoTop:hover{ opacity: 1; }
+      .erweima {
+        position:fixed;
+        left: 0;
+        top: 0;
+        width:100%;
+        height:100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        text-align:center;
+        overflow: hidden;
+        display: none;
+        justify-content: center;
+        -webkit-align-items: center;
+        align-items: center;
+        z-index: 999;
+      }
+      .md-media {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .erweima img {
+        opacity: 1;
+      }
+      .nav-link:hover{background-color: yellow;color: black;}
+      @media (max-width: 568px) {.erweima img{width: 80%;}}
+      @media (min-width: 238px) {#img-bitnp {margin-left: -45px;margin-right: -45px;}}
+      @media (max-width: 237px) {#img-bitnp {margin-left: -45px;margin-right: -45px;width:100%;}}

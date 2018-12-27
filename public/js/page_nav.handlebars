@@ -1,0 +1,6 @@
+
+{{#each data }}
+	<li {{#if link_page }}{{ else }}class="active"{{/if }}>
+		<a href="{{#if link_page }}?{{{ link_page }}}{{ else }}javascript:(0);{{/if }}">{{ name }}</a>
+	</li>
+{{/each }}

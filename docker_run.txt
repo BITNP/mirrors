@@ -1,0 +1,4 @@
+docker run -t -p 9888:80 -v ~/apache/www/:/usr/local/apache2/htdocs/ -v ~/apache/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf -v ~/apache/logs/:/usr/local/apache2/logs/ -d httpd
+
+
+docker run --name=apache_9888 -d -t -i -p 9888:80 -v ~/apache/www/:/usr/local/apache2/htdocs/ -v ~/apache/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf -v ~/apache/logs/:/usr/local/apache2/logs/ httpd

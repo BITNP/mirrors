@@ -1,0 +1,124 @@
+<div class="body">
+  {{>topbar }}
+
+  {{>header }}
+
+  <div class="clearfix space50"></div>
+
+  <!-- SHOP CONTENT -->
+  <div class="container main-content">
+    <div class="row">
+      <ul class="bcrumbs">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><span>镜像列表</span></li>
+      </ul>
+      <div class="clearfix space30" style="width: 100%;"></div>
+      <div id="shop-content width-100" class="row">
+        {{>sidebar }}
+
+        <div class="col-md-9">
+          <div class="shop-content">
+            <div class="clearfix space50"></div>
+            <div class="filter-wrap">
+              {{!-- <div class="fw-sort">
+                <em>Sort By</em>
+                <div class='selectBox'>
+                  <span class='selected'></span>
+                  <span class='selectArrow'>&#9660;</span>
+                  <div class="selectOptions">
+                    <span class="selectOption">Product Name: A to Z</span>
+                    <span class="selectOption">A-E</span>
+                    <span class="selectOption">F-J</span>
+                    <span class="selectOption">K-0</span>
+                    <span class="selectOption">P-T</span>
+                    <span class="selectOption">U-Y</span>
+                    <span class="selectOption">Z</span>
+                  </div>
+                </div>
+              </div> --}}
+              <div class="fw-percount">
+                <small>Show</small>
+                <div class='selectBox'>
+                  <span class='selected'></span>
+                  <span class='selectArrow'>&#9660;</span>
+                  <div class="selectOptions" id="selectPageSize">
+                    <span class="selectOption" value=10>10</span>
+                    <span class="selectOption" value=15>15</span>
+                    <span class="selectOption" value=30>30</span>
+                    <span class="selectOption" value=50>50</span>
+                    <span class="selectOption" value=200>200</span>
+                  </div>
+                </div>
+                <em>Per Page</em>
+              </div>
+              {{!-- <div class="fw-grid">
+                <a href="./shop-grid.html"><i class="fa fa-th"></i></a>
+                <a class="active"><i class="fa fa-list-ul"></i></a>
+              </div> --}}
+            </div>
+            <div class="filter-info">
+              显示 <span class="start"></span>-<span class="end">15</span> of <span class="total">30</span> 个
+            </div>
+            <div class="shop-info shop-list">
+              <div class="row">
+                {{!-- <div class="col-md-12">
+                  <div class="product-info">
+                    <div class="product-thumb">
+                      <div class="offer-badge">-15%</div>
+                      <img src="images/shop/1/1.jpg" class="img-responsive" alt="" />
+                      <a data-remodal-target="modal">Quick View</a>
+                    </div>
+                    <div class="pi-inner">
+                      <h4><a href="./product_single.html">Miuyas Laytsas&reg; Pinky Girls</a></h4>
+                      <p>Nullam luctus justo vel orci pellentesque dapibus. Class aptent taciti ad torquent per conubia
+                        nostra, per inceptos himenaeos.</p>
+                      <div class="product-price">$38.99 <span>$42.99</span></div>
+                      <a href="#" class="shop-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                    </div>
+                  </div>
+                </div> --}}
+                {{!-- <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <nav class="navbar navbar-expand navbar-light bg-light">
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                          <div class="navbar-nav"></div>
+                          <div class="btn-group" role="group" id="pathNav" aria-label="path"></div>
+                        </div>
+                      </nav>
+                    </div>
+                  </div>
+                  <ul class="nav" id="mdlistNav"></ul>
+                </div> --}}
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <td>镜像名</td>
+                        <td>大小</td>
+                        <td class="md-hidden-xs">修改时间</td>
+                        <td>帮助文档</td>
+                      </tr>
+                    </thead>
+                    <tbody id="mirrors"></tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="shop-nav">
+              <ul class="page_nav" id="page_nav">
+              </ul>
+              <a onclick="showall()" class="sn-btn">Show all</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix space80"></div>
+
+  {{>footer }}
+</div>

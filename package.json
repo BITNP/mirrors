@@ -1,17 +1,32 @@
 {
-  "name": "mirror",
+  "name": "master-assignment-5",
   "version": "1.0.0",
-  "description": "环境要求:\r node.js\r 安装socket.IO模块",
-  "main": "Server.js",
+  "description": "Handlebars templating",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OSU-CS290-Sp18/master-assignment-5.git"
+  },
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/OSU-CS290-Sp18/master-assignment-5/issues"
+  },
+  "homepage": "https://github.com/OSU-CS290-Sp18/master-assignment-5#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "socket.io": "^2.0.4"
-  }
+    "express-session": "^1.15.6",
+    "express3-handlebars": "^0.5.2",
+    "github-markdown-css": "^2.10.0",
+    "iconv-lite": "^0.4.23",
+    "marked": "^0.4.0",
+    "multer": "^1.3.0",
+    "request": "^2.88.0",
+    "session-file-store": "^1.2.0"
+  },
+  "devDependencies": {}
 }

@@ -1,0 +1,80 @@
+
+
+<div class="body">
+	{{>topbar }}
+
+	{{>header }}
+
+	<div class="clearfix space50"></div>
+
+	<!-- CONTACT CONTENT -->
+	<div class="container main-content">
+		<div class="row">
+			<ul class="bcrumbs">
+				<li><a href="#"><i class="fa fa-home"></i></a></li>
+				<li><span>提交文档</span></li>
+			</ul>
+			<div class="clearfix space30"></div>
+			<div class="row width-100">
+				<div class="col-md-4">
+					<label>图片(图片应小于5M):</label>
+					<div id="image">
+						<input type="file" id="file" unselectable="on">
+						<img src="" alt="" id="imagehide">
+					</div>
+
+				</div>
+
+				<div class="col-md-8 c-form-main">
+					<div class="c-form-content">
+						<h3>提交文档</h3>
+						<h6>感谢您对本镜像站的大力支持，如果您没有或已遗忘上传准入码，请联系网络开拓者协会</h6>
+						<form class="c-form" id="contactForm" method="post">
+							<label><span style="color: red;">*</span> 姓名或网上ID:</label>
+							<input name="name_id" id="name_id" type="text" required="required">
+							<label><span style="color: red;">*</span> 上传准入码:</label>
+							<input name="code" id="code" type="password" required="required">
+							<label><span style="color: red;">*</span> 文档名:</label>
+							<input name="help_name" id="help_name" type="text" required="required">
+							<label><span style="color: red;">*</span> 文档简要说明:</label>
+							<input name="help_brief" id="help_brief" type="text" required="required">
+							<label><span style="color: red;">*</span> 文档内容(请将您编写的markdown文档粘贴到此处):</label>
+							<textarea name="help_content" id="help_content" required="required"></textarea>
+							<button type="button" id="btn_submit_help">提交文档</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix space60"></div>
+		</div>
+	</div>
+
+	<div class="clearfix space80"></div>
+<style>
+	#image {
+		position: relative;
+		background: url('images/imageupload.png') center no-repeat #fff;
+		width: 100%;
+		max-width: 410px;
+		min-height: 200px;
+	}
+	#image input {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		filter: alpha(opacity=0);
+		cursor: pointer;
+		width: 100%;
+		height: 100%;
+		font-size: 0;
+		font-size: 150px\9;
+	}
+	#image img {
+		width: 100%;
+	}
+</style>
+	{{>footer }}
+
+</div>
+
