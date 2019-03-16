@@ -1,7 +1,7 @@
 const path = require('path');
 const properties = {
 	basepath:				"/web", // default: ""
-	basepath_static:		"/web/static",
+	basepath_static:		"/web",
 	image_upload_folder: 	path.join(__dirname, "/upload"),
 	mirrors_json_path: 		path.join(__dirname, "/datas/mirrors.json"),
 	mirrors_request_path:	path.join(__dirname, "/datas/mirrors_request.json"),
