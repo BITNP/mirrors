@@ -5,7 +5,7 @@ const properties = {
 	image_upload_folder: 	path.join(__dirname, "/upload"),
 	mirrors_json_path: 		path.join(__dirname, "/datas/mirrors.json"),
 	mirrors_request_path:	path.join(__dirname, "/datas/mirrors_request.json"),
-	mirrors_path: 			path.join(__dirname, "/mirror"),
+	mirrors_path: 			"/datapool/mirror/public_html",
 	helps_json_path: 		path.join(__dirname, "/_help/helps.json"),
 	helps_md_folder: 		path.join(__dirname, "/_help"),
 	helps_image_folder: 	path.join(__dirname, "/public/images/help"),
