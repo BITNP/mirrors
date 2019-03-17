@@ -292,4 +292,4 @@ jQuery(function($){
 
     //   console.log(alphabet_table)
     // }
-})();
+});
