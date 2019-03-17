@@ -12,7 +12,7 @@ if(!_num) {
 }
 
 jQuery(function($){
-  BASE_DIR = '/web';
+  var BASE_DIR = '/web';
 
   $.ajax(BASE_DIR+'/mirror', {
       data: {
